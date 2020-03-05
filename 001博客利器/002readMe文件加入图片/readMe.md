@@ -8,6 +8,8 @@
 
 #### 二、增加 github CDN 的支持
 
+可以使用 Vs Code 打开，点击保存的时候会提示是否使用 admin 权限进行修改
+
 ```bash
 # GitHub Start 
 192.30.253.112    github.com 
