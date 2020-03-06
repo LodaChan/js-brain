@@ -6,6 +6,9 @@ webpack 2.0 开始引入 tree shaking 技术
 
 ~~不建议升级到 webpack4.X  很坑~~ `有时间，不用赶需求`可以升级...
 
+ 
+
+
 #### 一、为什么要tree-shaing
 
 + 打包时忽略没有用到的代码，就是实际环境的内存占用
@@ -62,10 +65,10 @@ webpack 的实现是把所有 import 标记为有使用/无使用两种，在后
 + 被使用过的 export 标记为 /* harmony export ([type]) */，其中 [type] 和 webpack 内部有关，可能是 binding, immutable 等等
 
 
-
  
- #### 四、副作用，就是不会被 tree-shaking  掉
+ #### 四、副作用
 
+就是不会被 tree-shaking 掉,build 之后还是有
 
  + 1 ES6 类和对象内部
 ```js
