@@ -48,17 +48,20 @@ AST语法树
 
 #### 三、webpack 中的 tree-shaking 原理
 
-源码必须遵循 ES6 的模块规范 (import & export)，如果是 CommonJS 规范 (require) 则无法使用
+> 源码必须遵循 ES6 的模块规范 (import & export)，如果是 CommonJS 规范 (require) 则无法使用
 
 基于 ES6 的静态引用，tree shaking 通过扫描所有 ES6 的 export，找出被 import 的内容并添加到最终代码中。 
 
 webpack 的实现是把所有 import 标记为有使用/无使用两种，在后续压缩时进行区别处理。
 
+
 + 所有 import 标记为 /* harmony import */
+
++ 没被使用过的 import 标记为 /* unused harmony export [FuncName] */，其中 [FuncName] 为 export 的方法名称
 
 + 被使用过的 export 标记为 /* harmony export ([type]) */，其中 [type] 和 webpack 内部有关，可能是 binding, immutable 等等
 
-+ 没被使用过的 import 标记为 /* unused harmony export [FuncName] */，其中 [FuncName] 为 export 的方法名称
+
 
  
  #### 四、副作用，就是不会被 tree-shaking  掉
@@ -111,3 +114,9 @@ let result2 = fn2() // code review 的时候是不是很想删!
 
 console.log(result1)
  ```
+
+  + 4 commonJS 规范 (require) 无效
+
+  ```js
+  const utlils = reqiure("./utils");// ??? 我自己给自己的勇气
+  ```
