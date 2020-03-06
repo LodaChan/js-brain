@@ -4,11 +4,12 @@
 
 #### 一、配置过于复杂
 
-+ 大量的插件 xx-xxx-xxx-xxx-plugin , 参数多，wiki文档支持有限
++ 大量的插件 xx-xxx-xxx-xxx-plugin 轮子多依赖多
++ 参数多，这个参数怎么wiki没有? !!! hack code . nice !
 
 #### 二、文档不够全面
 
-+ 可以直接使用的很少，副作用非常多
++ wiki的例子本地执行都err
 
 #### 三、模块化只对import/export友好
 
@@ -20,16 +21,16 @@
 
 #### 五、不能直接进行IO处理
 
-+ 复制文件到另一个文件夹，很难扩展，自己写plugin然后再用Node io 进行处理
++ 复制文件到另一个文件夹，很难扩展，自己写plugin然后再用Node IO 进行处理
 
 #### 六、编译的速度慢
 
 + 会先自己进行一轮静态分析
-+ 需要自己写loader进行cache
++ 有的loader没有加cache，自己写1个吧 lru-cache(基于hashMap)
 
 #### 七、版本差异大
 
-不论是配置还是参数都变化太大
+不论是配置还是参数都变化太大，少侠升级4.x啊
 
 #### 八、默认的vendor体积大
 
@@ -37,4 +38,4 @@
 
 #### 九、对很多文件格式需要额外的支持
 
-比如 less对应less-loader，css对应style-loader，vue templete对应vue-loader等等...
+比如：less对应less-loader，css对应style-loader，vue templete对应vue-loader等等...
