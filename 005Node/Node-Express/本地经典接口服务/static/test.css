@@ -1,0 +1,15 @@
+h1 {
+    color: red;
+}
+
+img {
+    width : 200px;
+    height: auto;
+}
+
+a,
+audio,
+video {
+    display: block;
+    margin : 10px 0px;
+}

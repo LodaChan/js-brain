@@ -26,7 +26,20 @@
 #### 六、编译的速度慢
 
 + 会先自己进行一轮静态分析
-+ 有的loader没有加cache，自己写1个吧 lru-cache(基于hashMap)
++ 有的loader没有加cache，自己写1个吧 [lru-cache](https://www.npmjs.com/package/lrucache "lru-cache")
+
+```js
+const cache = require('lru-cache')({ max: 1000 })
+
+const cached = cache.get('data key')
+
+if (cached) {
+  return cached
+} else {
+  cache.set('data key', data)
+  return data
+}
+```
 
 #### 七、版本差异大
 

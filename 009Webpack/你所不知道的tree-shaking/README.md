@@ -1,4 +1,4 @@
-﻿# 你所不知道的tree-shaking
+﻿# 你所不知道的 tree-shaking
 
 webpack 2.0 开始引入 tree shaking 技术
 
@@ -7,7 +7,12 @@ webpack 2.0 开始引入 tree shaking 技术
 ~~不建议升级到 webpack4.X  很坑~~ `有时间，不用赶需求`可以升级...
 
  
+- [一、为什么要tree-shaing](#一为什么要tree-shaing)
+- [二、最简单的AST语法树例子](#二最简单的ast语法树例子)
+- [三、webpack 中的 tree-shaking 原理](#三webpack-中的-tree-shaking-原理)
+- [四、副作用](#四副作用)
 
+ 
 
 #### 一、为什么要tree-shaing
 
@@ -66,7 +71,7 @@ webpack 的实现是把所有 import 标记为有使用/无使用两种，在后
 
 
  
- #### 四、副作用
+#### 四、副作用
 
 就是不会被 tree-shaking 掉,build 之后还是有
 
@@ -118,8 +123,8 @@ let result2 = fn2() // code review 的时候是不是很想删!
 console.log(result1)
  ```
 
-  + 4 commonJS 规范 (require) 无效
++ 4 commonJS 规范 (require) 无效
 
-  ```js
-  const utlils = reqiure("./utils");// ??? 我自己给自己的勇气
-  ```
+```js
+const utlils = reqiure("./utils");// ??? 我自己给自己的勇气
+```

@@ -1,0 +1,70 @@
+const express = require('express');
+const app = express();
+const util = require('util');// Node
+const bodyParser = require("body-parser");// body-parser 第三方中间件
+
+// 解析 application/json
+app.use(bodyParser.json()); 
+// 解析 application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended: true})) 
+
+
+const cookieParser = require('cookie-parser')
+app.use(cookieParser());
+
+// [mk] load middleware 加载自定义中间件(全局中间件与局部中间件)
+app.use("/", require('./middleWare/customer-middleware.js'));
+
+// [mk] load static middleware 加载 内置中间件
+app.use(express.static("./static"))
+
+// [mk] load router
+require('./routers/common-router.js')(app);
+require('./routers/rest-router.js')(app);
+require('./routers/tcp-router.js')(app);
+
+
+var server = app.listen(3000, () => {
+    console.log("server.address()>", util.inspect(server.address()));
+    var host = server.address().address;
+    var port = server.address().port;
+
+    console.log(__dirname);
+
+    console.log("---url sample---");
+    console.log("http://localhost:3000/");
+    console.log("http://localhost:3000/?a=1&b=str&c=1,2,3");
+    console.log("http://localhost:3000/?a=1&b=str&c=[1,2,3]");
+
+
+    console.log("---RESTFul API---");
+    console.log("http://localhost:3000/demo-page");
+    console.log("http://localhost:3000/err");
+    console.log("http://localhost:3000/get?id=1");
+    console.log("http://localhost:3000/get/1");
+    console.log("http://localhost:3000/fuzzy?name=a");
+    console.log("http://localhost:3000/page?pageIndex=1&pageSize=5");
+    console.log("http://localhost:3000/add");
+    console.log("http://localhost:3000/update");
+    console.log("http://localhost:3000/delete");
+
+
+    console.log("---TCP/IP API---");
+    console.log("http://localhost:3000/socket");
+    console.log("http://localhost:3000/video");
+    console.log("http://localhost:3000/tv");
+    console.log("http://localhost:3000/upload");
+    console.log("http://localhost:3000/big-file-upload");
+
+    console.log("---resource  API---");
+    console.log("http://localhost:3000/test.html");
+    console.log("http://localhost:3000/test.css");
+    console.log("http://localhost:3000/test.png");
+    console.log("http://localhost:3000/test.js");
+    console.log("http://localhost:3000/test.mp4");
+    console.log("http://localhost:3000/test.mp3");
+
+    console.log("---extention html---");
+    console.log("http://localhost:3000/demo.html");
+})
+
