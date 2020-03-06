@@ -71,10 +71,8 @@ export default class Util {
         return 'fn1 exec'
 
     }
-    fn2() {
-
+    fn2() { // ? 我从来没有被调用呀，但是不敢动 class 和 obj 啊
         return 'fn2 exec'
-
     }
 }
 ```
@@ -109,7 +107,7 @@ import { fn1, fn2 } from './utils'
 
 let result1 = fn1()
 
-let result2 = fn2()
+let result2 = fn2() // code review 的时候是不是很想删!
 
 console.log(result1)
  ```
