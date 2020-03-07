@@ -82,7 +82,7 @@ export default class Util {
         return 'fn1 exec'
 
     }
-    fn2() { // ? 我从来没有被调用呀，但是不敢动 class 和 obj 啊
+    fn2() { // ? 我从来没有被调用呀，但是也不敢动 class 和 obj 啊
         return 'fn2 exec'
     }
 }
@@ -126,5 +126,5 @@ console.log(result1)
 + 4 commonJS 规范 (require) 无效
 
 ```js
-const utlils = reqiure("./utils");// ??? 我自己给自己的勇气
+const utlils = reqiure("./utils");// 梁静茹给的勇气
 ```

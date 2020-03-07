@@ -49,6 +49,41 @@ npm list express
 
 #### 三、实现 get post 
 
+get
+
+```js
+app.get('/get', function (req, res) {
+
+    let q = req.query; // { id: '1111' }
+    console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`, q);
+
+    if (q.hasOwnProperty('id') && isFinite(q.id)) {
+        let id = parseInt(q.id);
+        let dbData = db.get(id);
+
+        res.status(200).json({
+            code: 200,
+            msg: "ok",
+            data: dbData
+        })
+    }
+    else {
+        res.status(200).json({
+            code: 200,
+            msg: "no data or params err",
+            data: null
+        })
+    }
+
+});
+```
+
+
+post
+
+```js
+```
+
 
 #### 四、实现 文件上传(保存) 大文件上传(保存)
 
@@ -61,7 +96,7 @@ app.get('/err', function (req, res) {
 
 ```
 
-#### 五、对比 Koa
+#### 六、对比 Koa
 
 Express
 
@@ -70,9 +105,13 @@ Express
 + 如自带 Router、路由规则
 + no callback
 
-Koa , Ali 常用
+Koa ( Ali 常用)
 
-+ 利用 co 作为底层运行框架，利用 Generator 的特性，实现“协程响应”，各加符合V8的设计初衷
++ 利用 co 作为底层运行框架，利用 Generator 的特性，实现“协程响应”，更加符合V8的设计初衷
 + Connect/Express 的中间件基本需要重写
 + 可选路由太多，多达20多个
 + no callback
+
+#### 七、常用第三方中间件
+
++  body-parser 作为请求体解析中间件, 解析JSON、Raw、文本、URL-encoded格式的请求体

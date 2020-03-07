@@ -45,8 +45,8 @@ module.exports = {
         console.log("get>id", id, typeof id)
         // console.log("get>this",this)
         // console.log("get>this.tUser",this.tUser)
-
-        let data = this.tUser.filter(function (item) {
+ 
+        let data = this.tUser.find(function (item) {
             return item.id === id;
         })
 
@@ -54,6 +54,7 @@ module.exports = {
     },
     fuzzy: function (str) {
         console.log("fuzzy>str", str, typeof str)
+         
         let data = this.tUser.filter(function (item) {
             return item.name.indexOf(str) > -1;
         })

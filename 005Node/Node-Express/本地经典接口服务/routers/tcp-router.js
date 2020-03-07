@@ -16,7 +16,7 @@ module.exports = function (app) {
         res.send('/upload');
     });
 
-    
+
     app.post('/big-file-upload', function (req, res) {
         res.send('/big-file-upload');
     });

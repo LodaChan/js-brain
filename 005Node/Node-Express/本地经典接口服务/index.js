@@ -3,10 +3,10 @@ const app = express();
 const util = require('util');// Node
 const bodyParser = require("body-parser");// body-parser 第三方中间件
 
-// 解析 application/json
-app.use(bodyParser.json()); 
-// 解析 application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: true})) 
+// [mk] bodyParser 同时支持 json form text
+app.use(bodyParser({
+    enableTypes: ['json', 'form', 'text']
+}))
 
 
 const cookieParser = require('cookie-parser')
@@ -38,7 +38,7 @@ var server = app.listen(3000, () => {
 
 
     console.log("---RESTFul API---");
-    console.log("http://localhost:3000/demo-page");
+    console.log("http://localhost:3000/index-page");
     console.log("http://localhost:3000/err");
     console.log("http://localhost:3000/get?id=1");
     console.log("http://localhost:3000/get/1");
@@ -47,10 +47,11 @@ var server = app.listen(3000, () => {
     console.log("http://localhost:3000/add");
     console.log("http://localhost:3000/update");
     console.log("http://localhost:3000/delete");
-
+    console.log("http://localhost:3000/download");
 
     console.log("---TCP/IP API---");
     console.log("http://localhost:3000/socket");
+    console.log("http://localhost:3000/jsonp");
     console.log("http://localhost:3000/video");
     console.log("http://localhost:3000/tv");
     console.log("http://localhost:3000/upload");
