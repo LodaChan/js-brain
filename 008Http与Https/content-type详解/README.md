@@ -2,6 +2,16 @@
 
 > 网页中存在的Content-Type，用于定义网络文件的类型和网页的编码，决定文件接收方将以什么形式、什么编码读取这个文件，这就是经常看到一些Asp网页点击的结果却是下载到的一个文件或一张图片的原因。默认为TEXT/HTML。
 
+
+
+
+[点击查看 请求方法](http://tools.jb51.net/table/http_request_method)
+
+[点击查看 请求头与 响应头](http://tools.jb51.net/table/http_header)
+
+[点击查看 content-type](http://tools.jb51.net/table/http_content_type)
+
+
 ####  下面以 [axios](https://github.com/axios/axios) 为例子进行解析
 
 提示: application/json`;charset=UTF-8`   别忘了哦
