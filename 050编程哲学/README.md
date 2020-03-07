@@ -18,5 +18,5 @@ qs.stringify({
 
 ```js
 // application/x-www-form-urlencoded 1个汉字会从3个字节变成9个字节
-// multipart/form-data 才用utf-8编码，不会增加报文长度
+// multipart/form-data 采用utf-8编码，1个汉字3个字节还是3个字节，不会增加报文长度
 ```

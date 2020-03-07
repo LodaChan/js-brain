@@ -22,7 +22,7 @@
 + 加入水印
 + 导出生成
 
-![操作界面](https://github.com/LodaChan/js-brain/raw/master/001博客利器/制作gif/.wiki/操作界面.png)
+![操作界面](.wiki/操作界面.png)
 
 
 
@@ -30,26 +30,26 @@
 
 + 1 打开录屏窗口
 
-![录屏](https://github.com/LodaChan/js-brain/raw/master/001博客利器/制作gif/.wiki/录屏.png)
+![录屏](.wiki/录屏.png)
 
 + 2 调整录屏窗口的大小与位置
 
-![录屏窗口](https://github.com/LodaChan/js-brain/raw/master/001博客利器/制作gif/.wiki/录屏窗口.png)
+![录屏窗口](.wiki/录屏窗口.png)
 
 + 3 查看关键帧
 
-![录屏窗口](https://github.com/LodaChan/js-brain/raw/master/001博客利器/制作gif/.wiki/录屏结果.png)
+![录屏窗口](.wiki/录屏结果.png)
 
 + 4 添加文字/水印
 
 选中需要添加文字的关键帧，然后进行操作
 
-![添加文字](https://github.com/LodaChan/js-brain/raw/master/001博客利器/制作gif/.wiki/添加文字.png)
+![添加文字](.wiki/添加文字.png)
 
 + 4 导出gif
 
-![导出gif](https://github.com/LodaChan/js-brain/raw/master/001博客利器/制作gif/.wiki/导出gif.png)
+![导出gif](.wiki/导出gif.png)
 
 #### 四、最终效果
 
-![最终效果](https://github.com/LodaChan/js-brain/raw/master/001博客利器/制作gif/.wiki/最终效果.gif)
+![最终效果](.wiki/最终效果.gif)
