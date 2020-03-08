@@ -13,14 +13,14 @@ const cookieParser = require('cookie-parser')
 app.use(cookieParser());
 
 // [mk] load middleware 加载自定义中间件(全局中间件与局部中间件)
-app.use("/", require('./middleWare/customer-middleware.js'));
+app.use("/", require('./middle-ware/customer-middle-ware.js'));
 
 // [mk] load static middleware 加载 内置中间件
 app.use(express.static("./static"))
 
 // [mk] load router
 require('./routers/common-router.js')(app);
-require('./routers/rest-router.js')(app);
+require('./routers/restful-router.js/index.js')(app);
 require('./routers/tcp-router.js')(app);
 
 
