@@ -6,8 +6,10 @@ function globalMiddleWare(req, res, next) {
     console.log();
     console.log("global middleWare begin");
 
-    console.log("req.query>", util.inspect(req.query));// req query
-    console.log("req.cookies>", util.inspect(req.cookies));// req cookies
+    console.log("req.params:", util.inspect(req.params));
+    console.log("req.query:", util.inspect(req.query));
+    console.log("req.body:", util.inspect(req.body));
+    console.log("req.cookies:", util.inspect(req.cookies));
 
     next();
 

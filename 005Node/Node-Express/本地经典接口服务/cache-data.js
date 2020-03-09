@@ -42,32 +42,51 @@ module.exports = {
         },
     ],
     get: function (id) {
-        console.log("get>id", id, typeof id)
-        // console.log("get>this",this)
-        // console.log("get>this.tUser",this.tUser)
- 
-        let data = this.tUser.find(function (item) {
+        let data = this.tUser.find(item => {
             return item.id === id;
         })
 
         return data;
     },
     fuzzy: function (str) {
-        console.log("fuzzy>str", str, typeof str)
-         
-        let data = this.tUser.filter(function (item) {
+        let data = this.tUser.filter(item => {
             return item.name.indexOf(str) > -1;
         })
 
         return data;
     },
     page: function (pageIndex, pageSize) {
+        let data = this.tUser.filter((item, index) => {
+            if (index > (((pageIndex - 1) * pageSize) - 1) &&
+                index <= ((pageIndex * pageSize) - 1)) {
+                return item;
+            }
+        })
 
+        return data;
     },
-    update: function (id, newData) {
+    add: function (id, name) {
+        try {
+            this.tUser.push({ id: id, name: name });
+            console.log(this.tUser)
+            return this.tUser;
+        }
+        catch (err) {
+            return false;
+        }
+    },
+    update: function (id, name) {
+        this.tUser.find((item, index) => {
+            if (item.id === id) {
+                this.tUser[index].name = name;
+                return;
+            }
+        });
 
+        return this.tUser;
     },
     delete: function (id) {
-
+        this.tUser.splice(this.tUser.findIndex(item => item.id === id), 1);
+        return this.tUser;
     }
 }

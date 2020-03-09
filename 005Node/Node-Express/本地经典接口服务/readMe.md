@@ -115,3 +115,40 @@ Koa ( Ali 常用)
 #### 七、常用第三方中间件
 
 +  body-parser 作为请求体解析中间件, 解析JSON、Raw、文本、URL-encoded格式的请求体
+
+
+#### 八、关于参数
+
++ req.query，常用于 get , url?
++ req.params，常用于 RESTFul , 包含路由参数
+```js
+"/get/:id"
+req.params.id
+```
++ req.body ，body-parser 中间件
++ querystring.parse(post)，querystring插件，不常用
+
+
+#### 九、下载下载与大文件下载
+
+```js
+// http://localhost:3000/res_download
+app.get('/res_download', function (req, res) {
+    console.log("path:" + path.resolve("./") + "/static/test.txt");
+    res.status(200).download(path.resolve("./") + "/static/test.txt", "download.txt");
+});
+
+// http://localhost:3000/fs_download
+app.get('/fs_download', function (req, res) {
+    console.log("path:" + path.resolve("./") + "/static/test.txt");
+    res.status(200).set({
+        "Content-type": "application/octet-stream",
+        "Content-Disposition": "attachment;filename=" + encodeURI("下载文件.txt")
+    });
+    fReadStream = fs.createReadStream(path.resolve("./") + "/static/test.txt");
+    fReadStream.on("data", function (chunk) { res.write(chunk, "binary") });
+    fReadStream.on("end", function () {
+        res.end();
+    });
+});
+```
