@@ -3,6 +3,7 @@ const app = express();
 const util = require('util');// Node
 const bodyParser = require("body-parser");// body-parser 第三方中间件
 
+
 // [mk] bodyParser 同时支持 json form text
 app.use(bodyParser({
     enableTypes: ['json', 'form', 'text']
@@ -54,7 +55,7 @@ var server = app.listen(3000, () => {
     console.log("http://localhost:3000/socket");
     console.log("http://localhost:3000/jsonp");
     console.log("http://localhost:3000/video");
-    console.log("http://localhost:3000/tv");
+    console.log("http://localhost:3000/rtsp");
     console.log("http://localhost:3000/upload");
     console.log("http://localhost:3000/big-file-upload");
 

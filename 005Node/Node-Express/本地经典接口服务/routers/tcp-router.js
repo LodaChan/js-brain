@@ -1,5 +1,9 @@
 module.exports = function (app) {
 
+    app.get('/socket.html', function (req, res) {
+        res.sendFile(path.resolve("./") + "/static/scoket.html");
+    });
+
     app.get('/socket', function (req, res) {
         res.send('/socket');
     });
@@ -8,8 +12,8 @@ module.exports = function (app) {
         res.send('/viedo');
     });
 
-    app.get('/tv', function (req, res) {
-        res.send('/tv');
+    app.get('/rtsp', function (req, res) {
+        res.send('/rtsp');
     });
 
     app.post('/upload', function (req, res) {

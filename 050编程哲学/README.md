@@ -14,7 +14,7 @@ qs.stringify({
 // 'a.b.c=d&a.b.e=f'
 ```
 
-+ 使用 multipart/form-data 替代 application/x-www-form-urlencoded
++ 使用 multipart/form-data (非简单请求) 替代 application/x-www-form-urlencoded (简单请求)
 
 ```js
 // application/x-www-form-urlencoded 1个汉字会从3个字节变成9个字节
