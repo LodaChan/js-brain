@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        function fn1(val) {
+            return val + 1;
+        }
+        function fn2(val) {
+            return val + 2;
+        }
+        function fn3(val) {
+            return val + 3;
+        }
+        let result1 = fn1(0);
+        let result2 = fn2(result1);
+        let result3 = fn3(result2);
+        console.log(result3) // 6
+
+
+        // 固定顺序 merge(fn1, fn2, fn3)(0)  
+        function merge(fn1, fn2, fn3) {
+            return (...args) => fn3(fn2(fn1(...args)));// slove multi params
+        }
+
+        console.log(merge(fn1, fn2, fn3)(0)) // 6
+
+
+        // 数组方式 compose([fn1, fn2, fn3])(0)
+        function compose(fns) {
+            return (...args) => {
+                let tmp = fns[0](...args);
+                for (let i = 1; i < fns.length; i++) {
+                    tmp = fns[i](tmp);
+                }
+                return tmp;
+            }
+        }
+        console.log(compose([fn1, fn2, fn3])(0)) //6
+        
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        let obj = {
+            _number: 1,
+            _string: "2",
+            _bool: true,
+            _null: null,
+            _symbol: Symbol("s"),
+            _function: (val) => {
+                console.log("_function")
+            }
+        }
+        obj["_prototye1"] = (val) => {
+            console.log("_prototye1")
+        }
+        obj.prototye._prototye2 = function (val) {
+            console.log("_prototye2")
+        }
+
+
+    </script>
+
+</body>
+
+</html>

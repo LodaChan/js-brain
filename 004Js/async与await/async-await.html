@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        function fn1(val) {
+            return new Promise(resolve => {
+                setTimeout(() => resolve(val + 1), 100);
+            });
+
+        }
+        function fn2(val) {
+            return new Promise(resolve => {
+                setTimeout(() => resolve(val + 2), 200);
+            });
+        }
+        function fn3(val) {
+            return new Promise(resolve => {
+                setTimeout(() => resolve(val + 3), 300);
+            });
+        }
+
+        async function asyncFn(val) {
+            let r1 = await fn1(val);
+            let r2 = await fn2(r1);
+            let r3 = await fn3(r2);
+            console.timeEnd("asyncFn");
+            return r3;
+        }
+
+        async function asyncFnThrowErr(val) {
+            let r1 = await fn1(val);
+            let r2 = await fn2(r1);
+            let r3 = await fn3(r2);
+            console.timeEnd("asyncFnThrowErr");
+            throw new Error("exec err!");
+            return r3;
+        }
+
+        console.time("asyncFn");
+        asyncFn(0).then(res => {
+            console.log(res)
+        }
+        ).catch(err => {
+            console.log(err)
+        });
+
+
+        console.time("asyncFnThrowErr");
+        asyncFnThrowErr(0).then(res => {
+            console.log(res)
+        }
+        ).catch(err => {
+            console.error(err)
+        });
+
+    </script>
+
+</body>
+
+</html>

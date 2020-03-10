@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        function sleep() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve();
+                }, 100);
+            })
+        }
+        async function fn1(next) {
+            await sleep();
+            await next();
+        }
+
+        async function fn2(next) {
+            await sleep();
+            await next();
+        }
+
+        async function fn3(next) {
+            await sleep();
+            console.timeEnd("queue")
+        }
+
+        function compose(fns) {
+            return function () {
+
+                function dispatch(i) {
+
+                    let fn = fns[i];
+
+                    if (!fn) {
+                        return Promise.resolve();
+                    }
+
+                    return Promise.resolve(
+                        fn(function next() {
+                            return dispatch(i + 1);
+                        }));
+                }
+
+                return dispatch(0);
+            }
+        }
+
+        console.time("queue")
+        compose([fn1, fn2, fn3])().then(
+            (res) => {
+                console.log("queue end", res)
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
