@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        var windowName = "window name";
+        var obj = {
+            prototypeName: "prototype name",
+
+            print: function () {
+                console.log(windowName)// window name
+                console.log(this.windowName)// undefined
+
+                // console.log(prototypeName) // err
+                console.log(this.prototypeName)// prototype name
+            }
+        };
+
+        obj.print();
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

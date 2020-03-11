@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        var windowName = "window name";
+        var fn = function () {
+            var privateName = "private name";
+            this.prototypeName = "prototype name"
+
+            this.print = function () {
+                console.log(windowName)// window name
+                console.log(this.windowName)// window name
+
+                console.log(privateName)// private name
+                console.log(this.privateName) // undefined
+
+                console.log(prototypeName)// prototype name
+                console.log(this.prototypeName)// prototype name
+            }
+            this.print();
+        };
+
+        fn();
+
+
+    </script>
+
+</body>
+
+</html>

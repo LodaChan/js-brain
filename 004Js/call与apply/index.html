@@ -20,9 +20,9 @@
             // 对象方法
             this.fn1 = function () {
                 console.log(this);
-                console.log(instanceName + name);
-                console.log(instanceName + this.name);
-                name += " "+ name;
+                console.log(instanceName + " " + name);// 从原型链开始匹配
+                console.log(instanceName + " " + this.name);
+                name += " " + name;
                 console.log("----------------------");
             }
         }
@@ -33,37 +33,20 @@
             console.log("----------------------");
         };
 
-        consoleFunction();// 简单函数
+        consoleFunction();// 简单函数 window name
 
-        consoleFunction.call(null);// null -> window
+        consoleFunction.call(null);// null -> window , window name
 
-        consoleFunction.call(obj);// I am object name
-        consoleFunction.apply(obj);// I am object name
-
-
-        consoleFunction.call(fn);// fn
-        consoleFunction.apply(fn);// fn
-
+        consoleFunction.call(obj);// object name
+        consoleFunction.apply(obj);// object name
 
         var fnObj = new fn("fnObj");
-        consoleFunction.call(fnObj);
+        consoleFunction.call(fnObj);// function name
 
         fnObj.fn1();
-        // I am private function name
-        // I am function name
+        // private function name
+        // function name
 
-        fnObj.fn1();
-        // I am private function nameI am private function name
-        // I am function name
-
-        var fnObjCompare = new fn("fnObjCompare");
-        fnObjCompare.fn1();
-        // I am private function name
-        // I am function name
-
-        fnObjCompare.fn1();
-        // I am private function nameI am private function name
-        // I am function name
     </script>
 
 </body>
