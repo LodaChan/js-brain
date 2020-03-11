@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        function closureFn() {
+            name = "I am private function name" // 私有变量
+            this.name = "I am function name" // 属性
+
+            return function () {
+                console.log(this);
+                console.log(name);
+                console.log(this.name);
+                console.log("----------------------");
+            }
+        }
+
+        var closureFnVar = closureFn();
+        closureFnVar();// 相当于先执行一遍 简单函数, name -> this.name
+        // I am function name
+        // I am function name
+        closureFnVar = null; // 清理闭包
+
+        var closureFnObj = new closureFn();
+        console.log(closureFnObj);
+        closureFnObj();
+        // I am private function name
+        // I am private function name
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        function fn(...[a, b, c]) {
+            return a + b + c;
+        }
+
+        fn(1, 2, 3)
+        fn(1, 2, 3, 4)
+
+
+
+
+        function multiply(multiplier, ...agrs) {
+            return agrs.map((num) => {
+                return multiplier * num;
+            });
+        }
+
+        var arr = multiply(2, 1, 2, 3);
+        console.log(arr, typeof arr, arr instanceof Array, arr instanceof Object);  // [2, 4, 6] object true true
+        console.log(Object.prototype.toString.call(arr))// [object Array] 
+        console.log(Object.prototype.toString.call(arr).replace("[object ","").replace("]","").toLowerCase())// array
+        console.log(arr[0]);  // 2
+        console.log(arr["0"]);  // 2 
+    </script>
+
+</body>
+
+</html>

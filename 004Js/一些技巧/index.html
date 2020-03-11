@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-getTypeOf" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        function getTypeOf(obj) {
+            console.log(Object.prototype.toString.call(obj));
+            console.log(typeof obj);
+            return "-----------------";
+        };
+
+   
+        console.log(getTypeOf('123'));// [object String]
+        console.log(getTypeOf(123));// [object Number]
+        console.log(getTypeOf(null));// [object Null]
+        console.log(getTypeOf(undefined));// [object Undefined]
+        console.log(getTypeOf(true));// [object Boolean]
+        console.log(getTypeOf(Symbol.for('uniqe-id')));// [object Symbol]
+
+
+        console.log(getTypeOf([123]));// [object Array] [mk] 数组是 object
+        
+        console.log(getTypeOf({})) // [object Object]
+        let obj = {}
+        console.log(getTypeOf(obj)) // [object Object]
+        let fn = function () {
+
+        }
+        console.log(getTypeOf(function () { })); // [object Function]
+        console.log(getTypeOf(fn)); // [object Function]
+        console.log(getTypeOf(() => { }));// [object Function]
+
+
+
+        let sliceFn = function (...args) {
+            var arr = Array.prototype.slice.call(arguments);
+            console.log("arguments", arguments); // Arguments(4) [1, 2, 3, 4, callee: (...), Symbol(Symbol.iterator): ƒ]
+            console.log("...args", args); //[1, 2, 3, 4]
+            console.log("Array.prototype.slice.call", arr); //[1, 2, 3, 4]
+        };
+        sliceFn(1, 2, 3, 4);
+
+    </script>
+
+</body>
+
+</html>
