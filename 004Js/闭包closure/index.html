@@ -7,29 +7,58 @@
 
 <body>
     <script>
-        function closureFn() {
-            name = "I am private function name" // 私有变量
-            this.name = "I am function name" // 属性
+        function foo() {
+            var a = 10;
+            this.b = 20;
+            function innerFoo() {
+                // console.log(this)// window
+                console.log("a", a) // 作用域外去找
+                console.log("this.b", this.b)
 
-            return function () {
-                console.log(this);
-                console.log(name);
-                console.log(this.name);
-                console.log("----------------------");
+                a = a * 2;
+                this.b = this.b * 2;// 外部函数属性变量会被暴露到window中
+                
+                console.log("a", a)
+                console.log("this.b", this.b)
+                console.log("window.b", window.b)
             }
+            return innerFoo
         }
 
-        var closureFnVar = closureFn();
-        closureFnVar();// 相当于先执行一遍 简单函数, name -> this.name
-        // I am function name
-        // I am function name
-        closureFnVar = null; // 清理闭包
 
-        var closureFnObj = new closureFn();
-        console.log(closureFnObj);
-        closureFnObj();
-        // I am private function name
-        // I am private function name
+        var fn1 = foo()
+        var fn2 = foo()
+
+        console.log('闭包', fn1)
+
+        console.log("---------fn1---------");
+        fn1()
+        // a 10
+        // this.b 20
+        // a 20
+        // this.b 40
+        // window.b 40
+
+        console.log("---------fn2---------");
+        fn2()
+        // a 10
+        // this.b 40
+        // a 20
+        // this.b 80
+        // window.b 80
+
+        console.log("---------fn1---------");
+        fn1()
+        // a 20
+        console.log("---------fn2---------");
+        fn2()
+
+
+        console.log("this.b", b);// this.b 320
+        console.log("window.b", window.b);// window.b 320
+
+        fn1 = null // 清理闭包，计数清0
+        fn2 = null
     </script>
 
 </body>

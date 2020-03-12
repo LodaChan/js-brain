@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        function add(x, y) {
+            console.log("add", x + y)
+        }
+        add(1, 2);
+
+
+        function addCurry(x) {
+            var a = 1 // 可以传递，因为是闭包
+            return function (y) {
+                var b = 2 // 可以传递，因为是闭包
+                console.log("addCurry", x + y, a)// 3,1
+                return function (z) {
+                    console.log("addCurry", x + y + z, a, b)// 6,2
+                }
+            }
+        }
+        addCurry(1)(2)(3);// 没有被引用就会自动回收
+
+
+        // es6 匿名函数方式
+        var addES6Curry = x => y => console.log("addES6Curry", x + y)
+        addES6Curry(1)(2);
+
+    </script>
+
+</body>
+
+</html>

@@ -7,8 +7,8 @@
 
 + `this`  `最终指向的是那个调用它的对象`
 
-   + 简单函数，this === window
-   + 赋值对象, this === window
+   + 简单函数 fn() ，this === window
+   + 赋值对象 var foo = fn , this === window
    
    + new fn(); this === function obj
    + 在对象内，this === obj

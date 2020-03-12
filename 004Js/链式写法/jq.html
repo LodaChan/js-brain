@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        Function.prototype.method = function (name, fn) {
+            this.prototype[name] = fn
+            return this
+        };
+
+        
+        (function () {
+            function _$(els) { }
+            _$.onready = function (fn) {
+                window.$ = function () {
+                    return new _$(arguments)
+                }
+                fn()
+            }
+            _$.method("addEvent", function (type, fn) {
+                fn()
+            }).method("getEvent", function (fn, e) {
+                fn()
+            }).method("addClass", function (className) {
+                fn()
+            }).method("removeClass", function (className) {
+                fn()
+            }).method("replaceClass", function (oldClass, newClass) {
+                fn()
+            }).method("getStyle", function (el, fn) {
+                fn()
+            }).method("setStyle", function (el, fn) {
+                fn()
+            }).method("load", function (el, fn) {
+                fn()
+            })
+            _$.onready(function () {
+                $("div01").addEvent("click", function () {
+                    alert("click Event")
+                })
+            })
+        })()
+
+    </script>
+
+</body>
+
+</html>

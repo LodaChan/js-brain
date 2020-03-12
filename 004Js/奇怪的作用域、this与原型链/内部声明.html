@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        var name = "var";
+
+        var fn = function () {
+            console.log(this)// window
+            console.log("name -> ", name);//  undefined
+
+            name = "refresh var"
+            console.log("name -> ", name);// refresh var
+            console.log("this.name -> ", this.name);//  var
+            console.log("window.name  -> ", window.name);// var
+
+
+            var name = "function var"
+            console.log("var name  -> ", name);// function var
+            console.log("window.name  -> ", window.name);// var
+        };
+
+        fn();
+        console.log("window.name  -> ", window.name);// var
+
+    </script>
+
+</body>
+
+</html>

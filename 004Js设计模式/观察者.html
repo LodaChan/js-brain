@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<script>
+		// 定义一个主体对象
+		class Subject {
+			constructor() {
+				this.Observers = [];
+			}
+			add(observer) { //添加
+				this.Observers.push(observer)
+			}
+			remove(observer) {//移除
+				this.Observers.filter(item => item === observer);
+			}
+			notify() {
+				this.Observers.forEach(item => {
+					item.update();
+				})
+			}
+		}
+		//定义观察着对象
+		class Observer {
+			constructor(name) {
+				this.name = name;
+			}
+			update() {
+				console.log(`my name is:${this.name}`);
+			}
+		}
+
+		//测试
+		let sub = new Subject();
+		let obs1 = new Observer('leaf111');
+		let obs2 = new Observer('leaf222');
+		sub.add(obs1);
+		sub.add(obs2);
+		sub.notify();
+
+	</script>
+
+</body>
+
+</html>

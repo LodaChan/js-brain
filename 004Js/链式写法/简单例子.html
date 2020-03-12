@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        function AnimalSounds() { }
+
+        AnimalSounds.prototype.cow = function () {
+            console.log("1");
+            return this;
+        }
+
+        AnimalSounds.prototype.pig = function () {
+
+            setTimeout(() => { // 异步:宏任务
+                console.log("2");
+                
+            }, 2000)
+
+            return this;
+        }
+
+        AnimalSounds.prototype.dog = function () {
+            console.log("3");
+            return this;
+        }
+
+        var sounds = new AnimalSounds();
+
+
+        sounds.cow().pig().dog(); 
+
+    </script>
+
+</body>
+
+</html>
