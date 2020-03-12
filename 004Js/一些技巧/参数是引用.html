@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        var obj = {
+           a:1
+        }
+        
+        function fn(params){
+            console.log(params)// 1
+            params.a = 2;
+        }
+
+        console.log(obj)// 1
+        fn(obj);
+
+        console.log(obj)// 2
+
+        function safeFn(params){
+            params =  Object.assign({}, params)
+            params.a = 22;
+
+            return params;
+        }
+        var safeObj = safeFn(obj)
+        console.log(obj)// 2
+        console.log(safeObj)// 22
+    </script>
+
+</body>
+
+</html>

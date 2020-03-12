@@ -64,7 +64,7 @@
             let newObj = Array.isArray(obj) ? [] : {};
             if (obj && typeof obj == 'object') {
                 for (let key in obj) {
-                    if (obj[key] && typeof obj[key] === "object") {
+                    if (obj[key] && typeof obj[key] === "object") {// 这里不支持symbol
                         newObj[key] = deepClone(obj[key]);
                     } else {
                         newObj[key] = obj[key];

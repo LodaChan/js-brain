@@ -12,20 +12,23 @@
             prototypeName: "prototype name",
 
             print: function () {
+                console.log(this)// obj
+
                 console.log(windowName)// window name
                 console.log(this.windowName)// undefined
 
-                // console.log(prototypeName) // err
+                // console.log(prototypeName) // defined err
                 console.log(this.prototypeName)// prototype name
             }
         };
 
         obj.print();
 
-
-
-
-
+        console.log(obj.prototype) // undefined
+        console.log(obj.__proto__);//  { constructor}
+        console.log(obj.f00);//  原型链向上查找 undefined
+        console.log(obj.print);//  ƒ () {
+        console.log(obj.__proto__.print);// undefined
     </script>
 
 </body>

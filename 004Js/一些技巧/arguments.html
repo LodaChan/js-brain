@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-getTypeOf" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        // 不建议
+        function factorial(n) {
+            if (n == 0) {
+                return 1;
+            } else {
+                return n * arguments.callee(n - 1);
+            }
+        }
+
+        var result = factorial(3);
+        console.log(result);
+
+        var result= [3].map(function fn(n) {
+            return !(n > 1) ? 1 : fn(n - 1) * n;
+        });
+        console.log(result);// [6]
+
+    </script>
+
+</body>
+
+</html>

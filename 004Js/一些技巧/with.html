@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        var obj = {
+            a: 1,
+            b: 2,
+            c: 3
+        }
+        console.log(obj);// 1 2 3
+
+        with (obj) {
+            a = 3;
+            b = 4;
+            c = 5;
+        }
+        console.log(obj);// 3 4 5
+
+
+       
+
+        var obj1 = {
+            a: 1
+        };
+
+        var obj2 = {
+            b: 1
+        }
+
+        function foo(obj) {
+            with (obj) {
+                a = 2;
+            }
+        }
+
+        foo(obj1);
+        console.log(obj1.a);	//2
+
+        foo(obj2);
+        console.log(obj2.a);	//underfined
+        console.log(a);		// 2 ，a被泄漏到全局作用域上
+
+    </script>
+
+</body>
+
+</html>

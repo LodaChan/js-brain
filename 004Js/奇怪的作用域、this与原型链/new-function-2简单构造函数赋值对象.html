@@ -14,19 +14,21 @@
             this.prototypeName = "prototype name"
 
             this.print = function () {
+                console.log(this);// window
+
                 console.log(windowName)// window name
-                console.log(this.windowName)// undefined
+                console.log(this.windowName)// window name
 
                 console.log(privateName)// private name
-                console.log(this.privateName) // undefined
+                console.log(this.privateName) // undefined 
 
-                // console.log(prototypeName) // err
-                console.log(this.prototypeName)// prototype name
+                // console.log(prototypeName) // defined err
+                console.log(this.prototypeName)// undefined
             }
         };
 
-        new fn().print();
-
+       var fn = new fn().print;
+       fn();
 
     </script>
 

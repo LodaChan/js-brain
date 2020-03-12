@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        function func() {
+            console.time("func");
+            var obj = {
+                a: [1, 2, 3]
+            };
+            for (var i = 0; i < 100000; i++) {
+                var v = obj.a[0];
+            }
+            console.timeEnd("func");// 5.366943359375ms
+        }
+        func();
+
+        function funcWith() {
+            console.time("funcWith");
+            var obj = {
+                a: [1, 2, 3]
+            };
+            with (obj) {
+                for (var i = 0; i < 100000; i++) {
+                    var v = a[0];
+                }
+            }
+            console.timeEnd("funcWith");// 71.364990234375ms
+        }
+
+        funcWith();
+
+    </script>
+
+</body>
+
+</html>

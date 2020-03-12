@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        "use strict";
+        
+        var windowName = "window name";
+        var fn = function () {
+            var privateName = "private name";
+ 
+            console.log(this); // undefined
+            console.log(windowName)// window name
+            console.log(privateName)// private name
+
+        };
+
+        console.log(windowName)// window name
+        console.log(this.windowName)// window name
+        fn();// window.fn();
+
+
+    </script>
+
+</body>
+
+</html>
