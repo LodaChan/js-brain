@@ -14,20 +14,18 @@
         }
         fn();
 
-
-        var a = 10, // 1.进入全局上下文环境
-            fn,
-            bar = function (x) {
-                var b = 20;
-                fn(x + b); // 3.进入fn上下文环境
-            }
-
-        fn = function (y) {
+        var a = 10;
+       
+        var fn1 = function (x) { //  2.进入 fn1 上下文环境
+            var b = 20;
+            fn2(x + b); // 3.进入 fn2 上下文环境
+        }
+        var fn2 = function (y) {
             var c = 20;
             console.log(y + c);
         }
 
-        bar(5); // 2.进入bar上下文环境
+        fn1(5); 
 
     </script>
 

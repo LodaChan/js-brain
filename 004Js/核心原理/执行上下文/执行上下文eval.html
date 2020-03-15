@@ -38,9 +38,8 @@
             console.log(r3);// what the fuck eval last string
 
 
-            var r4 = eval("({b:2})");
-            console.log(r4);// {b: 2}
-
+            var r4 = eval("({b:2 ,c:3})");// json or obj
+            console.log(r4);// {b: 2, c: 3}
 
             function innerFn() {
                 console.log("I am inner function");
@@ -51,8 +50,6 @@
             // I am inner function 
             // undefined
 
-            var r6 = eval('var jsonObj={c:3}')
-            console.log(r6);
 
         }
         checkEvalReturn();
