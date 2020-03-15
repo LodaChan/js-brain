@@ -1,6 +1,6 @@
 # 详解diff算法
 
->为了优化dom，通过算法使操作dom的行为降到最低，diff 算法来源于 snabbdom
+>为了优化dom，通过算法使操作dom的行为降到最低，diff 算法来源于 snabb dom 斯内b
 
 
 #### 一、具体细节
@@ -29,7 +29,7 @@ function isStatic (node: ASTNode): boolean {
 ```
 + 第二次遍历 - 标记静态根节点
  
->如果一个静态节点它只拥有一个子节点并且这个子节点是文本节点，那么就不做静态处理，它的成本大于收益，不如直接渲染
+> 如果一个静态节点它只拥有一个子节点并且这个子节点是文本节点，那么就不做静态处理，它的成本大于收益，不如直接渲染
  
 
 
@@ -71,3 +71,29 @@ constructor (
   this.isAsyncPlaceholder = false
 }
 ```
+
+#### 三、snabbdom
+
+> key值算是一个snabbdom中diff算法的一个核心内容
+> 为了高效的、准确的更新虚拟DOM
+
+```js
+return h('div',{key:data.id}, [h('span','aaa')])
+);
+```
+
++ 利用createElement所创造出来的节点
+
++ 没有key的情况不会准确追踪到对应的节点，新加的节点会导致 view 看起来数据变化
+
+> 比如我选中了第二个option，添加1个option后，页面还是看到还是第二个option被选中, 应该此时是选中第三个option
+
++ 它能跟踪每个节点的身份，从而重用和重新排序现有元素
+   + key的原则
+      + 唯一存在
+      + 旧的不变
+      + 新的不重复
+
+
+ 
+

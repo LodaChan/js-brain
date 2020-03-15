@@ -7,20 +7,20 @@
 
 <body>
     <script>
+        // 事件派发
         function EventEmitter() {
             this.listeners = {};
-
         }
 
         EventEmitter.prototype.on = function (event, ...callback) {
-            console.log("[EventEmitter on]", event,callback)
+            console.log("[EventEmitter on]", event, callback)
             var listeners = this.listeners;
             var eventCallbackFns = Array.isArray(listeners[event]) ? listeners[event] : [];
             listeners[event] = eventCallbackFns.concat(callback);
         }
 
         EventEmitter.prototype.once = function (event, callback) {
-            console.log("[EventEmitter once]", event,callback)
+            console.log("[EventEmitter once]", event, callback)
             var self = this;
             function removeCallback() {
                 self.remove(event, null);
@@ -70,14 +70,15 @@
         function callback3(args) {
             console.log("callback 3 exec", args);
         }
+
+
+
         var obj = new EventEmitter();
 
 
         obj.classMethod = () => {
             console.log("classMethod", this)// window 
         }
-
-
 
         console.log("[my instance]", obj)
 
@@ -90,7 +91,7 @@
         obj.emit(foo1, ['我是foo1的参数']);
         obj.emit(foo2, ['我是foo2的参数']);
         obj.emit(foo3, ['我是foo3的参数']);
-        obj.emit(foo2, ['我是foo2的参数']);
+        obj.emit(foo2, ['我是foo2的参数']);// 就不会再执行了，验证了once
 
         console.log(obj.getListeners());
 

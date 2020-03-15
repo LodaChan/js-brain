@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        var str = "%25A7%25E8%25A1%258C%25E4%25B8%258A%25E4%25B8%258B"
+
+        var complexCompareFn = (str) => {
+            console.time("complexCompareFn")
+
+            for (var k = 0; k < 200000; k++) {
+                for (var i = 0; i < str.length; i++) {
+                    if (str[i].indexOf('8') >= 0) {
+
+                    }
+                }
+            }
+            console.timeEnd("complexCompareFn") // complexCompareFn: 25.504150390625ms
+        }
+        complexCompareFn(str);
+
+        var simpleCompareFn = (str) => {
+            console.time("simpleCompareFn")
+
+            for (var k = 0; k < 200000; k++) {
+                for (var i = 0; i < str.length; i++) {
+                    if (str[i].indexOf('8') > -1) {
+
+                    }
+                }
+            }
+            console.timeEnd("simpleCompareFn")// simpleCompareFn: 21.925048828125ms
+        }
+        simpleCompareFn(str);
+
+        // [conclusion]
+        // > -1 比 >= 0 执行效率快
+        
+    </script>
+
+</body>
+
+</html>

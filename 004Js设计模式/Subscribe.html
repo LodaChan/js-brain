@@ -9,13 +9,14 @@
 	<script>
 		let pubSub = {
 			subs: [],
+			
 			on(key, fn) { //订阅
 				if (!this.subs[key]) {
 					this.subs[key] = [];
 				}
 				this.subs[key].push(fn);
 			},
-			
+
 			emit(...arg) {//发布
 				let args = arg;
 				let key = args.shift();
@@ -27,7 +28,8 @@
 					fns[i](args);
 				}
 			},
-			unSubscribe(key) {
+
+			remove(key) {
 				delete this.subs[key]
 			}
 		}
@@ -42,6 +44,8 @@
 		pubSub.emit('name', 'leaf333');  // your name is leaf333
 		pubSub.emit('gender', '18');  // your gender is 18
 
+
+		pubSub.remove('gender');
 	</script>
 
 </body>

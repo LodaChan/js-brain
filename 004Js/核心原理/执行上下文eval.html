@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        var i = 1;
+        function fn() {
+            console.log("-------------------------")
+
+            console.log(i);// 1
+            eval("y = 2; i =2");
+            console.log(y, i);// 2 2
+            eval("var y = 3; var i = 3");
+            console.log(y, i);// 3 3 [mk]会发生变量提升
+        }
+        fn();
+        console.log(y, i);// 2 2 
+
+
+
+        function checkEvalReturn() {
+            console.log("-------------------------")
+            var r0 = eval("");
+            console.log(r0);// undefined
+
+            var r1 = eval("y = 2; i =2");
+            console.log(r1);// 2
+
+            var r2 = eval("y = 2; i =2 ; {a:1} ");
+            console.log(r2);// 1
+
+            var r3 = eval("y = 2; i =2 ; 'what the fuck eval last string' ");
+            console.log(r3);// what the fuck eval last string
+
+
+            var r4 = eval("({b:2})");
+            console.log(r4);// {b: 2}
+
+
+            function innerFn() {
+                console.log("I am inner function");
+            }
+
+            var r5 = eval("innerFn()")
+            console.log(r5);
+            // I am inner function 
+            // undefined
+
+            var r6 = eval('var jsonObj={c:3}')
+            console.log(r6);
+
+        }
+        checkEvalReturn();
+
+
+        function refUsage() {
+            console.log("-------------------------")
+            var type = eval;// 模仿 ts 的 type 定义数据类型
+            type("var k = 1;");
+            console.log(k);// 1
+        }
+        refUsage();
+
+    </script>
+
+</body>
+
+</html>
