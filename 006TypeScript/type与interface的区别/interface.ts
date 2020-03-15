@@ -8,10 +8,6 @@ interface iObj {
     age: number;
 }
 
-
-
-
-
 interface iBusinessMan {
     account: string
 }
@@ -34,9 +30,6 @@ interface IMethod {
 }
 
 
-
-
-
 interface IDispalyMethod {
     // 显式的方式
     showResult: object;
@@ -44,9 +37,6 @@ interface IDispalyMethod {
 interface iObj extends IDispalyMethod {
 
 }
-
-
-
 
 
 
