@@ -9,13 +9,14 @@
 	<script>
 		let pubSub = {
 			subs: [],
-			subscribe(key, fn) { //订阅
+			on(key, fn) { //订阅
 				if (!this.subs[key]) {
 					this.subs[key] = [];
 				}
 				this.subs[key].push(fn);
 			},
-			publish(...arg) {//发布
+			
+			emit(...arg) {//发布
 				let args = arg;
 				let key = args.shift();
 				let fns = this.subs[key];
@@ -32,14 +33,14 @@
 		}
 
 		//测试
-		pubSub.subscribe('name', name => {
+		pubSub.on('name', name => {
 			console.log(`your name is ${name}`);
 		})
-		pubSub.subscribe('gender', gender => {
+		pubSub.on('gender', gender => {
 			console.log(`your name is ${gender}`);
 		})
-		pubSub.publish('name', 'leaf333');  // your name is leaf333
-		pubSub.publish('gender', '18');  // your gender is 18
+		pubSub.emit('name', 'leaf333');  // your name is leaf333
+		pubSub.emit('gender', '18');  // your gender is 18
 
 	</script>
 

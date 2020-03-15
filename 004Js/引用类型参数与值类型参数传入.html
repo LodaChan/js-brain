@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        var obj = {
+            a: 1
+        }
+
+        var b = 2;
+
+        function fn(arg1, arg2) {
+            console.log(arg1, arg2)// 1
+            arg1.a = arg1.a * 2;
+            arg2 = arg2 * 2;
+        }
+
+        console.log("引用类型传入", obj)// 1
+        console.log("值类型传入", b)// 1
+        fn(obj, b);
+
+        console.log("执行后", obj)// 2 参数传入是引用参数
+        console.log("执行后", b)// 1
+
+
+        //  思考1 参数对象类型是传递的，不加copy会一起变化
+        //  思考2 不是参数的场景  Object.assign({},obj) ， 却是可以拷贝的
+        function safeFn(params) {
+            params = Object.assign({}, params) // 深拷贝
+            params.a = 22;
+
+            return params;
+        }
+
+        var safeObj = safeFn(obj)
+        console.log("执行前",obj)// 2
+
+        console.log(safeObj)// 22
+        console.log("执行后",obj)// 2
+    </script>
+
+</body>
+
+</html>

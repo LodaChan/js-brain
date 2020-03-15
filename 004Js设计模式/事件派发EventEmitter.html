@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        function EventEmitter() {
+            this.listeners = {};
+
+        }
+
+        EventEmitter.prototype.on = function (event, ...callback) {
+            console.log("[EventEmitter on]", event,callback)
+            var listeners = this.listeners;
+            var eventCallbackFns = Array.isArray(listeners[event]) ? listeners[event] : [];
+            listeners[event] = eventCallbackFns.concat(callback);
+        }
+
+        EventEmitter.prototype.once = function (event, callback) {
+            console.log("[EventEmitter once]", event,callback)
+            var self = this;
+            function removeCallback() {
+                self.remove(event, null);
+            }
+            this.on(event, callback, removeCallback)
+        }
+
+        EventEmitter.prototype.remove = function (event) {
+            console.log("[EventEmitter remove]", event)
+            var listeners = this.listeners;
+            listeners[event] = []
+        }
+
+        EventEmitter.prototype.emit = function (event, ...args) {
+            console.log("[EventEmitter emit]", event)
+            const eventCallbackFns = this.listeners[event];
+            if (eventCallbackFns) {
+                eventCallbackFns.forEach(fn => {
+                    fn.call(null, args);
+                });
+            }
+        }
+        EventEmitter.prototype.config = function (newRange) {
+            console.log("[EventEmitter config]", newRange)
+        }
+        EventEmitter.prototype.getListeners = function () {
+            console.log("[EventEmitter getListeners]")
+            return this.listeners;
+        }
+
+
+        function foo1() {
+            console.log("foo1 exec");
+        }
+        function foo2() {
+            console.log("foo2 exec");
+        }
+        function foo3() {
+            console.log("foo3 exec");
+        }
+        function callback1(args) {
+            console.log("callback 1 exec", args);
+        }
+        function callback2(args) {
+            console.log("callback 2 exec", args);
+        }
+        function callback3(args) {
+            console.log("callback 3 exec", args);
+        }
+        var obj = new EventEmitter();
+
+
+        obj.classMethod = () => {
+            console.log("classMethod", this)// window 
+        }
+
+
+
+        console.log("[my instance]", obj)
+
+        obj.on(foo1, callback1, callback2, callback3);
+        obj.on(foo3, callback1, callback2, callback3);
+
+        obj.once(foo2, callback1, callback2, callback3);
+
+
+        obj.emit(foo1, ['我是foo1的参数']);
+        obj.emit(foo2, ['我是foo2的参数']);
+        obj.emit(foo3, ['我是foo3的参数']);
+        obj.emit(foo2, ['我是foo2的参数']);
+
+        console.log(obj.getListeners());
+
+        // obj.classMethod();
+
+    </script>
+
+</body>
+
+</html>
