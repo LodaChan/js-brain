@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        function fn() {
+            this.objectFn = function () {
+                console.log("object function", this)// fnobj
+            }
+        }
+
+        fn.classFn = function () {
+            console.log("class function", this, typeof this)// fn , function
+        }
+
+        fn.prototype.prototypeFn = function () {
+            console.log("prototype function", this)// fnObj
+        }
+
+        var fnObj = new fn();
+        
+        fnObj.fnObjClassFn = function(){
+            console.log("new function object class function", this) // fnObj
+        }
+        fnObj.fnObjClassFn();
+        
+    </script>
+
+</body>
+
+</html>

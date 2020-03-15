@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        var obj = {
+            a: 1,
+            b: 2,
+            objFn: function () {
+                console.log("object function", this)
+            }
+        }
+
+        obj.classFn = function () {
+            console.log("class function", this)
+        }
+
+        obj.objFn();
+        obj.classFn();
+
+    </script>
+
+</body>
+
+</html>

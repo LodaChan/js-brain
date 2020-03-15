@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        var windowVar = "windowVar";
+        this.thisWindowVar = "this.thisWindowVar"
+
+        function fn() {
+
+            var fnVar = "fnVar";
+            this.objectVar = "this.objectVar";
+
+            this.objectFn = function () {
+                console.log(fnVar);
+                console.log(this.objectVar);
+            }
+        }
+
+        fn.classFn = function () {
+           
+        }
+
+        fn.prototype.prototypeFn = function () {
+            console.log(this.objectVar);
+        }
+
+        var fnObj = new fn();
+        fnObj.objectFn();
+
+        fn.classFn();
+
+        fnObj.prototypeFn();
+
+    </script>
+
+</body>
+
+</html>
