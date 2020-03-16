@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        function fn() {
+            this.name = "666"
+        }
+
+        fn.prototype.say = function () {
+            console.log(this.name)
+        }
+
+        function addExt(fn, ...args) {
+            const obj = Object.create(fn.prototype);// 利用 fn 的原型新建1个对象
+            const rel = fn.apply(obj, args) // 将 对象的原型 this 指向改变
+            return rel instanceof Object ? rel : obj;
+        }
+
+
+        var fnObj1 = new fn();
+        console.log(fnObj1);
+        console.log(fnObj1 instanceof fn);// true
+
+        var fnObj2 = new fn();
+        console.log(fnObj2 == fnObj1);// false
+        console.log(fnObj2 === fnObj1);// false
+
+        var myFnObj = addExt(fn);
+
+        console.log(myFnObj);
+        console.log(myFnObj instanceof fn);// true
+
+        console.log(myFnObj == fnObj1);// false
+        console.log(myFnObj === fnObj1);// false
+
+    </script>
+
+</body>
+
+</html>

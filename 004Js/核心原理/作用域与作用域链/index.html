@@ -7,16 +7,17 @@
 
 <body>
     <script>
+        
         var a = 1;
         function fn() {
             console.log(this, this.a);// window.a 1
             let a = 2;
             console.log(a);// 2
-
         }
 
         fn();
         console.log(a);// 1
+
     </script>
 
 </body>
