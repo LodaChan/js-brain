@@ -17,4 +17,4 @@
 + 不允许八进制整数直接量（如：023）
 + arguments[0]参数会静态保留，当参数发生改变也会随着更新
 + eval和arguments 当作变量名
-+ 限制对调用栈的检测能力 arguments.callee，arguments.callee.caller
++ 限制对调用栈的检测能力 arguments.callee，fnName.caller

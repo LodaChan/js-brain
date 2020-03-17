@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .multi-content {
+            font-size: 1rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-all;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+
+        @media screen and (-webkit-min-device-pixel-ratio: 2) {
+            .multi-content {
+                font-size: 0.5rem;
+
+            }
+        }
+
+        @media screen and (-webkit-min-device-pixel-ratio:3) {
+            .multi-content {
+                font-size: 0.33333rem;
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="multi-content">移动端移动端移动端移动端移动端移动端移动端移动端移动端移动端移动端移动端移动端移动端移动端移动端移动端移动端移动端移动端移动端移动端</div>
+    <script>
+        window.onload = () => {
+            var documentEle = document.documentElement
+
+            var clientWidht = documentEle.clientWidth;
+            console.log("document width", clientWidht + 'px')
+
+            var remUnit = clientWidht / 100;
+            documentEle.style.fontSize = remUnit + 'px';
+            console.log("REM", remUnit + 'px')
+        }
+
+
+    </script>
+
+</body>
+
+</html>

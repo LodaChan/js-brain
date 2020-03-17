@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        // 异步
+        async function asyncFn1() {
+            console.log("异步任务进入 Event Queue");
+            let result1 = await fn2();// 会挂起
+            console.log("异步任务中间1");
+            let result2 = await fn2();// 会挂起
+            console.log("异步任务中间2");
+            let result3 = await fn2();// 会挂起
+            console.log("异步任务中间3，结束");
+        }
+
+        function fn2() {
+            console.log("异步任务执行");
+        }
+
+        // 宏
+        setTimeout(() => {
+            console.log("宏任务执行");
+            Promise.resolve().then(() => {
+                console.log("宏任务中微任务执行");
+            });
+        });
+
+        // 微
+        Promise.resolve().then(() => {
+            console.log("微任务1执行");
+        });
+
+        Promise.resolve().then(() => {
+            console.log("微任务2执行");
+            setTimeout(() => {
+                console.log("微任务2宏任务执行");
+                Promise.resolve().then(() => {
+                    console.log("微任务2宏任务中微任务执行");
+                });
+            });
+        });
+
+        asyncFn1();
+        console.log("主线程同步任务2");
+        console.log("主线程同步任务3");
+
+    </script>
+
+</body>
+
+</html>

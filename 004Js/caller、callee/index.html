@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        function fn1(...agrs) {
+            console.log("caller", fn1.caller, typeof fn1.caller)
+            // console.log("callee", arguments.callee)
+        }
+        fn1(1, 2, 3);
+        // null , object
+
+
+        function fn2() {
+            fn1(1, 2, 3, 4);
+        }
+        fn2();
+        // fn2 , function
+
+    </script>
+
+</body>
+
+</html>

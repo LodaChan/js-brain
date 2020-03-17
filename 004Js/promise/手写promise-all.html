@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        var p1 = Promise.resolve('a');
+        var p2 = Promise.resolve('b');
+        var p3 = Promise.resolve('c');
+        // Promise.all([p1, p2, p3]).then((res) {
+        //     console.log(res);
+        // })
+
+        function promiseAll(fns) {
+            var _this = this;
+            this.value = [];
+            var _fns = fns;
+
+
+
+            function dispatch(i) {
+               
+                _fns[i].then(res => {
+                    _this.value.push(res);
+                }).then(() => {
+                    if (_this.value.length === fns.length) {
+                        return _this.value
+                    } else {
+                        dispatch(++i);
+                    }
+                });
+            }
+
+            dispatch(0);
+        }
+
+        promiseAll.prototype.then = function (callback) {
+            callback(this.value)
+            return this
+        }
+
+
+        var all = new promiseAll([p1, p2, p3])
+        // .then(res => {
+        //     console.log(res);
+        // })
+
+        console.log(all)
+
+    </script>
+
+</body>
+
+</html>

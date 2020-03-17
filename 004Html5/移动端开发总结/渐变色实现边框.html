@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+
+            /*  失效  border-radius */
+            border-radius: 50%;
+
+            border: 5px solid #000;
+            /*  建议与border size 相同 */
+            /*  border-image: 
+                source 
+                slice边界向内偏移  
+                width边界的宽度 
+                outset边框外部绘制 
+                border-image-area 的量 
+                repeat重复（repeat）、拉伸（stretch）或铺满（round）
+             */
+            border-image: linear-gradient(#ddd, #000) 5 5;
+
+        }
+
+        #borderimg {
+            -webkit-border-image: url(border.png) 30 round;
+            /* Safari 3.1-5 */
+            -o-border-image: url(border.png) 30 round;
+            /* Opera 11-12.1 */
+            border-image: url(border.png) 30 round;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+
+
+    </div>
+    <script>
+
+
+    </script>
+
+</body>
+
+</html>

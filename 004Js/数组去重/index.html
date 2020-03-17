@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        var list = [1, 2, 3, 4, 5, 3, 2, 4, 1];
+
+
+        // 使用 obj key , hasOwnProperty , map
+        function dedupe1(arr) {
+            var obj = {}
+            // hasOwnProperty
+            // propotype
+            for (var i = 0; i < arr.length; i++) {
+                var objkey = arr[i];
+
+                if (obj.hasOwnProperty(objkey)) {
+                    obj[arr[i]] = obj[arr[i]]++;
+                } else {
+                    obj[arr[i]] = 1
+                }
+            }
+
+            return Object.keys(obj).map(Number)
+        }
+        console.log(dedupe1(list));
+
+        // 使用数组  [].includes
+        function dedupe2(arr) {
+            var tmpArray = [];
+            arr.forEach(n => {
+                if (!tmpArray.includes(n)) {
+                    tmpArray.push(n)
+                }
+            });
+            return tmpArray
+        }
+        console.log(dedupe2(list));
+
+        // es6 new Set
+        var arrayFormObj = Array.from(new Set(list));// [...new Set(array)]
+        console.log(arrayFormObj);
+
+        // es6 filter 迭代器
+        var es6FilterObj = list.filter((item, index) => list.indexOf(item) === index);
+        console.log(es6FilterObj);
+
+
+        // es6 reduce 累加器
+        var es6ReduceObj = list.reduce(
+            (accum, current) =>
+                accum.includes(current) ? accum : [...accum, current],
+            [])
+
+        console.log(es6ReduceObj);
+    </script>
+</body>
+
+</html>

@@ -15,7 +15,7 @@
             console.log(this.name)
         }
 
-        function addExt(fn, ...args) {
+        function newExt(fn, ...args) {
             const obj = Object.create(fn.prototype);// 利用 fn 的原型新建1个对象
             const rel = fn.apply(obj, args) // 将 对象的原型 this 指向改变
             return rel instanceof Object ? rel : obj;
@@ -30,7 +30,7 @@
         console.log(fnObj2 == fnObj1);// false
         console.log(fnObj2 === fnObj1);// false
 
-        var myFnObj = addExt(fn);
+        var myFnObj = newExt(fn);
 
         console.log(myFnObj);
         console.log(myFnObj instanceof fn);// true
