@@ -53,6 +53,7 @@
 
         // es6 reduce 累加器
         var es6ReduceObj = list.reduce(
+            // 累加器,当前item
             (accum, current) =>
                 accum.includes(current) ? accum : [...accum, current],
             [])

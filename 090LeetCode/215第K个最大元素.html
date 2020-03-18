@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        var randomArray = []
+        var arraySize = 10;
+        for (var i = 0; i < arraySize; i++) {
+            // Math.floor(Math.random()*(m - n) + n); // [n,m]
+            randomArray.push(Math.floor((arraySize - 1) * Math.random() + 1))
+        }
+
+        console.log(randomArray)
+        console.log(randomArray.sort())
+
+        // 构建二叉树
+        function BinaryTreeNode(data) {
+            this.data = data;
+            this.parent = null;
+            this.leftChild = null;
+            this.rightChild = null;
+        }
+
+        // 完全二叉树的数组
+        // 用数组的结构模拟堆的结构
+        // 大顶堆是 top 元素 都大于左右节点
+        // 那么某个堆的节点用index表示，左 node 2*index+1 ，右node 2*index+2
+        // 1 先维护K个节点
+        //   叶节点下标确定
+        // 从上往下去维护，因为可以直接swap,top left right 不断判断互换 ，然后判断子节点的清空
+        // 2 维护 len - k
+        // 就可以了
+
+        //因为声明的多个函数都需要数据长度，所以把len设置成为全局变量
+        var len = randomArray.length;
+
+
+        //建立大顶堆
+        function buildMaxHeap(arr) {
+            len = arr.length;
+            for (var i = Math.floor(len / 2); i >= 0; i--) { // 根据坐标先填充heap
+                heapify(arr, i);
+            }
+            console.log("max heap", arr)
+        }
+
+        //堆调整的位置
+        function heapify(arr, i) {
+            var left = 2 * i + 1,
+                right = 2 * i + 2,
+                largest = i;
+
+
+            if (left < len && arr[left] > arr[largest]) {
+                largest = left;
+            }
+
+            if (right < len && arr[right] > arr[largest]) {
+                largest = right;
+            }
+
+            if (largest != i) {
+                swap(arr, i, largest);
+                heapify(arr, largest);
+            }
+        }
+
+        // 交换
+        function swap(arr, i, j) {
+            var temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+
+        function heapSort(arr) {
+            buildMaxHeap(arr);
+
+
+            // 从小到大
+            // for (var i = arr.length - 1; i > 0; i--) {
+            //     swap(arr, 0, i);
+            //     len--;
+            //     heapify(arr, 0);
+            // }
+
+            return arr;
+        }
+
+
+        var heap = heapSort(randomArray);
+
+        console.log(heap, heap[2])
+
+    </script>
+
+</body>
+
+</html>

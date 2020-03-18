@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        var obj1 = { a: 1, b: 1 };
+        var obj2 = { c: 1, d: 1 };
+        // var targetObj = { a: 1, b: 1, c: 1, d: 1 }
+
+        function objMerge1(...agrs) {
+            var newObj = {};
+            agrs.forEach((obj) => {
+                for (var key in obj) {
+                    if (newObj.hasOwnProperty(key)) {
+
+                    } else {
+                        newObj[key] = obj[key];
+                    }
+                }
+            })
+            return newObj
+        }
+
+        var targetObj1 = objMerge1(obj1, obj2);
+        console.log(targetObj1)
+
+        // ES6 reduce
+        var targetObj2 = [obj1, obj2].reduce((accum, current) => {
+            if (Object.keys(current).length > 0) {
+                Object.keys(current).forEach((key) => {
+                    accum[key] = current[key]
+                })
+                return accum
+            }else{
+                return accum
+            }
+        }, {})
+        console.log(targetObj2)
+
+    </script>
+</body>
+
+</html>

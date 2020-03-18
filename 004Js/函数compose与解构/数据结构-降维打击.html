@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        const dbData = [{
+            name: '中国',
+            children: [
+                {
+                    name: '教第三节课',
+                },
+                {
+                    name: '教呼呼',
+                    children: [
+                        {
+                            name: '大一',
+                            children: [
+                                {
+                                    name: '课程1',
+                                    children: [
+                                        {
+                                            name: '1231'
+                                        },
+                                        {
+                                            name: '121'
+                                        }
+                                    ]
+                                },
+                                {
+                                    name: '课程3',
+                                    children: [
+                                        {
+                                            name: '1233'
+                                        },
+                                    ]
+                                },
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: '活动',
+                    children: null
+                }
+            ]
+        }];
+
+
+        function getName(params, key) {
+            if (params && typeof params === 'Object') {
+                if(params.hasOwnProperty(key)){
+                    return params[key];
+                }
+                else{
+                    return null
+                }
+            }
+            if (params && typeof params === 'array') {
+                var tmp
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>
