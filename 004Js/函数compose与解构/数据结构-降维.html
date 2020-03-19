@@ -49,22 +49,32 @@
             ]
         }];
 
+        // 1 递归
+        // 2 类型判断
+        // 3 [...] 数组解构
 
-        function getName(params, key) {
-            if (params && typeof params === 'Object') {
-                if(params.hasOwnProperty(key)){
-                    return params[key];
-                }
-                else{
-                    return null
+        function pickName(params, key1 = "name", key2 = "children") {
+            var outputArray = [];
+            if (params && params instanceof Object) {
+                if (params.hasOwnProperty(key1)) {
+                    outputArray = [...outputArray, params[key1]];
+                    if (params.hasOwnProperty(key2) && params[key2] && params[key2].length > 0) {
+                        outputArray = [...outputArray, ...pickName(params[key2])];
+                    }
                 }
             }
-            if (params && typeof params === 'array') {
-                var tmp
+            if (params && params instanceof Array) {
+                params.filter((item)=>{
+                    outputArray = [...outputArray, ...pickName(item)]
+                })
+                
             }
+            return outputArray;
         }
 
+        var result = pickName(dbData);
 
+        console.log(result);
     </script>
 
 </body>
