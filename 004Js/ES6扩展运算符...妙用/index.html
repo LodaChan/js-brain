@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        // 1
+        var obj1 = { x: 1, y: 2, z: 3 }
+        var obj1RefCopy = obj1;
+
+        var obj2 = { ...obj1 } // 实现快速浅拷贝
+        console.log(obj2)
+
+        console.log(obj1 == obj1RefCopy)// true
+        console.log(obj1 === obj1RefCopy)// true
+
+        console.log(obj1 == obj2)// false
+        console.log(obj1 === obj2)// false
+
+
+        // 2
+        let obj3 = { a: 1 }
+        let obj4 = { b: 2 }
+        let obj5 = { ...obj3, ...obj4 }
+
+        console.log(obj5)// {a: 1, b: 2}
+
+
+        // 3
+        let obj6 = { x: 1 }
+        let customerObj = { ...obj6, a: 4, b: 5 }
+        console.log(customerObj)//  {x: 1, a: 4, b: 5}
+
+
+        // 4
+
+        let array1 = [1, 2, 3]
+        let array2 = [...array1]
+        console.log(array2) // [1, 2, 3]
+        console.log(array1 == array2) // false
+        console.log(array1 === array2) // false
+
+        // 5
+        let array3 = [1, 2, 3]
+        let array4 = [1, 2, 3, 4]
+        let mergeArray = [...array3, ...array4]
+        console.log(mergeArray) // [1, 2, 3, 1, 2, 3, 4]
+
+        // 6
+        let str = "hellow world"
+        let charArray = [...str]
+        console.log(charArray)// ["h", "e", "l", "l", "o", "w", " ", "w", "o", "r", "l", "d"]
+        console.log(charArray.join(''))// hellow world
+    </script>
+
+</body>
+
+</html>
