@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        console.log(null === null, typeof null) // true "object"
+
+        console.log(undefined === undefined, typeof undefined) // true "undefined"
+
+        // str && str.length > 0
+        console.log("abc".length > 0, typeof "abc") // true "string"
+        console.log("".length > 0, typeof "") // true "string"
+
+
+        console.log(1, typeof 1)// 1 number
+        console.log(isNaN(NaN), NaN === NaN, typeof NaN)// true false "number"
+        console.log(Number.MAX_VALUE, Number.MIN_VALUE)
+        console.log(Number.MAX_VALUE+1, Number.MIN_VALUE-1)
+    </script>
+
+</body>
+
+</html>
