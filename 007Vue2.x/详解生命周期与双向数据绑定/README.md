@@ -60,7 +60,7 @@
             + _render compiler生成的render方法，返回一个vNode对象
             + update() 则会对比新的 vdom 和当前 vdom，并把差异的部分渲染到真正的 DOM 树上
 
-        + 需要 observe 的数据对象进行递归遍历，包括子属性和对象的属性，都加上 setter 和 getter ,
+        + 需要 observe观察者模式 的数据对象进行递归遍历，包括子属性和对象的属性，都加上 setter 和 getter ,
            + 数据发生变化时通过objectDefineprototype执行getter/setter 告诉watchers
 
 

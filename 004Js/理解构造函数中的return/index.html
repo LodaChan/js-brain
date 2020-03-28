@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        function foo(name) {
+            this.name = name;
+        }
+         
+        console.log('foo', new foo('foo'))
+
+        function fooOnlyReturn(name) {
+            this.name = name;
+            return;
+        }
+        console.log('fooOnlyReturn', new fooOnlyReturn('fooOnlyReturn'))
+
+        function fooReturnValue(name) {
+            this.name = name;
+            return 1;
+        }
+
+        var myFooReturnValue = new fooReturnValue('fooReturnValue')
+        console.log('fooReturnValue',myFooReturnValue , typeof myFooReturnValue)
+
+
+
+
+
+
+        function fooReturnArray(name) {
+            this.name = name;
+            return [1, 2];
+        }
+        console.log('fooReturnArray', new fooReturnArray('fooReturnArray'))
+
+
+        function fooReturnObj(name) {
+            this.name = name;
+            return { name: name, id: 1 };
+        }
+        console.log('fooReturnObj', new fooReturnObj('fooReturnObj'))
+
+
+        function fooReturnFunction(name) {
+            this.name = name;
+
+            function innerFoo(){
+                   console.log("fooReturnFunction return 的 innerFoo 函数" , this)
+            }
+
+            return innerFoo;
+        }
+        console.log('fooReturnFunction', 
+        new fooReturnFunction('fooReturnFunction'),
+        new fooReturnFunction('fooReturnFunction')()// undefined
+        )
+ 
+
+
+        function fooReturnFunction2(name) {
+            this.name = name;
+
+            function innerFoo(){
+                   console.log("fooReturnFunction2 return 的 innerFoo 函数" , this)
+                   return 1;
+            }
+
+            return innerFoo;
+        }
+        console.log('fooReturnFunction2', 
+        new fooReturnFunction2('fooReturnFunction2'),
+        new fooReturnFunction2('fooReturnFunction2')()// 1
+        )
+
+    </script>
+
+</body>
+
+</html>

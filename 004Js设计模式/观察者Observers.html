@@ -8,7 +8,7 @@
 <body>
 	<script>
 		// 观察者
-		// 定义一个主体对象
+		// 当一个对象改变状态的时候，它的所有依赖者都会受到通知并自动更新
 		class Subject {
 			constructor() {
 				this.Observers = [];
@@ -33,7 +33,7 @@
 			}
 			// 每个被观察对象必须实现此方法
 			update() {
-				console.log(`my name is:${this.name}`);
+				console.log(`my name is : ${this.name}`);
 			}
 		}
 

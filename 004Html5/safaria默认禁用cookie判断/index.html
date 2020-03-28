@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+
+    <script>
+
+        function setCookie(c_name, value, expiredays) {
+            var exdate = new Date()
+            exdate.setDate(exdate.getDate() + expiredays)
+            document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+        }
+
+        function isCookieEnable() {
+            var flag = false;
+
+            if (navigator.cookiesEnabled) {
+                flag = true;
+            }
+
+            console.log("document.cookie", document.cookie, typeof document.cookie)
+
+            document.cookie = "test=1;";
+            var cookieSet = document.cookie;
+            if (cookieSet.indexOf("test=1") > -1) {
+                flag = true;
+                document.cookie = "";
+            }
+
+            return flag;
+        }
+
+        var result = isCookieEnable();
+
+        result ? alert("ok") : alert("Cookie功能被禁用，请开启");
+
+
+    </script>
+
+</body>
+
+</html>

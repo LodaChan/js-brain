@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <div id="#app"></div>"
+
+    <script type="text/javascript">
+        const classObj = {
+            name: 0
+        };
+
+        const proxyHanler = {
+            get: function (obj, key) {
+                console.log(`${key} 被读取`);
+                return obj[key];
+            },
+            set: function (obj, key, value) {
+                console.log(`${key} 被设置为 ${value}`);
+                obj[key] = value;
+            }
+        };
+
+
+        const classProxyObj = new Proxy(classObj, proxyHanler);
+
+     
+        console.log(classProxyObj.name);// 0
+
+        
+        classProxyObj.name = 111;
+        console.log(classProxyObj.name);
+
+        console.log(classObj.name); // 输出 111
+
+        classObj.name = 222;
+        console.log(classObj.name); // 输出 222，不会走proxy
+    </script>
+</body>
+
+</html>

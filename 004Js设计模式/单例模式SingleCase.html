@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<script>
+		// 单例模式
+		// 通过 类方法 实现
+		var Singleton = function (name) {
+			this.name = name;
+			this.instance = null;
+		}
+		Singleton.getInstance = function (name) {
+
+			if (!this.instance) {
+				this.instance = new Singleton(name);
+			}
+			
+			console.log(this);
+			console.log(name);
+			console.log(this.name);
+			
+			return this.instance;
+		}
+
+		var a = Singleton.getInstance('1');
+		var b = Singleton.getInstance('2');
+		// 指向的是唯一实例化的对象
+		console.log(a === b);
+
+	</script>
+
+</body>
+
+</html>

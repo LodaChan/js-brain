@@ -25,9 +25,15 @@
 #### hotupdate 流程
 
 + 执行 socket.on("hash")和socket.on("ok") 拿到最新的代码编译后的hash
+
 + hotEmitter.on('webpackHotUpdate') 中的事件判断， if(!hotCurrentHash || hotCurrentHash == currentHash) hotCurrentHash为上次的hash值 currentHash为最新收到的 并且判断两次是否一致，一致则不需要更新，不一致就执行热更新逻辑
+
 + hotCheck 会通过ajax请求服务端拉取最新的 hot-update.json 描述文件 说明哪些模块哪些chunk（大集合）发生了更新改变
+
 + 然后根据描述文件 hotDownloadUpdateChunk 去创建jsonp拉取到最新的更新后的代码,返回形式为： webpackHotUpdate(id, {...})
+
 + 为了拉取到的代码直接执行，客户端需要定义一个 window.webpackHotUpdate 函数来处理
-+ 将缓存的旧代码更新为最新的代码，接着将父模块中的render函数执行一下
+
++ 将缓存的旧代码更新为最新的代码，接着将父模块中的 render 函数执行一下
+
 + 最后将 hotCurrentHash = currentHash 置旧hash方便下次比较

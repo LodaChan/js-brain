@@ -19,7 +19,7 @@ axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 
 ```js
 app.all('*', (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*"); // 允许跨域
+    res.header("Access-Control-Allow-Origin", "*"); // 允许跨域设置
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");

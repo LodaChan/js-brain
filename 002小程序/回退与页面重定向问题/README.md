@@ -1,4 +1,5 @@
-# 回退与页面重定向问题
+回退与页面重定向问题
+===
 
 #### 场景分析
 
@@ -11,7 +12,7 @@
 
 #### 解决方案
 
-> 微信小程序生命周期: 页面返回执行wx.navigateBack之后，跳转的页面会执行 onShow 函数
+    微信小程序生命周期: 页面返回执行wx.navigateBack之后，跳转的页面会执行 onShow 函数
 
 + 对于场景1 : 将 loadDataFunc 放在 onShow 中执行
 
@@ -23,7 +24,7 @@
 
 #### wx.navigateTo   
 
-> 保留当前页面 ,  wx.navigateBack 可以返回
+      保留当前页面 ,  wx.navigateBack 可以返回
 
 ```js
 wx.navigateTo({
@@ -58,7 +59,7 @@ onShow: function () {
 
 #### wx.redirectTo   
 
-> 关闭当前页面,跳转到另外一个页面
+    关闭当前页面,跳转到另外一个页面
 
 ```js
 wx.redirectTo( { url: '/test?id=1' })

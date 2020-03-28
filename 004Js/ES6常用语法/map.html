@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        var obj = [
+            { name: '小明', age: 16, sex: '男' },
+            { name: '小红', age: 17, sex: '女' },
+            { name: '小白', age: 18, sex: '女' },
+        ]
+        function getter(obj,key) {
+            var array = [];
+            obj.map(item => {
+                array.push(item[key])
+            })
+            return array;
+        }
+
+        console.log(getter(obj,'age'));
+        console.log(getter(obj,'name'));
+
+    </script>
+</body>
+
+</html>

@@ -1,10 +1,11 @@
-# rpx真机边框测试时缺失
+rpx真机边框测试时缺失
+===
 
-> 因为 rpx 设置为偶数 计算时遇到 0.5 这种情况
+        因为 rpx 设置为偶数 计算时遇到 0.5 这种情况
 
-# 解决方案
+#### 解决方案
 
-+ rpx设置 全部是 奇数
++ rpx设置 全部设置为 奇数
 
 + 补充像素单位
 
@@ -24,8 +25,8 @@
 
 ```css
 .border {
-    border      : 1px solid transparent; /* 需要先设置 */
-    border-image: url('img') 30 30 round;
+    border      : 1px solid transparent; /* 注：需要先设置，否则失效 */
+    border-image: url('your border image') 30 30 round;
 }
 ```
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<script>
+		// 单例模式
+		class Singleton {
+			constructor(name) {
+				this.name = name;
+				this.instance = null;
+			}
+			// 构造一个广为人知的接口，供用户对该类进行实例化
+			static getInstance(name) {
+				console.log(this)
+				if (!this.instance) {
+					this.instance = new Singleton(name);
+				}
+				return this.instance;
+			}
+		}
+		var a = Singleton.getInstance("a")
+		var b = Singleton.getInstance("b")
+		console.log(a === b)
+		console.log(a instanceof Singleton)
+
+	</script>
+
+</body>
+
+</html>
