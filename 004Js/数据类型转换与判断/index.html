@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        console.log(null === null, typeof null, Object.prototype.toString.call(null)) // true "object" [object Null]
+
+        console.log(undefined === undefined, typeof undefined) // true "undefined"
+
+        // str && str.length > 0
+        console.log("abc".length > 0, typeof "abc") // true "string"
+        console.log("".length > 0, typeof "") // true "string"
+
+
+        console.log(1, typeof 1)// 1 number
+        console.log(isNaN(NaN), NaN === NaN, typeof NaN)// true false "number"
+        console.log(Number.MAX_VALUE, Number.MIN_VALUE)
+        console.log(Number(undefined)) // NaN
+
+
+        console.log(typeof true, Object.prototype.toString.call(true)) // boolean [object Boolean]
+
+
+        // 关于 symbol
+
+        let idSymbol = Symbol("id");
+        console.log(typeof idSymbol, Object.prototype.toString.call(idSymbol))// symbol [object Symbol]
+
+        let nameSymbol = Symbol("name");
+        let obj = {
+            [idSymbol]: "I am id symbol",
+            [nameSymbol]: "I am name symbol",
+            ["array key"]: "test array_key" // 神奇使得 obj 有神奇的key
+        };
+
+        let objOwnPropertySymbolKeys = Object.getOwnPropertySymbols(obj);
+        console.log(objOwnPropertySymbolKeys); // [Symbol(id)]
+        console.log(obj[idSymbol]);  // I am id symbol
+        console.log(obj[objOwnPropertySymbolKeys[0]]);  // I am id symbol
+        console.log(obj[objOwnPropertySymbolKeys[1]]);  // I am name symbol
+
+    </script>
+
+</body>
+
+</html>

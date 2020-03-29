@@ -24,6 +24,7 @@
             ["array key"]:"test array_key" // 神奇使得 obj 有神奇的key
         };
         console.log(obj);// {Symbol(id): "I am symbol"}
+        console.log(obj[idSymbol]);  // I am id symbol
         console.log(Object.keys(obj));// []
         for (let key in obj) {
             // symbol no console
@@ -35,7 +36,7 @@
         console.log(objOwnPropertySymbolKeys); // [Symbol(id)]
         console.log(obj[objOwnPropertySymbolKeys[0]]);  // I am id symbol
         console.log(obj[objOwnPropertySymbolKeys[1]]);  // I am name symbol
-
+        
 
 
         let dupekey1 = Symbol.for('dupekey'); //检测到未创建后新建
