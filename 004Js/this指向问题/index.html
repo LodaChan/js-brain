@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <button onclick="btnClick(btnClickCb)">点击</button>
+    <script>
+        var a = 1;
+
+        function fn() {
+            console.log(this)
+            console.log(this.a)
+        }
+
+        var obj = {
+            a: 2,
+            foo: function (fn) {
+                console.log('obj.foo', this)// 指向当前执行的对象
+                fn();// 1 直接调用，window
+                arguments[0]();// Arguments undefined
+            }
+        }
+        obj.foo(fn);
+
+
+        var name = '卡卡';
+        var cat = {
+            name: '有鱼',
+            eat: (function () {
+                console.log(this)
+                console.log(this.name);//卡卡
+            })()
+        }
+        cat.eat;
+
+        function btnClick(cb) {
+            console.log(this)
+            cb()
+        }
+
+        function btnClickCb() {
+            console.log(this)
+        }
+
+    </script>
+
+</body>
+
+</html>
