@@ -4,9 +4,11 @@
 
 #### 键盘弹起，页面自动上推，输入框位置漂移
 
-+ 1 将input框的adjust-position属性设置为false，即不上推页面。在style中设置 bottom 或 position 使用 js 进行数据绑定 
-+ 2 在inputfocus()函数中，通过传入的键盘高度参数，调整input组件的相对位置
-+ 3 在inputblur()函数中，恢复input组件的相对位置
++ 方案1： 
+    + 将input框的adjust-position属性设置为false，即不上推页面。在style中设置 bottom 或 position 使用 js 进行数据绑定 
++ 方案2： 
+    + 在inputfocus()函数中，通过传入的键盘高度参数，调整input组件的相对位置
+    + 在inputblur()函数中，恢复input组件的相对位置
  
 
 ```html
@@ -90,11 +92,8 @@ inputBlur: function() {
 
 #### 其他无解issue
 
++ 不要基于事件流中操作 setData
 + ios下可以明显看到有间隔，安卓下实际上有间隔，但是必须输入框失焦才会显示出来
-
-
-+  输入框来回切换的失焦
- 
-
++ 输入框来回切换的失焦
 + bindinput 事件中使用setData ,IOS 会自动跳到最后
 

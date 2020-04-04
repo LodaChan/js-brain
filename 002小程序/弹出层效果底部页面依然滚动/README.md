@@ -2,10 +2,10 @@
 
 #### 解决方案
 
-        当弹出层出现时，给底部页面加1个class，当弹出层关闭后 remove class
+> 当弹出层出现时，给底部页面加1个class，当弹出层关闭后 remove class
 
 ```css
-.after-popup-page-class {
+.under-popup-page-bg {
     top     : 0px;
     left    : 0px;
     width   : 100%;

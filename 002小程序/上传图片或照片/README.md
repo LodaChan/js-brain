@@ -1,7 +1,7 @@
 上传图片或照片
 ===
 
-+ 图片预览
+#### 图片预览
 
 ```js
 previewImage: function(e) {
@@ -19,7 +19,7 @@ previewImage: function(e) {
 },
 ```
 
-+ 从相册中选择图片并文件上传
+#### 从相册中选择图片并文件上传
 ```js
 wx.chooseImage({
     count: 1, 
@@ -52,7 +52,7 @@ wx.chooseImage({
 })
 ```
 
-+ 进度监控
+#### 图片上传进度监控
 
 ```js
 const uploadTask = wx.uploadFile({

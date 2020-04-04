@@ -1,8 +1,8 @@
 # setData方法、bind事件、catch事件
 
-      以 bind 开头的事件 不阻止冒泡
++ 以 bind 开头的事件 不阻止冒泡
 
-      以 catch 开头的事件 冒泡是阻止的，其实建议用 catch
++ 以 catch 开头的事件 冒泡是阻止的， `建议用 catch`
 
 #### setData() 使用注意事项
    

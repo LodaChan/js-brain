@@ -1,7 +1,7 @@
 自定义组件
 ===
 
-#### 以 weui 弹框为例子 - 编写
+#### 以 weui 弹框为例子 - 定义
 
 + 物理文件说明
     + weui-dialog.js
@@ -189,7 +189,7 @@
 
 #### 以 weui 弹框为例子 - 调用
 
-+ 1 具体使用的页面 json 配置
++ 1  页面关于自定义组件调用的 json 配置
 ```js
 {
   "usingComponents": {
@@ -199,6 +199,7 @@
 ```
 
 + 2 页面 wxml 标签引用
+
 ```html
 <view class="container">
     <weui-dialog id='myDialog' 
@@ -213,7 +214,7 @@
 </view>
 ```
 
-+ 3 页面 js 逻辑
++ 3 页面 js 调用逻辑
 
 ```js
 const app = getApp()
