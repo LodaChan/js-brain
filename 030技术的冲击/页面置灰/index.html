@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+        html {
+            /* [mk] for chrome */
+            /* filter: grayscale(100%); */
+            /* -webkit-filter: grayscale(100%); */
+        }
+
+        label,
+        div,
+        svg,
+        canvas {
+            box-sizing: border-box;
+            display: block;
+        }
+
+        .lbl {
+            color: red;
+        }
+
+        .lbl:hover {
+            color: orange;
+        }
+
+        .lbl:after {
+            color: goldenrod;
+            content: "123";
+            margin-left: 10px;
+        }
+
+
+        .bg {
+            background-color: greenyellow;
+            border: 5px solid green;
+            height: 100px;
+            width: 100px;
+        }
+
+        .linear-gradient-bg {
+            background-image: linear-gradient(red, yellow);
+            height: 100px;
+            width: 100px;
+        }
+
+        .border-image {
+            height: 100px;
+            width: 100px;
+            border: 15px solid transparent;
+            padding: 15px 15px;
+            border-image: url('static/borderImg.png') 30 30 round;
+        }
+
+        .img {
+            width: 100px;
+            height: 100px;
+        }
+
+
+
+        .lbl-gray-theme {
+            color: #333 !important;
+        }
+
+        .lbl-gray-theme:hover {
+            color: #333;
+        }
+
+        .lbl-gray-theme:after {
+            color: #333;
+        }
+
+        .bg-gray-theme {
+            background-color: #999;
+            border: 5px solid #333;
+        }
+
+        .linear-gradient-bg-gray-theme {
+            background-image: linear-gradient(#333, #999);
+            height: 100px;
+            width: 100px;
+        }
+
+        .border-image-gray-theme {
+            border-image: url('static/borderImg-gray.png') 30 30 round;
+        }
+    </style>
+</head>
+
+<body>
+    <p>0 hack code 直接写样式上 </p>
+    <label style="color: tomato;">文本</label>
+
+    <p>1 文本 :hover 与伪类 ::after </p>
+    <label class="lbl">文本</label>
+
+    <p>2 背景色 与 边框色 </p>
+    <div class="bg"></div>
+
+    <p>2 Ext 边框是图片 </p>
+    <div class="border-image"></div>
+
+    <p>2 Ext 渐变色 </p>
+    <div class="linear-gradient-bg"></div>
+
+    <p>3 图片 </p>
+    <img class="img" src="static/bgImg.PNG" alt="" />
+
+    <p>4 svg </p>
+    <svg width="325px" height="325px">
+        <path d="M80 80
+                 A 45 45, 0, 0, 0, 125 125
+                 L 125 80 Z" fill="green" />
+        <path d="M230 80
+                 A 45 45, 0, 1, 0, 275 125
+                 L 275 80 Z" fill="red" />
+        <path d="M80 230
+                 A 45 45, 0, 0, 1, 125 275
+                 L 125 230 Z" fill="purple" />
+        <path d="M230 230
+                 A 45 45, 0, 1, 1, 275 275
+                 L 275 230 Z" fill="blue" />
+    </svg>
+
+
+    <p>5 canvas </p>
+    <canvas id="myCanvas" style="width: 50px;height: 50px;display: inline-block;"></canvas>
+
+
+    <script type="text/javascript">
+        function generateCanvas(cb) {
+            var canvas = document.getElementById('myCanvas');
+            canvas.style.width = "50px";
+            canvas.style.height = "50px";
+
+            var ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#FF0000';
+            ctx.fillRect(0, 0, 20, 20);
+            cb();
+        }
+        generateCanvas(function () { console.log('canvas render done') })
+
+
+        function bodyGrayFn(doc, cb) {
+            console.log(doc)
+
+            var elements = doc.getElementsByTagName("*");
+
+            for (let i = 0; i < elements.length; i++) {
+
+                let tagName = (elements[i].tagName + '').toLowerCase();
+                let className = elements[i].className;
+                console.log(tagName, className);
+
+                switch (tagName) {
+
+                    case 'p':
+                        break;
+
+                    case 'label':
+                        elements[i].className += ' lbl-gray-theme';// 注意空格
+                        break;
+
+                    case 'div':
+                        if (className === 'bg') {
+                            elements[i].className += ' bg-gray-theme';
+                        } else if (className === 'linear-gradient-bg') {
+                            elements[i].className += ' linear-gradient-bg-gray-theme';
+                        } else if (className === 'border-image') {
+                            elements[i].className += ' border-image-gray-theme';
+                        }
+                        break;
+
+                    case 'img':
+                        let array = (elements[i].src + '').split('.');
+                        elements[i].src = array[0] + '-gray.' + array[1];
+                        break;
+
+                    case 'svg':
+                        break;
+
+                    case 'path':
+                        elements[i].setAttribute('fill', '#333');
+                        break;
+
+                    case 'canvas':
+                        // re-render
+                        let ctx = elements[i].getContext('2d');
+                        let imageColorDataObj = ctx.getImageData(0, 0, elements[i].width, elements[i].height);
+
+                        let pxData = imageColorDataObj.data;  //获取每一个像素
+
+                        for (let j = 0; j < elements[i].width * elements[i].height; j++) {
+                            //灰度滤镜
+                            var r = pxData[4 * j + 0];
+                            var g = pxData[4 * j + 1];
+                            var b = pxData[4 * j + 2];
+                            //计算灰度的公式
+                            var color = 0.3 * r + 0.59 * g + 0.11 * b;
+                            pxData[4 * j + 0] = color;
+                            pxData[4 * j + 1] = color;
+                            pxData[4 * j + 2] = color;
+                        }
+
+                        ctx.putImageData(imageColorDataObj, 0, 0);
+                        break;
+
+                }
+
+            }
+
+            cb();
+        }
+
+        window.onload = function () {
+            let dateConfigRange = [new Date(2020, 3, 4), new Date(2020, 3, 5)] // 注意 new date 的 month [0,11]
+            let currentDateTimeNow = new Date();
+           
+            if (dateConfigRange[0] <= currentDateTimeNow && currentDateTimeNow < dateConfigRange[1]) {
+                // 添加到宏任务队列
+                setTimeout(function () {
+                    bodyGrayFn(document.body, function () { console.log('body gray render done') });
+                }, 0)
+            }
+        };
+
+    </script>
+
+</body>
+
+</html>
