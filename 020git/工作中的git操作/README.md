@@ -41,9 +41,7 @@
 
 > 有1次组员晕乎乎的，只提了 commit 没有 push，然后还把本地分支删了！没错，删了！怎么才能把代码重新弄回来呢?
 
-+ 1 创建1个本地分支
++ 1 切换开发分支
 + 2 通过 `git reflog` 找到 短 `commit id`
 + 3 git reset `commit-id` --mixed 
-+ 4 git status 查看 code change
-+ 5 切换开发分支，git merge '恢复代码的分支'
-+ 6 常规操作 add commit push
++ 4 解决冲突后 常规操作 add commit push
