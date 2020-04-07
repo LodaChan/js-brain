@@ -3,12 +3,12 @@
 
 github : [bilibili flv.js](https://github.com/bilibili/flv.js "bilibili flv.js")
 
-> bili bili 视频播放采用 `边播放边分部下载,分解成很多个小片段，通过 MediaSource.addSourceBuffer`的方式 ， 实际上使用的是 `vedio` 标签 结合 `blob` 或 `MediaSource` 对象
+> bili bili 视频播放采用 `边播放 边下载小片段视频流，通过  blob 对象封装 再 MediaSource.addSourceBuffer `的方式
 
 
 #### 视频文件的组成
 
-如何被解析来播放需要知道其数据封装格式
+如何被解析来播放，那需要知道其数据封装格式
 
 + 数据格式描述
 + 视频数据包
@@ -19,7 +19,7 @@ github : [bilibili flv.js](https://github.com/bilibili/flv.js "bilibili flv.js")
 #### bili bili 逻辑层面
 
 ```html
-<video id="bVideo" preload="auto" src="blob:https://www.bilibili.com/e07f0855-03f1-4250-8150-447ce35cffd7"></video>
+<video id="myVideo" preload="auto" src="blob:https://www.bilibili.com/e07f0855-03f1-4250-8150-447ce35cffd7"></video>
 ```
 
 + 1 onload 获取当前视频流的长度,然后按块进行请求，每次请求会得到 content-length   =  byte之差 + 1
@@ -34,7 +34,7 @@ xhr.responseType = 'blob';
 xhr.onload = function(e) {
     if (this.status == 200) {
         var blob = this.response;
-        $("#bVideo").attr("src", URL.createObjectURL(blob));
+        $("#myVideo").attr("src", URL.createObjectURL(blob));
     }
 };
 xhr.send();
@@ -59,7 +59,7 @@ attachMediaElement(mediaElement) {
 ```
 
 
-+ 4 通过 FileReader 封装对应的视频块
++ 4  blob 对象通过 FileReader 封装对应的视频块
 
 ```js
 // webscoket 场景
@@ -124,7 +124,7 @@ _fileReader.onload = function (event) {
 ```
 
 
-+ 5 append buffer
++ 5 flv append buffer 与 mediaSource.addSourceBuffer
 ```js
 // flv
 let sb = this._sourceBuffers[is.type] = this._mediaSource.addSourceBuffer(mimeType);
