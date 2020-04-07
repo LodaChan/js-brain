@@ -10,9 +10,7 @@
 
     <script type="text/javascript">
 
-        const classObj = {
-            name: 0
-        };
+        const array = [1,2,3]
 
         const proxyHanler = {
             get: function (obj, key) {
@@ -25,20 +23,19 @@
             }
         };
 
-
-        const classProxyObj = new Proxy(classObj, proxyHanler);
+        const arrayProxyObj = new Proxy(array, proxyHanler);
 
      
-        console.log(classProxyObj.name);// 被读取，0
+        console.log(arrayProxyObj[0]); // 被读取 , 1
 
         
-        classProxyObj.name = 111; // 被设置
-        console.log(classProxyObj.name); // 被读取 111
+        arrayProxyObj[0] = 111; // 被设置
+        console.log(arrayProxyObj[0]); // 被读取 , 111
 
-        console.log(classObj.name); // 111
+        console.log(array[0]);// 111
 
-        classObj.name = 222;
-        console.log(classObj.name); // 222
+        array[0] = 222;
+        console.log(array[0]); // 222
 
     </script>
 </body>
