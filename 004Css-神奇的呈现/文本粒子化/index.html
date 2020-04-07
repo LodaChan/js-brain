@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <style>
+        #cas {
+            display: block;
+            border: 1px solid;
+            margin: auto;
+        }
+    </style>
+    <script>
+        var dotClass = function (centerX, centerY, centerZ, radius, cacheX, cacheY, cacheZ) {
+            // 缓存的xyz
+            this.tx = cacheX;
+            this.ty = cacheY;
+            this.tz = cacheZ;
+
+            // 真实绘制的xyz
+            this.z = centerZ;
+            this.x = centerX;
+            this.y = centerY;
+
+            // 半径与透明度
+            this.radius = radius;
+        }
+
+        dotClass.prototype = {
+            paint: function () {
+                context.save();
+                context.beginPath();
+                var scale = focallength / (focallength + this.z);
+                context.arc(canvas.width / 2 + (this.x - canvas.width / 2) * scale,
+                    canvas.height / 2 + (this.y - canvas.height / 2) * scale,
+                    this.radius * scale,
+                    0,
+                    2 * Math.PI);
+                context.fillStyle = "rgba(50,50,50," + scale + ")";
+                context.fill()
+                context.restore();
+            }
+        }
+
+        function getImgData() {
+            var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            var tmpDots = [];
+
+            // 文本 变 dot
+            for (var x = 0; x < imgData.width; x += 6) {
+                for (var y = 0; y < imgData.height; y += 6) {
+                    var i = (y * imgData.width + x) * 4;
+                    if (imgData.data[i] >= 128) {
+                        tmpDots.push(new dotClass(x - 3, y - 3, 0, 3, x - 3, y - 3, 0));
+                    }
+                }
+            }
+            return tmpDots;
+        }
+
+        function drawText(text) {
+            context.save()
+            context.font = "200px 微软雅黑 bold";
+            context.fillStyle = "rgba(168,168,168,1)";
+            context.textAlign = "center";
+            context.textBaseline = "middle";
+            context.fillText(text, canvas.width / 2, canvas.height / 2);
+            context.restore();
+        }
+
+        Array.prototype.forEach = function (callback) {
+            for (var i = 0; i < this.length; i++) {
+                callback.call(this[i]);
+            }
+        }
+
+        var canvas = null;
+        var content = null;
+        var toDrawDots = [];
+        var focallength = 250;
+        var TEXT = "canvas粒子化";
+        var isAnimateDone = false;
+        var isAnimateExecCount = 0;
+
+        window.onload = function () {
+            canvas = document.getElementById("cas");
+            context = canvas.getContext('2d');
+
+
+            // draw text
+            drawText(TEXT);
+            toDrawDots = getImgData();
+            toDrawDots.forEach(function () {
+                this.paint();
+            });
+        }
+
+        function textToDotsRandom() {
+            // 先清空画布
+            isAnimateDone = false;
+            isAnimateExecCount = 0;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            toDrawDots.forEach(function () {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.z = Math.random() * focallength * 2 - focallength;
+
+                this.tx = Math.random() * canvas.width;
+                this.ty = Math.random() * canvas.height;
+                this.tz = Math.random() * focallength * 2 - focallength;
+                this.paint();
+            });
+
+
+
+            animate();
+
+            function animate() {
+                // 运行计数
+                isAnimateExecCount++;
+
+
+                // 先清空画布
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                // 点扩散
+                toDrawDots.forEach(function () {
+                    var dot = this;
+
+                    if (Math.abs(dot.tx - dot.x) < 0.1 &&
+                        Math.abs(dot.ty - dot.y) < 0.1 &&
+                        Math.abs(dot.tz - dot.z) < 0.1) {
+                        dot.x = dot.tx;
+                        dot.y = dot.ty;
+                        dot.z = dot.tz;
+
+                    } else {
+                        dot.x = dot.x + (dot.tx - dot.x) * 0.1;
+                        dot.y = dot.y + (dot.ty - dot.y) * 0.1;
+                        dot.z = dot.z + (dot.tz - dot.z) * 0.1;
+                    }
+
+                    this.paint();
+                });
+
+                // 运行计数判断是否执行完
+                if (isAnimateExecCount > 48) {
+                    isAnimateDone = true;
+
+                    console.log("anmiate done");
+                }
+
+                // 动画未执行完
+                if (isAnimateDone == false) {
+                    if ("requestAnimationFrame" in window) {
+                        requestAnimationFrame(animate);
+                    }
+                    else if ("webkitRequestAnimationFrame" in window) {
+                        webkitRequestAnimationFrame(animate);
+                    }
+                    else if ("msRequestAnimationFrame" in window) {
+                        msRequestAnimationFrame(animate);
+                    }
+                    else if ("mozRequestAnimationFrame" in window) {
+                        mozRequestAnimationFrame(animate);
+                    }
+                }
+
+            }
+
+        }
+
+        function dotsRandomToText() {
+            // 先清空画布
+            isAnimateDone = false;
+            isAnimateExecCount = 0;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 获取文本粒子
+            drawText(TEXT);
+            var textDots = getImgData();
+
+            for (var i = 0; i < toDrawDots.length; i++) {
+                toDrawDots[i].tx = textDots[i].tx;
+                toDrawDots[i].ty = textDots[i].ty;
+                toDrawDots[i].tz = textDots[i].tz;
+            }
+
+
+            animate();
+
+            function animate() {
+                // 运行计数
+                isAnimateExecCount++;
+
+                // 先清空画布
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                // 点扩散
+                toDrawDots.forEach(function () {
+                    var dot = this;
+
+                    if (Math.abs(dot.tx - dot.x) < 0.1 &&
+                        Math.abs(dot.ty - dot.y) < 0.1 &&
+                        Math.abs(dot.tz - dot.z) < 0.1) {
+                        dot.x = dot.tx;
+                        dot.y = dot.ty;
+                        dot.z = dot.tz;
+                    } else {
+                        dot.x = dot.x + (dot.tx - dot.x) * 0.1;
+                        dot.y = dot.y + (dot.ty - dot.y) * 0.1;
+                        dot.z = dot.z + (dot.tz - dot.z) * 0.1;
+                    }
+
+                    this.paint();
+                });
+
+                // 运行计数判断是否执行完
+                if (isAnimateExecCount > 48) {
+                    isAnimateDone = true;
+                    console.log("anmiate done");
+                }
+
+                // 动画未执行完
+                if (isAnimateDone == false) {
+                    if ("requestAnimationFrame" in window) {
+                        requestAnimationFrame(animate);
+                    }
+                    else if ("webkitRequestAnimationFrame" in window) {
+                        webkitRequestAnimationFrame(animate);
+                    }
+                    else if ("msRequestAnimationFrame" in window) {
+                        msRequestAnimationFrame(animate);
+                    }
+                    else if ("mozRequestAnimationFrame" in window) {
+                        mozRequestAnimationFrame(animate);
+                    }
+                }
+
+            }
+
+        }
+
+
+    </script>
+    <title>粒子化结合帧动画</title>
+</head>
+
+<body>
+    <div>
+        <canvas id='cas' width="1400px" height="500">浏览器不支持canvas</canvas>
+        <div style="width:150px;margin:10px auto">
+            <button onclick="textToDotsRandom()">文本 变 粒子</button>
+            <button onclick="dotsRandomToText()">粒子 变 文本</button>
+        </div>
+    </div>
+</body>
+
+</html>
