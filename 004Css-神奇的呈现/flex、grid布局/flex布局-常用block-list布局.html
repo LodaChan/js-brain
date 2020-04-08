@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .flex-container {
+            width: 790px;
+            /* 160*5-10 */
+
+            margin: 20px auto;
+            background-color: tomato;
+
+            /* flex 换行 */
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+        }
+
+        .flex-item {
+            background-color: gray;
+
+            width: 150px;
+            height: 150px;
+
+            /* flex 垂直居中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 10px 10px 0px;
+
+        }
+
+        /* 第5列 */
+        .flex-item:nth-child(5n) {
+            margin-right: 0px;
+        }
+
+        /* 第2行 */
+        .flex-item:nth-child(n+6),
+        .flex-item:nth-child(n+7),
+        .flex-item:nth-child(n+8),
+        .flex-item:nth-child(n+9),
+        .flex-item:nth-child(n+10) {
+            margin-top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>流布局 检查 begin</div>
+    <div class="flex-container">
+        <div class="flex-item flex-item1">1</div>
+        <div class="flex-item flex-item2">2</div>
+        <div class="flex-item flex-item3">3</div>
+        <div class="flex-item flex-item4">4</div>
+        <div class="flex-item flex-item5">5</div>
+
+        <div class="flex-item flex-item1">1</div>
+        <div class="flex-item flex-item2">2</div>
+        <div class="flex-item flex-item3">3</div>
+        <div class="flex-item flex-item4">4</div>
+        <div class="flex-item flex-item5">5</div>
+
+        <div class="flex-item flex-item1">1</div>
+        <div class="flex-item flex-item2">2</div>
+        <div class="flex-item flex-item3">3</div>
+
+
+    </div>
+    <div>流布局 检查 end</div>
+
+    <script>
+
+
+    </script>
+
+</body>
+
+</html>

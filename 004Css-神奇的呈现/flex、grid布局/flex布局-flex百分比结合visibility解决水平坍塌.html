@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .flex-container {
+            height: 600px;
+            display: flex;
+
+            /* flex 换行 */
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .flex-item {
+            flex: 16.66%;
+            background-color: gray;
+        
+            /* flex 垂直居中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+             
+            margin: 10px 5px 10px 5px;
+        }
+        .flex-item:nth-child(0n+1){
+            margin-left: 10px;
+        }
+        .flex-item:nth-child(5n){
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="flex-container">
+        <div class="flex-item flex-item1">1</div>
+        <div class="flex-item flex-item2">2</div>
+        <div class="flex-item flex-item3">3</div>
+        <div class="flex-item flex-item4">4</div>
+        <div class="flex-item flex-item5">5</div>
+
+        <div class="flex-item flex-item1">1</div>
+        <div class="flex-item flex-item2">2</div>
+        <div class="flex-item flex-item3">3</div>
+        <div class="flex-item flex-item4">4</div>
+        <div class="flex-item" style="visibility: hidden">空占位</div>
+    </div>
+
+    <script>
+
+
+    </script>
+
+</body>
+
+</html>
