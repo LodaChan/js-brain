@@ -2,6 +2,27 @@
 
 > vuex , 采用集中式存储管理应用的所有组件的状态 , 主要用于 兄弟组件数据同步 的场景
 
+#### 引入  vuex
+
+```js
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+```
+
+```js
+const state = {}
+const mutations = {}
+const actions = {}
+const getters = {}
+export default new Vuex.Store({
+  state,
+  getters,
+  actions,
+  mutations
+})
+```
+
 #### vuex 使用
 
 + state

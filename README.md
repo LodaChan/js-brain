@@ -9,3 +9,10 @@
 #### 交流微信号
 
 `load_chan_1990`
+
+#### 个人网站 (完善中)
+
+
+
+[https://lodachan.github.io/](https://lodachan.github.io/ "https://lodachan.github.io/")  
+
