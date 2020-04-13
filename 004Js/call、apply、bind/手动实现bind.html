@@ -7,10 +7,20 @@
 
 <body>
     <script>
-        Function.prototype.bind = function (context, ...args) {
-             
+        Function.prototype.bind = function (content) {
+            if (typeof this != 'function') {
+                throw Error('not a function');
+            }
+            let _this = this;
+            let args = [...arguments].slice(1);
+            return function F() {
+                // 判断是否被当做构造函数使用
+                if (this instanceof F) {
+                    return _this.apply(this, args.concat([...arguments]))
+                }
+                return _this.apply(content, args.concat([...arguments]))
+            }
         }
-
     </script>
 
 </body>

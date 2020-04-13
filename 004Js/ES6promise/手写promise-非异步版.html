@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        // new Promise((resolve, reject) => { resolve(1); })
+        //     .then(
+        //         res => {
+        //             console.log('res', res)
+        //         },
+        //         err => {
+        //             console.error('err', err)
+        //         });
+
+
+        function myPromise(exector) {
+            console.log("exector", exector)
+            console.log("typeof exector", typeof exector)
+
+            var _this = this;// 为了传递闭包内执行作用域链
+            this.status = "pending"; // pending fulfilled rejected
+            this.value = undefined;
+
+            function resolve(val) {
+                if (_this.status === 'pending') {
+                    _this.status = "fulfilled";
+                    _this.value = val
+                }
+            }
+
+            function reject(val) {
+                if (_this.status === 'pending') {
+                    _this.status = 'rejected'
+                    _this.value = val
+                }
+            }
+
+            try {
+                // 将 闭包内的 resolve 和 reject 当作参数传出
+                exector(resolve, reject);
+            }
+            catch (err) {
+                reject(err)
+            }
+
+        }
+        myPromise.prototype.then = function (onResolveCallback, onRejectCallBack) {
+            console.log(onResolveCallback, onRejectCallBack)
+
+            if (this.status === 'fulfilled') {
+                onResolveCallback(this.value)
+            }
+
+            if (this.status === 'rejected') {
+                onRejectCallBack(this.value)
+            }
+
+            return this;
+        }
+
+        myPromise.prototype.catch = function (catchExector) {
+            return catchExector(this.value)
+        }
+
+        var p1 = new myPromise((resolve, reject) => { resolve(1); })
+            .then(
+                res => {
+                    console.log('res', res)
+                },
+                err => {
+                    console.error('err', err)
+                });
+
+
+        console.log(p1)
+
+
+        var p2 = new myPromise((resolve, reject) => { reject("I am err") })
+            .then(
+                res => {
+                    console.log('res', res)
+                },
+                err => {
+                    console.error('err', err)
+                });
+
+        console.log(p2)
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -4,9 +4,65 @@
 
 
 
-+ 初始化创建 Init、Events、生命周期函数、Render、InitState、props
++ 初始化创建 , initState(初始化data,methods,props,computed,watch) , initOptions(scoped,scopedSlots等)
+   + 初始化 data和computed,分别代理其set以及get方法, 对data中的所有属性生成唯一的dep实例
+   + 对computed中的reversedMessage生成唯一watcher,并保存在vm._computedWatchers中
 
 
+
+   + 当computed没有被访问（或者没有被模板依赖），当修改了依赖的值后，computed中的值没有变化是因为没有触发到其get方法
+   
+   + 实例化了一个 Observer 对象,本质上就是代理了数据的set,get方法，当数据修改或获取的时候，能够感知（当然vue还要考虑数组，Object中嵌套Object等各种情况
+   + dep是 reactive data 与 watcher 纽带
+   + dep.notify() 更新依赖该值的所有watcher
+
+```js
+// src/core/observer/index.js
+export class Observer {
+  value: any;
+  dep: Dep;
+  vmCount: number; // number of vms that has this object as root $data
+
+  constructor (value: any) {
+    this.value = value
+    // 关键代码 new Dep对象
+    this.dep = new Dep()
+    this.vmCount = 0
+    def(value, '__ob__', this)
+    // ...省略无关代码
+    this.walk(value)
+  }
+
+  walk (obj: Object) {
+    const keys = Object.keys(obj)
+    for (let i = 0; i < keys.length; i++) {
+      // 给data的所有属性调用defineReactive
+      defineReactive(obj, keys[i], obj[keys[i]])
+    }
+  }
+}
+```
+    + 初始化computed
+       + 在computed 生成的watcher，会将 watcher 的lazy设置为true,以减少 watcher 的计算量
+       +  computed中初始化对各个属性生成的watcher的dirty和lazy都设置为了true。同时，将computed传入的属性值（一般为funtion）,放入对应key的watcher的getter中保存起来
+
+```js
+get: function reactiveGetter () {
+      const value = getter ? getter.call(obj) : val
+      // 这个时候，有值了
+      if (Dep.target) {
+        // computed的watcher依赖了 this.data 的 dep
+        dep.depend()
+        if (childOb) {
+          childOb.dep.depend()
+        }
+        if (Array.isArray(value)) {
+          dependArray(value)
+        }
+      }
+      return value
+    }
+```
 
 + `beforeCreate` .vue创建实例前钩子
    
@@ -60,7 +116,7 @@
             + _render compiler生成的render方法，返回一个vNode对象
             + update() 则会对比新的 vdom 和当前 vdom，并把差异的部分渲染到真正的 DOM 树上
 
-        + 需要 observe观察者模式 的数据对象进行递归遍历，包括子属性和对象的属性，都加上 setter 和 getter ,
+        + 需要 observe 观察者模式 的数据对象进行递归遍历，包括子属性和对象的属性，都加上 setter 和 getter ,
            + 数据发生变化时通过objectDefineprototype执行getter/setter 告诉watchers
 
 

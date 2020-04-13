@@ -7,22 +7,23 @@
 
 <body>
     <script>
-        // await 后再执行
-        // 基于 timer
-        function debounce(fn, wait = 50, immediate) {
-            let timer;
-            return function () {
-                if (immediate) {
-                    fn.apply(this, arguments)
-                }
-                if (timer) {
-                    clearTimeout(timer)
-                }
+        // 防抖 - debounce 
+        // 当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，
+        // 如果设定的时间到来之前，又一次触发了事件，就重新开始延时。
+
+        // 场景
+        // 1 针对输入请求后台数据
+        // 2 window触发resize
+        const debounce = (fn, delay) => {
+            let timer = null;
+            return (...args) => {
+                clearTimeout(timer);
                 timer = setTimeout(() => {
-                    fn.apply(this, arguments)
-                }, wait)
-            }
-        }
+                    fn.apply(this, args);
+                }, delay);
+            };
+        };
+
 
     </script>
 

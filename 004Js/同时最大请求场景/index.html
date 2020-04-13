@@ -61,7 +61,7 @@
                 return p.then(() => toFetch());
             }
 
-            // arr循环完后， 现在fetchArr里面剩下最后max个promise对象， 使用all等待所有的都完成之后执行callback
+            // arr 循环完后， 现在fetchArr里面剩下最后max个promise对象， 使用all等待所有的都完成之后执行callback
             toFetch().then(() => Promise.all(fetchArr)).then(() => {
                 callback();
             })

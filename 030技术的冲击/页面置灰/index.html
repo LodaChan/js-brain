@@ -175,7 +175,7 @@
                         }
                         break;
 
-                    case 'img':
+                    case 'img': // 图片同理，使用 img.src = canvas.toDataURL() 即可
                         let array = (elements[i].src + '').split('.');
                         elements[i].src = array[0] + '-gray.' + array[1];
                         break;

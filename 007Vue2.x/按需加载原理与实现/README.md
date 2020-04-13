@@ -13,7 +13,7 @@
 + import 是编译时调用
    + ES6 语法
    + 编译时调用
-   + 解构过程，babel支持ES6，也仅仅是将ES6转码为ES5再执行，import语法会被转码为require
+   + 解构过程，babel支持ES6，也仅仅是将 ES6 转码为 ES5再执行，import语法 会被转码为 require
 
 
 #### 实现方式
@@ -34,7 +34,7 @@ component: resolve => require(['@/xxx.page.vue'], resolve);
 ```
 
 
-+ CMD风格 , webpack提供的require.ensure()
++ CMD风格 , webpack提供的 require.ensure()
 
 ```js
 component: resolve => require.ensure([], () => resolve(require('@/components/Hello')), 'demo')
@@ -42,7 +42,7 @@ component: resolve => require.ensure([], () => resolve(require('@/components/Hel
 
 #### 实现原理
 
-+ 1 路由通过 match 执行对应的 promise
++ 1 路由 通过正则匹配 找到对应的 router obj ，并 执行 compoment promise.all
 
 ```js
 r.routers = [
@@ -50,10 +50,12 @@ r.routers = [
         name: "saas",
         path: "/saas",
         component: function (t) {
-            // 5 是 compoment index
-            return Promise.all([n.e(0), n.e(5)]).then(
+            return Promise.all([
+                n.e(0), // vendor's index
+                n.e(5) // page compoment's index
+                ]).then(
                 function () {
-                    var e = [n("fOGf")]; // compoment key
+                    var e = [n("fOGf")]; // page webpackjsonp compoment key
                     t.apply(null, e)
                 }.bind(this)).catch(n.oe)
         },
