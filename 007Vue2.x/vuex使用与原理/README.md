@@ -1,6 +1,6 @@
 # vuex 使用与原理
 
-> vuex , 采用集中式存储管理应用的所有组件的状态 , 主要用于 兄弟组件数据同步 的场景
+> vuex , 采用集中式存储管理应用的所有组件的状态 , 主要用于 兄弟组件数据同步 的场景 ， 本质上是1个vue的插件，对应响应式的方式与data,computed,watch类似
 
 #### 引入  vuex
 
@@ -98,4 +98,27 @@ this.$store.dispatch('action-name', data)
 
 #### vuex 原理
 
-> 在 思考 前需要 熟悉 vue 的 computed 初始化过程 ，Observer ， dep , watcher(data-watcher ,computed-watcher的区别)
++ 与 vue observer dep watcher类似
+
+#### vuex action 异步实现原理
+
+> 利用浏览器的 执行栈-任务队列-微任务队列 , actions 加入到任务队列， action内的操作(promise/setTimeout)等重新扫描，保证执行顺序的一致性
+
+
++ mutation 同步设计
++ action   异步设计
+
+```js
+
+// action 加入 promise 与 setTimeout
+yourModuleStore.actions = {
+    'action-name'({ commit }, userInfoObj) {
+        return new Promise((resolve, reject) => {
+            setTimeout(()=>{
+                commit('mutation-name', userInfoObj)
+                resolve()
+            },1000)
+        })
+    },
+}
+```

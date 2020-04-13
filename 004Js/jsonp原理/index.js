@@ -28,7 +28,7 @@ createScript("http://127.0.0.1:444/somejson?callback=jsonCallback");
 // String retStr = callback + "(" + jsonData + ")";
  
 
-function jsonCallback(json) {
+function callback(json) {
     console.log(json)
     // do something ...
 }

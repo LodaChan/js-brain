@@ -8,7 +8,7 @@
 <body>
     <script>
 
-
+        // 同时最大请求场景
         // fetch('/url',{method:"GET"}).then(()=>{})
 
         let promiseArray = [
@@ -43,11 +43,12 @@
 
                 let one = arr[i++]; // 取出第i个url， 放入fetch里面 , 每取一次i++
 
+                // 当promise执行完毕后，从数组删除
                 one.then(() => {
                     fetchArr.splice(fetchArr.indexOf(one), 1)
-                }
-                ); // 当promise执行完毕后，从数组删除
+                }); 
                 fetchArr.push(one);
+
                 // 将当前的promise存入并发数组中
                 // 其实将这个push放到上一行会更好理解，那样就是我们同步的思维顺序，
                 // 先push进去，再等promise执行完了之后再删除。
@@ -58,6 +59,7 @@
                 if (fetchArr.length >= max) {     // 当并行数量达到最大后， 用race比较 第一个完成的， 然后再调用一下函数自身。
                     p = Promise.race(fetchArr);
                 }
+
                 return p.then(() => toFetch());
             }
 
@@ -67,7 +69,7 @@
             })
         }
 
-        sendRequest(promiseArray, 1, () => {
+        sendRequest(promiseArray, 2, () => {
             console.log('finish')
         })
 

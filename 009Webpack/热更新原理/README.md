@@ -28,7 +28,7 @@
 
 + hotEmitter.on('webpackHotUpdate') 中的事件判断， if(!hotCurrentHash || hotCurrentHash == currentHash) hotCurrentHash为上次的hash值 currentHash为最新收到的 并且判断两次是否一致，一致则不需要更新，不一致就执行热更新逻辑
 
-+ hotCheck 会通过ajax请求服务端拉取最新的 hot-update.json 描述文件 说明哪些模块哪些chunk（大集合）发生了更新改变
++ hotCheck 会通过ajax请求服务端 拉取最新的 hot-update.json 描述文件 说明哪些模块哪些chunk（大集合）发生了更新改变
 
 + 然后根据描述文件 hotDownloadUpdateChunk 去创建jsonp拉取到最新的更新后的代码,返回形式为： webpackHotUpdate(id, {...})
 

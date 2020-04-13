@@ -8,14 +8,17 @@
 <body>
     <script>
 
-        // new Promise((resolve, reject) => { resolve(1); })
-        //     .then(
-        //         res => {
-        //             console.log('res', res)
-        //         },
-        //         err => {
-        //             console.error('err', err)
-        //         });
+        // new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         resolve(1);
+        //     }, 1000)
+        // }).then(
+        //     res => {
+        //         console.log('res', res)
+        //     },
+        //     err => {
+        //         console.error('err', err)
+        //     });
 
 
         function myPromise(exector) {
@@ -25,18 +28,27 @@
             var _this = this;// 为了传递闭包内执行作用域链
             this.status = "pending"; // pending fulfilled rejected
             this.value = undefined;
+            this.reason = undefined;
+
+            // [mk] for async
+            this.onResolvedCallbacks = [];
+            this.onRejectedCallbacks = [];
 
             function resolve(val) {
                 if (_this.status === 'pending') {
                     _this.status = "fulfilled";
-                    _this.value = val
+                    _this.value = val;
+                    // [mk] for async
+                    this.onResolvedCallbacks.forEach(fn => fn());
                 }
             }
 
             function reject(val) {
                 if (_this.status === 'pending') {
                     _this.status = 'rejected'
-                    _this.value = val
+                    _this.reason = val;
+                    // [mk] for async
+                    this.onRejectedCallbacks.forEach(fn => fn());
                 }
             }
 
@@ -53,18 +65,26 @@
             console.log(onResolveCallback, onRejectCallBack)
 
             if (this.status === 'fulfilled') {
-                onResolveCallback(this.value)
+                // [mk] for async
+                this.onResolvedCallbacks.push(() => {
+                    onResolveCallback(this.value);
+                })
             }
 
             if (this.status === 'rejected') {
-                onRejectCallBack(this.value)
+                // [mk] for async
+                this.onRejectedCallbacks.push(() => {
+                    onRejectCallBack(this.reason);
+                })
             }
 
             return this;
         }
 
         myPromise.prototype.catch = function (catchExector) {
-            return catchExector(this.value)
+            if (this.status === 'fulfilled') {
+                return catchExector(this.reason)
+            }
         }
 
         var p1 = new myPromise((resolve, reject) => { resolve(1); })
@@ -75,7 +95,6 @@
                 err => {
                     console.error('err', err)
                 });
-
 
         console.log(p1)
 
