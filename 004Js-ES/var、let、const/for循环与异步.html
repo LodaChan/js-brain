@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+    <script>
+
+        /* 
+           0
+           1
+           2
+
+           3
+           3
+           3
+        */
+        for (var i = 0; i < 3; i++) {
+            console.log(i);
+            setTimeout(function () {
+                console.log(i);
+            }, 0)
+        }
+        console.log("检查", i);// 3
+
+
+        /* 
+           0
+           1
+           2
+
+           0
+           1
+           2
+        */
+        for (let j = 0; j < 3; j++) {
+            console.log(j);
+            setTimeout(function () {
+                console.log(j);
+            }, 0)
+        }
+        console.log("检查", j);// j is not defined
+
+    </script>
+
+</body>
+
+</html>

@@ -15,6 +15,12 @@
             console.log(this.name)
         }
 
+
+
+        // var obj  = {};
+        // obj.__proto__ = Base.prototype;
+        // Base.call(obj);
+
         function newExt(fn, ...args) {
             const obj = Object.create(fn.prototype);// 利用 fn 的原型新建1个对象
             const rel = fn.apply(obj, args) // 将 对象的原型 this 指向改变

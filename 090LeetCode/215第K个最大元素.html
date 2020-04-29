@@ -52,20 +52,20 @@
         function heapify(arr, i) {
             var left = 2 * i + 1,
                 right = 2 * i + 2,
-                largest = i;
+                largestIndex = i;
 
 
-            if (left < len && arr[left] > arr[largest]) {
-                largest = left;
+            if (left < len && arr[left] > arr[largestIndex]) {
+                largestIndex = left;
             }
 
-            if (right < len && arr[right] > arr[largest]) {
-                largest = right;
+            if (right < len && arr[right] > arr[largestIndex]) {
+                largestIndex = right;
             }
 
-            if (largest != i) {
-                swap(arr, i, largest);
-                heapify(arr, largest);
+            if (largestIndex != i) {
+                swap(arr, i, largestIndex);
+                heapify(arr, largestIndex);
             }
         }
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+    <script>
+        var vars = 0;
+
+        let a = 1;
+        let b = 2;
+
+        const c = 3;
+        const d = 4;
+        const e = 5;
+
+        console.log(this.vars, this.a) // 0 undefined
+        console.log(a, b, c, d) // 1 2 3 4
+
+
+        function fn() {
+
+            let a = 11;
+            var b = 22;
+
+            var c = 33;
+            var d = 44;
+            // e = 55; // [err] Assignment to constant variable.
+
+            console.log(
+                a, // 当前作用域
+                b, // 当前作用域
+                c, // 当前作用域
+                d, // 当前作用域
+                e // fn 作用域找不到，去 fn 的外部作用域查找
+            )
+        }
+
+        fn();
+
+    </script>
+
+</body>
+
+</html>

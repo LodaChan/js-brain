@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        // 2 es 实现类
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            say() {
+                return `${this.name} ${this.age}`;
+            }
+            static staticSay() {
+                return `${this.name} ${this.age}`;
+            }
+        }
+
+        // 动态给类增加方法 1
+        Person.prototype.sayExt = function () {
+            return `${this.name} ${this.age}`;
+        }
+
+        // 动态给类增加方法 2
+        Object.assign(Person.prototype, {
+            getName: function () {
+                return this.name;
+            },
+            getAge: function () {
+                return this.age;
+            }
+        })
+
+        console.log(Person.staticSay());// Person undefined
+
+        var obj = new Person("Neo", 999);
+        console.log(obj.say());
+        console.log('[prototype ext]', obj.sayExt());
+        console.log(obj.getName());
+        console.log(obj.getAge());
+
+
+        console.log(typeof Person);// function
+        console.log(Person.prototype);// constructor,__proto__,fns
+        console.log(Person === Person.prototype.constructor)// true
+        console.log(obj instanceof Person);// true , obj.prototype === Person
+        console.log(obj.__proto__ === Person.prototype) // 等同于
+        console.log(obj.hasOwnProperty('name'));// true
+
+
+        var newObj = new Person("Nick", 888);
+        console.log(newObj.say());
+        console.log(newObj.getName());
+        console.log(newObj.getAge());
+
+
+        console.log(obj.__proto__ === newObj.__proto__) //  所有的类实例__proto__都是相等的，所以不建议通过 __proto__ 添加方法
+        obj.__proto__.__protoSay = function () {
+            return `__proto__:${this.name} ${this.age}`;
+        }
+        console.log(obj.__protoSay());
+        console.log(newObj.__protoSay());
+
+
+
+    </script>
+
+</body>
+
+</html>

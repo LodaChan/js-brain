@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        // 1  js 实现类
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        Person.prototype.say = function () {
+            return `${this.name} ${this.age}`;
+        }
+
+        var obj = new Person("Neo", 999);
+        console.log(obj.say());
+
+
+
+    </script>
+
+</body>
+
+</html>

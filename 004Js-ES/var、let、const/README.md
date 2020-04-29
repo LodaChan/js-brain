@@ -1,5 +1,8 @@
 # var、let、const
 
++ 1 var 变量提升 会挂载到 window/this 中 ， let 依赖于代码块不会挂载到 window/this 中
++ 2 let/const 在代码块内使用才有效，var 在全局范围内有效
++ 3 let只能声明一次不能重复声明，var可以声明多次
 
 #### 使用建议
 
@@ -17,7 +20,7 @@ var a = 1;
 
 var a = undefined
 console.log(a) // undefined
-var a = 1;
+a = 1;
 ```
 
 

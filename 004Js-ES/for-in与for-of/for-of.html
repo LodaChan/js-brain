@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+    <script>
+
+        // 遍历数组（不能遍历普通对象）
+        let arr = [1, 2, 3]
+        for (let value of arr) {
+            console.log(value)
+        }  // 1  2  3
+
+
+        let obj = { a: 1, b: 2, c: 3 }
+        for (let value of obj) {
+            console.log(value)
+        }
+        // [err] Uncaught TypeError: obj is not iterable
+
+    </script>
+
+</body>
+
+</html>

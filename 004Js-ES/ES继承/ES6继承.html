@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        class father {
+            constructor(name) {
+                this.name = name;
+            }
+            fatherFn() {
+                console.log(this.name);
+            }
+        }
+
+        class son extends father {
+            constructor(name, age) {
+                super(name);
+                // super代表父类的构造函数，相当于父类.prototype.constructor.call(this)  
+                // 所以必须先调用父类的super()方法，才可使用this关键字，否则报错。），
+                this.age = age;
+            }
+            sonFn() {
+                console.log(this.age);
+            }
+        }
+
+
+        let sonObj = new son("I am son", 18)
+        console.log(sonObj)
+        console.log(sonObj)
+
+    </script>
+</body>
+
+</html>

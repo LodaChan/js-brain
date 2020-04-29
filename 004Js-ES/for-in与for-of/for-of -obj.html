@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+    <script>
+
+        // 1 自定义 迭代器
+        let obj = {
+            data: ['hello', 'world'],
+            [Symbol.iterator]() {
+                const self = this;
+                let index = 0;
+                return {
+                    next() {
+                        if (index < self.data.length) {
+                            return { value: self.data[index++], done: false };
+                        } else {
+                            return { value: undefined, done: true };
+                        }
+                    }
+                };
+            }
+        }
+        for (let value of obj) {
+            console.log(value)
+        }
+
+
+        //  2 引用 [Symbol.iterator]: Array.prototype[Symbol.iterator] 迭代器
+        let iterableObj = {
+            0: 'a',
+            1: 'b',
+            2: 'c',
+            length: 3,
+            [Symbol.iterator]: Array.prototype[Symbol.iterator]
+        };
+        for (let item of iterableObj) {
+            console.log(item); // 'a', 'b', 'c'
+        }
+
+    </script>
+
+</body>
+
+</html>
