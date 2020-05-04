@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <title></title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <script>
+
+
+        function fn(arr) {
+            let k = arr[0];
+            let n = arr.length - 1;
+            let rate = n / k;
+ 
+            let flag = {};
+
+            for (let i = 1; i < arr.length; i++) {
+                
+                let key = arr[i];
+                 
+                if (flag[key]) {
+                    flag[key]++;
+
+                    if (flag[key] > rate) {
+                        return key;
+                    }
+                }
+                else {
+                    flag[key] = 1;
+                    
+                    if (flag[key] > rate) {
+                        return key;
+                    }
+                }
+              
+            }
+
+
+            // // 容灾
+            // let output = undefined;
+
+            // for (let key in flag) {
+            //     if (output) {
+            //         if (output.count < flag[key]) {
+            //             output = { target: key, count: flag[key] }
+            //         }
+            //     }
+            //     else {
+            //         output = { target: key, count: flag[key] }
+            //     }
+            // }
+
+            // return output.traget;
+
+        }
+
+        let r1 = fn([3, 1, 1, 2]);
+        console.log(r1);
+
+    </script>
+</body>
+
+</html>

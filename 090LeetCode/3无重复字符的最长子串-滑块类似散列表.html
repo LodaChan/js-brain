@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {string} s
+         * @return {number}
+         * 从每一个字符开始的，不包含重复字符的最长子串
+         */
+        var lengthOfLongestSubstring = function (s) {
+
+       
+
+            let map = new Map();
+            let max = 0;
+
+            for (let i = 0, j = 0; j < s.length; j++) {
+                if (map.has(s[j])) {
+                    i = Math.max(map.get(s[j]) + 1, i) // 当 滑块中已经有 s[j] , i index 右移
+                }
+                
+                max = Math.max(max, j - i + 1)
+                map.set(s[j], j)
+            }
+            return max
+
+
+        };
+
+
+        let r1 = lengthOfLongestSubstring('abcabcbb');
+        console.log(r1);// abc 3 
+
+        let r2 = lengthOfLongestSubstring('bbbbb');
+        console.log(r2);// b 1
+
+        let r3 = lengthOfLongestSubstring('pwwkew');
+        console.log(r3);// wke , pwke是子序列
+
+        let r4 = lengthOfLongestSubstring("");
+        console.log(r4);// 0
+
+        let r5 = lengthOfLongestSubstring("au");
+        console.log(r5);// 2
+
+
+        let r6 = lengthOfLongestSubstring(" ");
+        console.log(r6);// 1
+
+
+        let r7 = lengthOfLongestSubstring("hvnjphmatuyqrooblzklatcsgfsswzhfuwpledozyopreftqeddgzfyhlqzjriongfzmjpnjdeak");
+        console.log(r7);// 1
+
+    </script>
+
+</body>
+
+</html>

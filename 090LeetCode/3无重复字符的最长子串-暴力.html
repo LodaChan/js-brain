@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {string} s
+         * @return {number}
+         * 子串，表示 s 在 S 中出现了
+         * 子序列，说明从序列 S 通过去除某些元素但不破坏余下元素的相对位置（在前或在后）可得到序列 s 。
+         */
+        var lengthOfLongestSubstring = function (s) {
+
+            if (s.length === 0) {
+                return 0;
+            }
+             
+
+            // 1 构建子串 lengthHashMap
+            let lengthHashMap = new Array();
+
+            lengthHashMap.push(new Array());
+            for (let i = 0; i < s.length; i++) {
+                lengthHashMap.push(new Array());
+            }
+
+
+            for (let i = 0; i < s.length; i++) {
+                for (let j = 0; j < s.length; j++) {
+                    let subStr = s.substr(i, j - i + 1);
+                    if (subStr.length > 0) {
+                        let lengthHashMapItem = lengthHashMap[subStr.length];
+                        lengthHashMap[subStr.length] = [...lengthHashMapItem, subStr];
+                    }
+                }
+            }
+
+            // 2 子串内部比对字符串
+            let lengthOfLongestSubstring = 0;
+
+            for (let i = 1; i < lengthHashMap.length; i++) {
+                for (let j = 0; j < lengthHashMap[i].length; j++) {
+
+                    let subStr = lengthHashMap[i][j];
+
+                    let dupeCount = 0;
+
+                    for (let k = 0; k < subStr.length; k++) {
+                        for (let h = k + 1; h < subStr.length; h++) {
+                            if (subStr[k] === subStr[h]) {
+                                dupeCount++;
+                            }
+                        }
+                    }
+
+                    if (dupeCount === 0 && i > lengthOfLongestSubstring) {
+                        lengthOfLongestSubstring = i;
+                    }
+                }
+            }
+
+            return lengthOfLongestSubstring;
+        };
+
+
+        let r1 = lengthOfLongestSubstring('abcabcbb');
+        console.log(r1);// abc 3 
+
+        let r2 = lengthOfLongestSubstring('bbbbb');
+        console.log(r2);// b 1
+
+        let r3 = lengthOfLongestSubstring('pwwkew');
+        console.log(r3);// wke , pwke是子序列
+
+        let r4 = lengthOfLongestSubstring("");
+        console.log(r4);// 0
+
+        let r5 = lengthOfLongestSubstring("au");
+        console.log(r5);// 2
+
+
+        let r6 = lengthOfLongestSubstring(" ");
+        console.log(r6);// 1
+
+
+        let r7 = lengthOfLongestSubstring("hvnjphmatuyqrooblzklatcsgfsswzhfuwpledozyopreftqeddgzfyhlqzjriongfzmjpnjdeak");
+        console.log(r7);// 1
+
+    </script>
+
+</body>
+
+</html>

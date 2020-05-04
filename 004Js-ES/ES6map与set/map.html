@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        const hasMap = new Map();
+
+        // 赋值
+        hasMap.set(1, '1')
+        hasMap.set('2', 2)
+        hasMap.set(3.3, 3.3)
+        hasMap.set(NaN, NaN)
+        hasMap.set({}, { a: 1 })
+        hasMap.set(JSON.stringify({ a: 1 }), { aa: 11 })
+
+        console.log(hasMap)
+        console.log(hasMap.size)
+
+        console.log(hasMap.get({}))// undefined
+        console.log(hasMap.get(JSON.stringify({ a: 1 })))
+
+
+        console.log(hasMap.has(1))// true
+        console.log(hasMap.has({}))// false
+        console.log(hasMap.has(JSON.stringify({ a: 1 })))// true
+
+        // 支持 for...of 和 forEach
+        for (var [key, value] of hasMap) {
+            console.log(key + " -> " + value);
+        }
+
+        hasMap.forEach(function (value, key) {
+            console.log(key + " -> " + value);
+        }, hasMap)
+
+
+        // map 与 数组 间转换 , 只取得 index 0 和 1
+        var kvArray = [["key1", "value1","value11"], ["key2", "value2","value22"]];
+        var kvMap = new Map(kvArray);
+        console.log('kvMap',kvMap)
+        var kvArray2 = Array.from(kvMap);
+        console.log(kvArray2)
+
+
+        // map 的 clone
+        var myMap1 = new Map([["key1", "value1"], ["key2", "value2"]]);
+        var myMap2 = new Map(myMap1);
+        console.log(myMap1 === myMap2); // false
+
+
+        // map 合并， 新值被替换
+        var mergeMap1 = new Map([[1, 'one'], [2, 'two'], [3, 'three'],]);
+        var mergeMap2 = new Map([[1, 'uno'], [2, 'dos']]);
+
+        var mergeMap = new Map([...mergeMap1, ...mergeMap2]);
+        console.log(mergeMap)
+
+    </script>
+
+</body>
+
+</html>

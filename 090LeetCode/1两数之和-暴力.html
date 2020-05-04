@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {number[]} nums
+         * @param {number} target
+         * @return {number[]}
+         * 148 ms	35 MB
+         */
+        var twoSum = function (nums, target) {
+            for (let i = 0; i < nums.length; i++) {
+                for (let j = i + 1; j < nums.length; j++) {
+                    if (nums[i] + nums[j] === target) {
+                        return [i, j]
+                    }
+                }
+            }
+            return [1, -1];
+        };
+
+        console.time('1')
+        let r1 = twoSum([2, 7, 11, 15], 9)
+        console.timeEnd('1')
+
+        console.log(r1)
+
+
+        console.time('2')
+        let r2 = twoSum([3, 2, 4], 6)
+        console.timeEnd('2')
+
+        console.log(r2)
+
+        console.time('3')
+        let r3 = twoSum([2, 5, 5], 10)
+        console.timeEnd('3')
+
+        console.log(r3)
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        /**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+        /**
+         * @param {ListNode} l1
+         * @param {ListNode} l2
+         * @return {ListNode}
+         */
+        var addTwoNumbers = function (l1, l2) {
+
+            var output = [];
+            var carry = 0;
+
+            while (l1.length > 0 || l2.length > 0) {
+                var sum = 0;
+                if (l1.length > 0) {
+                    sum += l1[0];
+                    l1.shift();
+                }
+                if (l2.length > 0) {
+                    sum += l2[0];
+                    l2.shift();
+                }
+                output.push(sum % 10 + carry);// 求余
+                carry = Math.floor(sum / 10); // 取整
+            }
+
+            // 末位溢出
+            if (carry > 0) {
+                output.push(carry);
+            }
+
+            return output;
+        };
+
+
+
+
+        console.time('1')
+        let r1 = addTwoNumbers([2, 4, 3], [5, 6, 4])
+        console.timeEnd('1')
+        console.log(r1)
+
+        console.time('2')
+        let r2 = addTwoNumbers([0, 0, 1], [0, 0, 9])
+        console.timeEnd('2')
+        console.log(r2)
+
+    </script>
+
+</body>
+
+</html>

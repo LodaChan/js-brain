@@ -5,7 +5,7 @@
 
 #### 1 block 
 
-+ 保留 render-function 的灵活
++ 保留 render 的灵活
 + 通过 指令式创建 block ， 表达为函数性存在，类似 /* TEXT PROPS */ 注释标记 减少 dom tree 遍历，且考虑到嵌套问题
 + 通过 const 解决 vdom 的节点创建内存 cost
 
@@ -89,7 +89,7 @@ export function render(_ctx,_cache){
 vue.createRender
 ```
 
-+ webgl support , 使用vue表达webgl的渲染逻辑
++ webgl support , 使用 vue表达 webgl 的渲染逻辑
 
 
 ## 七、好玩的东西，vite
@@ -98,10 +98,10 @@ vue.createRender
 
 
 
-+ 直接 import .vue file
++ 直接 import vue file
 + 支持热更新
 + 没有编译
-+ rollup打包才能用到线上
++ 解决打包后才能线上使用的问题
 
 ## 八、 Q & A
 
