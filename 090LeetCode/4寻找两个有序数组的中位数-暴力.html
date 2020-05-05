@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        /**
+        * @param {number[]} nums1
+        * @param {number[]} nums2
+        * @return {number}
+        * 偶数个，通常取最中间的两个数值的平均数作为中位数
+        */
+        var findMedianSortedArrays = function (nums1, nums2) {
+            let sumLen = nums1.length + nums2.length;
+
+            if (sumLen === 1) {
+                return nums1.length > 0 ? nums1[0] : nums2[0];
+            }
+
+
+            if (sumLen === 2) {
+                if (nums1.length === 0) {
+                    return (nums2[0] + nums2[1]) / 2;
+                }
+                else {
+                    return (nums1[0] + nums1[1]) / 2;
+                }
+            }
+
+
+            if (sumLen % 2 === 0) {
+                let index1 = Math.floor(sumLen / 2) - 1;
+                let index2 = index1 + 1;
+
+                let i = 0, j = 0;
+                for (; i + j < index1;) {
+                    if (nums1[i] <= nums2[j]) {
+                        i++
+                    }
+                    else {
+                        j++;
+                    }
+                }
+
+                return (nums1[i] + nums2[j]) / 2;
+
+            }
+            else if (sumLen % 2 === 1) {
+                let index = (sumLen - 1) / 2;
+                let inWhere = 1;
+
+                let i = 0, j = 0;
+                for (; i + j < index;) {
+                    if (nums1[i] <= nums2[j]) {
+                        i++;
+                        inWhere = 2;
+                    }
+                    else {
+                        j++;
+                        inWhere = 1;
+                    }
+                }
+
+                return inWhere === 1 ? nums1[i] : nums2[j];
+            }
+
+            return 0;
+
+        };
+
+        console.time('1')
+        let r1 = findMedianSortedArrays([1, 3], [2])
+        console.timeEnd('1')
+        console.log(r1)// 2
+
+        console.time('2')
+        let r2 = findMedianSortedArrays([1, 2], [3, 4])
+        console.timeEnd('2')
+        console.log(r2) // (2+3)/2 = 2.5
+
+        console.time('3')
+        let r3 = findMedianSortedArrays([], [1])
+        console.timeEnd('3')
+        console.log(r3) // 1
+
+        console.time('4')
+        let r4 = findMedianSortedArrays([], [2, 3])
+        console.timeEnd('4')
+        console.log(r4) // 2.5
+
+        console.time('5')
+        let r5 = findMedianSortedArrays([2,3], [])
+        console.timeEnd('5')
+        console.log(r5) //  2.5
+
+
+    </script>
+
+</body>
+
+</html>
