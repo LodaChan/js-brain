@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+</head>
+
+<body>
+    <script type="text/javascript">
+        window.onload = function () {
+            console.log("%c[window.onload] 所有的DOM，样式表，脚本，图片，flash都已经加载完成",'color:brown;')
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log("%c[DOMContentLoaded] HTML文档被完全的加载和解析之后才会触发,即仅当DOM加载完成",'color:brown;')
+        }, false);
+
+
+
+        let scriptFn = () => {
+            console.log("script 下载，阻塞 html parse");
+            console.log("script 下载完即执行，阻塞 html parse");
+        };
+        scriptFn();
+    </script>
+    <script type="text/javascript" async>
+        let scriptAsyncFn = () => {
+            console.log("script async 下载，不阻塞 html parse");
+            console.log("script async 下载后执行，阻塞 html parse");
+        };
+        scriptAsyncFn();
+    </script>
+    <script type="text/javascript" defer>
+        let scriptDeferFn = () => {
+            console.log("script defer 下载，不阻塞 html parse");
+            console.log("script defer 下载后等所有元素解析完成之后， DOMContentLoaded  事件触发之前完成");
+        };
+        scriptDeferFn();
+    </script>
+    <script type="text/javascript">
+        function fn1() {
+            console.log('fn1 begin')
+
+            setTimeout(() => {
+                console.log("fn1 setTimeout");
+
+                new Promise((reslove, reject) => {
+                    console.log('fn1 setTimeout new Promise reslove')
+                    reslove()
+                }).then(res => {
+                    console.log('fn1 setTimeout new Promise reslove then')
+                })
+
+                Promise.resolve(
+                    console.log('fn1 setTimeout Promise.resolve')
+                ).then(res => {
+                    console.log('fn1 setTimeout Promise.resolve.then')
+                });
+
+            }, 0);
+
+            new Promise((reslove, reject) => {
+                console.log('fn1 new Promise reslove')
+                reslove()
+            }).then(res => {
+                console.log('fn1 new Promise reslove then')
+            })
+
+            console.log('fn1 end')
+        }
+
+        let fn2 = () => {
+            console.log("fn2")
+        }
+
+        class class3 {
+            constructor() {
+                console.log("class3 构造函数")
+            }
+            static fn3 = () => {
+                console.log("class3 静态函数")
+            }
+            fn33 = () => {
+                console.log("class3 类函数")
+            }
+        }
+
+        function fn4(cb) {
+            console.log('fn4 begin')
+            let timeEnd = new Date().getTime() + 100;
+            // 完全阻塞js线程
+            while ((new Date()).getTime() <= timeEnd) {
+                console.log("[main thread block]");
+                continue;
+            }
+            cb();
+
+            console.log('fn4 end')
+        }
+
+        function callBack() {
+            console.log('fn4 cb function')
+        }
+
+
+
+        var sleep = function (time, key) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log(`${key} await sleep done`)
+                    resolve();
+                }, time);
+            })
+        };
+        var normal = function (key) {
+            return new Promise((resolve, reject) => {
+                console.log(`${key} await normal done`)
+                resolve();
+            });
+        };
+
+        var err = function (key) {
+            return new Promise((resolve, reject) => {
+                console.log(`${key} await err done`)
+                reject(`${key} await err reject`);
+            });
+        };
+
+        var asyncFn = async function (key) {
+            console.log('async start');
+
+            console.time(key)
+            try {
+                await normal(key);
+                await sleep(500, key);
+                await normal(key);
+                // await err(key);
+                await sleep(500, key);
+            } catch (err) {
+                console.error(err);
+            }
+            console.timeEnd(key)
+        };
+
+
+
+        // 正式执行
+
+
+        Promise.resolve(
+            console.log('%cwindow Promise.resolve','color:#0f0;')
+        ).then(res => {
+            console.log('%cwindow Promise.resolve.then','color:#0f0;')
+        });
+
+        new Promise((reslove, reject) => {
+            console.log('window new Promise reslove')
+            reslove();
+        }).then(res => {
+            console.log('window new Promise reslove then')
+        });
+
+
+        asyncFn('async 1');
+        asyncFn('async 2');
+
+        setTimeout(() => {
+            console.log("window setTimeout");
+        }, 0);
+
+        fn1();
+
+
+
+        fn2();
+        class3.fn3();
+        new class3().fn33();
+
+
+        fn4(callBack);
+      
+
+
+        Promise.resolve(
+            console.log('window Promise.resolve')
+        ).then(res => {
+            console.log('window Promise.resolve.then')
+        });
+
+        new Promise((reslove, reject) => {
+            console.log('window new Promise reslove')
+            reslove();
+        }).then(res => {
+            console.log('window new Promise reslove then')
+        });
+
+        console.log('%c同步任务清空,执行栈 开始执行 任务队列中 的 异步任务','color:red;')
+
+    </script>
+    <h3>事件循环</h3>
+</body>
+
+</html>

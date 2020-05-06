@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        function classA(name, age) {
+            this.name = name;
+            this.age = age;
+            // 类方法
+            this.fn1 = () => {
+                console.log('classA fn', this.name, this.age)
+            }
+        }
+
+
+        function classB(name, age, grade) {
+            console.log(this)
+            classA._apply(this, [name, age]);
+            this.grade = grade;
+            this.fn2 = function () {
+                console.log('classB fn', this.name, this.age, this.grade)
+            }
+        }
+
+
+        var classAInsitance = new classA("lisi", 22, "大二");
+        classAInsitance.fn1();
+
+        var classBInsitance = new classB("zhangsan", 21, "大一");
+        classBInsitance.fn2();
+        console.log(classBInsitance);
+
+
+        classBInsitance.fn2.apply(classAInsitance, [])// lisi 22 undefined
+        classAInsitance.fn1.apply(classBInsitance, [])// lisi 22
+
+    </script>
+
+</body>
+
+</html>

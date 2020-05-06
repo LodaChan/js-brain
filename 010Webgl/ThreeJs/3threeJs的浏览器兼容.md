@@ -71,7 +71,11 @@
 #### 其他特性 填充物 兼容
 
 + core-js
+
 + typedarray.js
+
 + ES6-Promise
+
 + Blob.js
+
 + fetch

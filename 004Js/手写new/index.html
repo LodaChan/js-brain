@@ -7,41 +7,59 @@
 
 <body>
     <script>
-        function fn() {
-            this.name = "666"
+        function classA(name) {
+            this.name = name;
+            console.log('检查是否是被new出来的',new.target === classA)
         }
 
-        fn.prototype.say = function () {
-            console.log(this.name)
+        function fnB(){
+
         }
 
-
-        // var obj  = {};
-        // obj.__proto__ = Base.prototype;
-        // Base.call(obj);
-
-        function newExt(fn, ...args) {
-            const obj = Object.create(fn.prototype);// 利用 fn 的原型新建1个对象
-            const rel = fn.apply(obj, args) // 将 对象的原型 this 指向改变
-            return rel instanceof Object ? rel : obj;
+        // 当有 return 时
+        function classC(){
+            return {}
         }
 
+        function _new(fn, params) {
 
-        var fnObj1 = new fn();
-        console.log(fnObj1);
-        console.log(fnObj1 instanceof fn);// true
+            var args = [].slice.call(arguments);
 
-        var fnObj2 = new fn();
-        console.log(fnObj2 == fnObj1);// false
-        console.log(fnObj2 === fnObj1);// false
 
-        var myFnObj = newExt(fn);
+            let constructor = args.shift();
+            
+            // 传入函数的构造函数的原型 创建新对象
+            var newObj = Object.create(constructor.prototype);
 
-        console.log(myFnObj);
-        console.log(myFnObj instanceof fn);// true
+             // 传入函数的构造函数 执行替换为 newObj
+            var result = constructor.apply(newObj, args);
+            
 
-        console.log(myFnObj == fnObj1);// false
-        console.log(myFnObj === fnObj1);// false
+            // 当 result 是 object or 不是 null    ，   return 新对象
+            // 当 result 是 undefined ，   return 新函数
+            return (typeof result === 'object' && result != null) ? result : newObj;
+        }
+
+        console.log('classA prototype',classA.prototype);
+        console.log('fnB prototype',fnB.prototype);
+
+        let instance1 = new classA('1');
+        console.log(instance1);
+        // instance1.__proto__.constructor === classA
+
+        let instance2 = _new(classA, '1')
+        console.log(instance2);
+
+        console.log(instance1 instanceof classA)// true
+        console.log(instance2 instanceof classA)// true
+        console.log(instance1 ==  instance2) // false
+        console.log(instance1 ===  instance2) // false
+
+        let instance3 = new fnB();
+        console.log(instance3);
+
+        let instance4 =  _new(fnB, '1');
+        console.log(instance4);
 
     </script>
 

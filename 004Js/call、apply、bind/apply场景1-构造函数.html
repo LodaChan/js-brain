@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        function fn1(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        function fn2(name, age, grade) {
+            console.log(this)
+            fn1.apply(this, [name, age]);
+            this.grade = grade;
+        }
+        //创建一个学生类  
+        var fn2Insitance = new fn2("zhangsan", 21, "大一");
+
+        console.log(fn2Insitance)
+        // age: 21
+        // grade: "大一"
+        // name: "zhangsan"
+
+    </script>
+
+</body>
+
+</html>

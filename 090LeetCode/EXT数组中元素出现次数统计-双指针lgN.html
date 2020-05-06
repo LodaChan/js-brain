@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <title></title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <script>
+
+
+        function fn(arr) {
+
+            let flag = (arr.length - 1) / arr[0];// n/k
+            console.log(arr[0], arr.length - 1, flag);
+
+
+            let map = new Map();
+
+            for (let i = 1, j = arr.length - 1; i <= j; i++, j--) {
+                let iKey = arr[i];
+                let jKey = arr[j];
+
+                // 左指针
+                if (map.has(iKey)) {
+                    let iKeyValue = map.get(iKey);
+                    iKeyValue++;
+
+                    if (iKeyValue > flag) {
+                        return iKey;
+                    }
+
+                    map.set(iKey, iKeyValue);
+                } else {
+                    map.set(iKey, 1);
+                }
+
+                // 右指针
+                if (map.has(jKey)) {
+                    let jKeyValue = map.get(jKey);
+                    jKeyValue++;
+
+                    if (jKeyValue > flag) {
+                        return jKeyValue;
+                    }
+
+                    map.set(jKey, jKeyValue);
+                } else {
+                    map.set(jKey, 1);
+                }
+            }
+
+            return -1;
+        }
+
+        let r1 = fn([3, 1, 1, 2]);// n=3 , k=3 , n/k = 1
+        console.log(r1);
+
+        let r2 = fn([3, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2]);// n=12 , k=3 , n/k = 4
+        console.log(r2);
+
+    </script>
+</body>
+
+</html>

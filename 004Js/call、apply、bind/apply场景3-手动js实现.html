@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        Function.prototype._apply = function (context, args) {
+
+            if (typeof this !== 'function') {
+                throw new TypeError('not a function!')
+            }
+            
+            context = context || window
+            context.fn = this; // 会存在被替换的情况
+
+            let result;
+
+            if (arguments[1]) {
+                result = context.fn(...arguments[1])
+            } else {
+                result = context.fn()
+            }
+
+            delete context.fn
+            return result
+
+
+
+            return result
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>

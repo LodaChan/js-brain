@@ -34,6 +34,9 @@
 + Bootstrap
    + clearfix
 
++ 大厂
+   + div:after {content:''; display:inline-block; clear:both;}
+
 + 个人
    + div class warper
    + display none
