@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        function Father(name) {
+            // 属性
+            this.name = name || 'father';
+            // 实例方法
+            this.sleep = function () {
+                console.log(this.name + "正在睡觉");
+            }
+        }
+        // 原型方法
+        Father.prototype.look = function (book) {
+            console.log(this.name + "正在看:" + book);
+        }
+
+
+        function Son(name,nickName) {
+            this.name = name || 'son';
+            this.nickName = nickName;
+            this.see = (channel) => {
+                console.log(this.name + "正在看:" + channel);
+            }
+        }
+        // 1 子类原型 = 父类的实例
+        Son.prototype = new Father()  // 相当于重写了Son的原型
+        // 2 子类的构造函数 = 子类自身
+        Son.prototype.constructor = Son; //  一定要把Son原型上的contructor重新指向Son
+
+
+        var sonInstance = new Son('son name','son nick name')
+        console.log(sonInstance)
+        sonInstance.sleep() // father正在睡觉
+        sonInstance.look('TV')// father正在看TV
+
+    </script>
+</body>
+
+</html>

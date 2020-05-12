@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        Function.prototype._bind = function (content, args) {
+
+            if (typeof this !== 'function') {
+                throw new TypeError('not a function!')
+            }
+
+
+            var fn = this;
+
+            var classFn = function () { };
+
+            var returnFn = function () {
+                // 1 当返回函数returnFn被new作为构造函数引用时，这时候this指向了函数执行时内部隐式添加在变量对象上的this
+                var applyContent = this instanceof classFn && content ? this : (content || window);
+                console.log('this instanceof classFn',this instanceof classFn)
+                console.log('applyContent',applyContent);
+
+                return fn.apply(applyContent, args);
+            };
+
+            // 2 保证原来函数的原型，在 returnFn 的原型上还有
+            classFn.prototype = this.prototype;
+            returnFn.prototype = new classFn();
+
+            return returnFn;
+
+        }
+
+        function fn() {
+            this.key = 111;
+            this.innerFn = () =>{
+                
+            }
+            console.log(this.key)
+            console.log(this.value)
+        }
+
+        var obj = {
+            key: 2222
+        }
+
+        fn();
+        var bindHandle = fn._bind(obj);
+        console.log("bindHandle",bindHandle);
+        bindHandle();
+
+
+    </script>
+
+</body>
+
+</html>

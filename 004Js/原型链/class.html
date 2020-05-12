@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        function classA() {
+            var tmp = "var";
+            this.key = "classA key";
+        }
+        classA.prototype.age = 18;// 处于原型，在 classA的实例会有
+        classA.color = "yellow" // 只能classA.color 
+
+        // 函数层面
+        console.log('classA',classA)
+        console.log('classA.name',classA.name) // classA
+        console.log('classA.key',classA.key)
+        console.log('classA.prototype',classA.prototype)// age , constructor
+        console.log('classA.color',classA.color)
+        console.log('classA.__proto__',classA.__proto__)// ƒ () { [native code] }
+        console.log('classA.__proto__.__proto__',classA.__proto__.__proto__)// constructor(f) 
+        console.log('classA.__proto__.__proto__.__proto__',classA.__proto__.__proto__.__proto__)// null
+        console.log('classA.constructor',classA.constructor) // ƒ Function() { [native code] }
+
+        // 实例层面
+        const instance = new classA();
+        instance.key2 = "instance key2";
+        console.log('instance', instance)
+        console.log('instance.name', instance.name)// undefined
+        console.log('instance.key2', instance.key2)// instance key2
+        console.log('instance.key', instance.key)// classA key
+        console.log('instance.prototype', instance.prototype)// undefined
+        console.log('instance.age', instance.age) // 18
+        console.log('instance.color', instance.color) // undefined
+
+
+        console.log('instance.__proto__', instance.__proto__)  
+        console.log('instance.constructor', instance.constructor)  
+    </script>
+
+</body>
+
+</html>

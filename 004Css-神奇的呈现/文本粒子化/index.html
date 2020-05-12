@@ -122,7 +122,6 @@
                 // 运行计数
                 isAnimateExecCount++;
 
-
                 // 先清空画布
                 context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -147,7 +146,7 @@
                 });
 
                 // 运行计数判断是否执行完
-                if (isAnimateExecCount > 48) {
+                if (isAnimateExecCount > 60) {
                     isAnimateDone = true;
 
                     console.log("anmiate done");
@@ -219,7 +218,7 @@
                 });
 
                 // 运行计数判断是否执行完
-                if (isAnimateExecCount > 48) {
+                if (isAnimateExecCount > 60) {
                     isAnimateDone = true;
                     console.log("anmiate done");
                 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        function Father(name) {
+            // 属性
+            this.name = name || 'father';
+            // 实例方法
+            this.sleep = function () {
+                console.log(this.name + "正在睡觉");
+            }
+        }
+        // 原型方法
+        Father.prototype.look = function (book) {
+            console.log(this.name + "正在看:" + book);
+        }
+
+
+        function Son(name, nickName) {
+
+            var fatherInstance = new Father()
+            for (var key in fatherInstance) {
+                this[key] = fatherInstance[key]
+            }
+            fatherInstance = null;
+
+            this.name = name || 'son';
+            this.nickName = nickName;
+            this.see = (channel) => {
+                console.log(this.name + "正在看:" + channel);
+            }
+
+        }
+
+        var sonInstance = new Son('son name','son nick name')
+        console.log(sonInstance)
+        sonInstance.sleep()
+        sonInstance.look('TV')
+
+    </script>
+</body>
+
+</html>

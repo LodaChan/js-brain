@@ -1,8 +1,11 @@
 # webpack的模块化与打包原理
 
 #### 规范
+
 + CommonJS
+
 + UMD
+
 + ES6 Module
 
 #### CommonJs
@@ -97,6 +100,7 @@ let asyncModule = async () => await import('./async')
       });
     })
   }
-]);
+]
+);
 ```
 

@@ -28,7 +28,7 @@
     <script type="text/javascript" async>
         let scriptAsyncFn = () => {
             console.log("script async 下载，不阻塞 html parse");
-            console.log("script async 下载后执行，阻塞 html parse");
+            console.log("script async 下载完即执行，阻塞 html parse");
         };
         scriptAsyncFn();
     </script>
@@ -134,10 +134,10 @@
             console.time(key)
             try {
                 await normal(key);
-                await sleep(500, key);
+                await sleep(0, key);
                 await normal(key);
                 // await err(key);
-                await sleep(500, key);
+                await sleep(0, key);
             } catch (err) {
                 console.error(err);
             }
@@ -148,20 +148,20 @@
 
         // 正式执行
 
-
         Promise.resolve(
-            console.log('%cwindow Promise.resolve','color:#0f0;')
+            console.log('%c1 window Promise.resolve','color:#0f0;')
         ).then(res => {
-            console.log('%cwindow Promise.resolve.then','color:#0f0;')
+            console.log('%c2 window Promise.resolve.then','color:#0f0;')
         });
 
         new Promise((reslove, reject) => {
-            console.log('window new Promise reslove')
+            console.log('2 window new Promise reslove')
             reslove();
         }).then(res => {
-            console.log('window new Promise reslove then')
+            console.log('2 window new Promise reslove then')
         });
 
+       
 
         asyncFn('async 1');
         asyncFn('async 2');
@@ -184,16 +184,16 @@
 
 
         Promise.resolve(
-            console.log('window Promise.resolve')
+            console.log('3 window Promise.resolve')
         ).then(res => {
-            console.log('window Promise.resolve.then')
+            console.log('3 window Promise.resolve.then')
         });
 
         new Promise((reslove, reject) => {
-            console.log('window new Promise reslove')
+            console.log('4 window new Promise reslove')
             reslove();
         }).then(res => {
-            console.log('window new Promise reslove then')
+            console.log('4 window new Promise reslove then')
         });
 
         console.log('%c同步任务清空,执行栈 开始执行 任务队列中 的 异步任务','color:red;')

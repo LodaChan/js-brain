@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        // 普通函数
+        function fn1() {
+            console.log(this)
+        }
+        fn1();
+
+        // 箭头函数
+        let fn2 = (ctx) => {
+            console.log('箭头函数 this', this); // arguments undefined err
+            console.log('箭头函数 ctx', ctx);
+            try{
+                console.log('箭头函数 arguments', arguments);
+            }catch(err)
+            {
+                console.error(err)
+            }
+            
+        }
+        fn2(this);
+
+
+        let obj = {
+            objFn2: function () {
+                console.log('objFn2', this);
+                fn2(this);
+            }
+        }
+
+        obj.objFn2();
+
+    </script>
+</body>
+
+</html>

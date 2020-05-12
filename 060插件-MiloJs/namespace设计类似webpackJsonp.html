@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+
+
+    </div>
+    <script type="text/javascript">
+        const namespace = function () {
+            var args = arguments;
+            console.log(arguments)
+            for (var i = 0; i < args.length; i++) {
+                var objs = args[i].split(".");
+                var obj = window;
+                for (var j = 0; j < objs.length; j++) {
+                    obj[objs[j]] = obj[objs[j]] || {};
+                    obj = obj[objs[j]]
+                }
+            }
+            return obj
+        }
+        namespace("milo.base");
+        namespace("milo.config");
+        namespace("milo.loader");
+        console.log(milo)
+    </script>
+
+</body>
+
+</html>

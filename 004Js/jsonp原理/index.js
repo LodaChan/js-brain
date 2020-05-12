@@ -34,3 +34,16 @@ function callback(json) {
 }
 
 
+// //处理jsonp数据的回调函数
+// var doJSONP = function(data){
+//     console.log(data.a);
+// }
+// //采用添加script获取外部资源
+// function jsonp(){
+// var value = this.value;
+// var oScript = document.createElement("script");
+// oScript.src = "http:xxx.com/index.php?cb=doJSONP";
+// document.body.appendChild(oScript);
+//     oScript.remove();
+// }
+

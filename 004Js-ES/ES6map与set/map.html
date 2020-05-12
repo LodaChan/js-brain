@@ -38,12 +38,12 @@
         }, hasMap)
 
 
-        // map 与 数组 间转换 , 只取得 index 0 和 1
+        // map 与 数组 间转换 , 只取得 index 0 和 1 , value11 value22 丢失
         var kvArray = [["key1", "value1","value11"], ["key2", "value2","value22"]];
         var kvMap = new Map(kvArray);
         console.log('kvMap',kvMap)
         var kvArray2 = Array.from(kvMap);
-        console.log(kvArray2)
+        console.log("kvArray2",kvArray2)
 
 
         // map 的 clone

@@ -20,7 +20,7 @@
     </div>
 
     <script>
-        // tab-posts 组件
+        // 1 tab-posts 组件
         Vue.component("tab-posts", {
             data: function () {
                 return {
@@ -76,7 +76,7 @@
   `
         });
 
-        // tab-archive 组件
+        // 2 tab-archive 组件
         Vue.component("tab-archive", {
             template: "<div>Archive component</div>"
         });

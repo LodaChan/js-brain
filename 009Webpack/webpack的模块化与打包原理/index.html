@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+
+
+    </div>
+    <script type="text/javascript">
+        webpackJsonp = window["webpackJsonp"] || [];
+
+        const eventListenerAdapter = (node, cb) => {
+            const isSupportOnLoadEvent = "onload" in node ? true : function () {
+                node.setAttribute("onload", "");
+                return typeof node.onload === "function";
+            }();
+
+            function handle() {
+                
+            }
+
+            if (document.addEventListener) {
+                node.addEventListener("load", function(){
+                    cb.call(this, node);
+                }, false);
+                // node.addEventListener("load", handle, false);
+                // node.removeEventListener("load",handle, false);
+            } else if (isSupportOnLoadEvent === false) {
+                node.attachEvent("onreadystatechange", function () {
+                    var status = node.readyState.toLowerCase();
+                    if (status === "loaded" || status === "complete") {
+                        node.detachEvent("onreadystatechange");
+                        cb.call(this, node);
+                    }
+                })
+            }
+        }
+
+        /*
+         * @params {string} url
+         * @params {string} type
+         * @params {function} cb
+         */
+        const webpackJsonpLoader = (chunkId, url, type = "script", cb = function () { }) => {
+
+            var headNode = document.getElementsByTagName("head")[0];
+            var linkNode = headNode.appendChild(document.createElement(type));
+
+            // css
+            // linkNode.href = url;
+            // linkNode.rel = "stylesheet";
+
+            // script
+            linkNode.type = "text/javascript";
+            linkNode.src = url;
+            linkNode.charset = 'utf-8';
+            linkNode.setAttribute("data-chunk", chunkId);
+            linkNode.setAttribute("async", "async");
+
+
+            eventListenerAdapter(linkNode, cb);
+        }
+
+
+        // load chunk
+        webpackJsonpLoader(0, "test.js", "script", function (node) {
+            console.log("testModule complete");
+            console.log("script node", node);
+            console.log("webpackJsonp", webpackJsonp);
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+    <script>
+        // var 全局环境下 内建的绑定
+        var aaa = "aaa";
+        console.log(aaa);
+        console.log(window.aaa);
+        console.log(this.aaa);
+
+
+        console.log(bbb);// undefined
+        console.log(window.bbb);// undefined
+        console.log(this.bbb);// undefined
+        var bbb = "bbb";
+
+        try {
+            console.log(ccc) // ReferenceError init
+            let ccc = "ccc";
+        } catch (err) {
+            console.error(err)
+        }
+
+        // let 声明性环境记录
+        let ddd = "ddd";
+        console.log(ddd)
+        console.log(window.ddd);// undefined
+        console.log(this.ddd);// undefined
+
+    </script>
+
+</body>
+
+</html>

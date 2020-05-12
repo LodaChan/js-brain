@@ -29,7 +29,7 @@
 
 #### 过程与算法
 
-![微信小程序加密解密过程](.wiki/微信小程序加密解密过程.jpg)
+![微信小程序加密解密过程](微信小程序加密解密过程.jpg)
 
 
 + Base64 编解码
@@ -45,12 +45,14 @@
 
 + 3 开发者服务器 接收到 微信服务器 关于用户的 `openid` 和` session_key`（会话密钥）
 
-+ 4 开发者服务器 生成一个随机数 `3rd_session` , 以3rdSessionId 为 key,以 `session_key + openid` 为value 缓存到 redis 或 memcached中
++ 4 开发者服务器 生成一个随机数 `token` , 以 token 为 key,以 `session_key + openid` 为value 缓存到 redis 或 memcached中
 
-+ 5 小程序客户端 得到 `3rdSessionId` 后缓存到 `storage`
++ 5 小程序客户端 得到 `token` 后缓存到 `storage`
+
+
 
 + 6 小程序客户端 通过 `wx.getUserIinfo`可以获取到用户敏感数据 `encryptedData` 和 `偏移量`
 
-+ 7 小程序客户端 将 `encryptedData、3rdSessionId 和 偏移量iv`一起发送到 开发者服务器
++ 7 小程序客户端 将 `encryptedData、 移量偏iv  和 token`一起发送到 开发者服务器
 
 + 8 开发者服务器 根据 `3rdSessionId` 从缓存中获取`session_key` 使用 `AES解密` encryptedData，从而实现敏感数据解密

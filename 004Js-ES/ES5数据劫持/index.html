@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    let myobj = {};
+
+    Object.defineProperty(myobj, "name", {
+        configurable: true,
+        //configurable 给的说明是 如果为 false , 那么对象属性不可以修改, 不可以删除. true则相反
+        /*enumerable可枚举；
+        设置为true后可以用这4种方式去操作属性
+        1.
+        for(let i in myobj){
+            console.log(i);
+        }
+        2.
+        Object.keys();
+        3.
+        JSON.stringify
+        4.
+        Object.assign
+        */
+        enumerable: true,
+        get() {
+            //当获取属性的时候会进入get方法，可以对获取的值进行修改操作后返回 （必须返回值）或者获取的就是 undefined
+            //value 内置属性 获取对象属性值
+            return value;
+        },
+        set(newValue) {
+            //set方法监听设置的值 newValue参数获取要改变的值
+            value = newValue;
+        }
+    })
+
+    myobj.name = "new name";
+    console.log(myobj.name);
+
+</script>
+
+</html>

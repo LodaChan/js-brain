@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        function Father(name) {
+            // 属性
+            this.name = name || 'father';
+            // 实例方法
+            this.sleep = function () {
+                console.log(this.name + "正在睡觉");
+            }
+        }
+        // 原型方法
+        Father.prototype.look = function (book) {
+            console.log(this.name + "正在看:" + book);
+        }
+        // 静态方法
+        Father.staticFn = function (str) {
+            console.log("静态方法:" + str);
+        }
+
+
+        function Son(name, nickName) {
+            // 1 类属性传递
+            Father.call(this, name)
+
+            this.name = name || 'son';
+            this.nickName = nickName;
+            this.see = (channel) => {
+                console.log(this.name + "正在看:" + channel);
+            }
+
+        }
+        Son.prototype = Object.create(Father.prototype, {
+            constructor: {
+                value: Son,
+                writable: true,
+                configurable: true
+            }
+        });
+
+       // es5中 
+        // 1 子类实例.__proto__ = new father
+       // 2 子类实例.__proto__.constructor = class son
+       // 3 子类实例.__proto__.constructor.prototype = Father
+       // 4 子类实例.__proto__.constructor.__proto__=  ƒ () // ES5 与 ES6 不同点 ， 保证了 ES6 父类的静态方法也可以继承
+         
+
+        var sonInstance = new Son('son name', 'son nick name')
+        Father.staticFn('Father');
+        // Son.staticFn('Son');// 丢失 静态方法
+        console.log(sonInstance)
+        sonInstance.sleep() // father正在睡觉
+        sonInstance.look('TV')
+
+    </script>
+</body>
+
+</html>

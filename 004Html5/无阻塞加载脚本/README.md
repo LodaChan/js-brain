@@ -46,7 +46,6 @@ scriptElem.text=xhrObj.responseText;
 
 
 
-
 #### 同域
 
 + iframe

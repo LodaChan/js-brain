@@ -12,10 +12,14 @@
 
 #### BFC 的 特性
 
-1.内部的Box会在垂直方向上一个接一个的放置。
+1.内部的Box会在垂直方向上一个接一个的放置
+
 2.垂直方向上的距离由 margin 决定
-3.bfc的区域不会与float的元素区域重叠。
+
+3.bfc的区域不会与float的元素区域重叠
+
 4.计算bfc的高度时，浮动元素也参与计算
+
 5.bfc就是页面上的一个独立容器，容器里面的子元素不会影响外面元素。
 
 #### BFC 的 场景
@@ -35,7 +39,7 @@
    + clearfix
 
 + 大厂
-   + div:after {content:''; display:inline-block; clear:both;}
+   + div:after {     content: "\0020"; height: 0; display: block; clear: both;}
 
 + 个人
    + div class warper

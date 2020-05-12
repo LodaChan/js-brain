@@ -9,15 +9,15 @@
     <script>
         function classA(name) {
             this.name = name;
-            console.log('检查是否是被new出来的',new.target === classA)
+            console.log('检查是否是被new出来的', new.target === classA)
         }
 
-        function fnB(){
+        function fnB() {
 
         }
 
         // 当有 return 时
-        function classC(){
+        function classC() {
             return {}
         }
 
@@ -27,21 +27,25 @@
 
 
             let constructor = args.shift();
-            
+
             // 传入函数的构造函数的原型 创建新对象
             var newObj = Object.create(constructor.prototype);
 
-             // 传入函数的构造函数 执行替换为 newObj
+            // 传入函数的构造函数 执行替换为 newObj
             var result = constructor.apply(newObj, args);
-            
 
-            // 当 result 是 object or 不是 null    ，   return 新对象
-            // 当 result 是 undefined ，   return 新函数
+
+            // |  无 | 当前 构造函数实例 |
+            // |  有 return， 但不返回数据 | 当前 构造函数实例 |
+            // |  有 return，值类型                     | 当前 构造函数实例 |
+            // |  有 return，引用类型（数组，函数，对象） | 返回该引用类型 |
+
+ 
             return (typeof result === 'object' && result != null) ? result : newObj;
         }
 
-        console.log('classA prototype',classA.prototype);
-        console.log('fnB prototype',fnB.prototype);
+        console.log('classA prototype', classA.prototype);
+        console.log('fnB prototype', fnB.prototype);
 
         let instance1 = new classA('1');
         console.log(instance1);
@@ -52,13 +56,13 @@
 
         console.log(instance1 instanceof classA)// true
         console.log(instance2 instanceof classA)// true
-        console.log(instance1 ==  instance2) // false
-        console.log(instance1 ===  instance2) // false
+        console.log(instance1 == instance2) // false
+        console.log(instance1 === instance2) // false
 
         let instance3 = new fnB();
         console.log(instance3);
 
-        let instance4 =  _new(fnB, '1');
+        let instance4 = _new(fnB, '1');
         console.log(instance4);
 
     </script>

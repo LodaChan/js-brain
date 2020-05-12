@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        function Father(name) {
+            // 属性
+            this.name = name || 'father';
+            // 实例方法
+            this.sleep = function () {
+                console.log(this.name + "正在睡觉");
+            }
+        }
+        // 原型方法
+        Father.prototype.look = function (book) {
+            console.log(this.name + "正在看:" + book);
+        }
+        // 静态方法
+        Father.staticFn = function (str) {
+            console.log("静态方法:" + str);
+        }
+
+
+        function Son(name, nickName) {
+            // 1 类属性传递
+            Father.call(this)
+
+            this.name = name || 'son';
+            this.nickName = nickName;
+            this.see = (channel) => {
+                console.log(this.name + "正在看:" + channel);
+            }
+
+        }
+        // 2 原型传递
+        Son.prototype = new Father();
+        // 3 修改构造函数
+        Son.prototype.constructor = Son;
+
+
+        var sonInstance = new Son('son name', 'son nick name')
+        Father.staticFn('Father');
+        // Son.staticFn('Son');// 丢失 静态方法
+        console.log(sonInstance)
+        sonInstance.sleep() // father正在睡觉
+        sonInstance.look('TV')
+
+    </script>
+</body>
+
+</html>

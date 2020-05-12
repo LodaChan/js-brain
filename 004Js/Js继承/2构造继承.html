@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+
+        function Father(name) {
+            // 属性
+            this.name = name || 'father';
+            // 实例方法
+            this.sleep = function () {
+                console.log(this.name + "正在睡觉");
+            }
+        }
+        // 原型方法
+        Father.prototype.look = function (book) {
+            console.log(this.name + "正在看:" + book);
+        }
+
+
+        function Son(name,nickName) {
+            // 1 将 Father 的类属性 全部clone给 son 上下文
+            Father.call(this);
+
+            this.name = name || 'son';
+            this.nickName = nickName;
+            this.see = (channel) => {
+                console.log(this.name + "正在看:" + channel);
+            }
+        }
+         
+
+        var sonInstance = new Son('son name','son nick name')
+        console.log(sonInstance)
+        sonInstance.sleep() // father正在睡觉
+        sonInstance.look('TV')// 缺点：  丢失 Father.prototype.look 的继承
+
+    </script>
+</body>
+
+</html>

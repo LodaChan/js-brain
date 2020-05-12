@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <script>
+        function show(x, y, z, w) {
+            console.log(this, this.x);
+            console.log(x, y, z, w);
+        }
+
+        var obj = {
+            x: 20
+        }
+
+        show("x", "y", 'z', 'w');//window
+
+        var newShowHandle = show.bind(obj, "x", 2, 'z', 'w');
+        newShowHandle(4); // obj
+
+    </script>
+
+</body>
+
+</html>

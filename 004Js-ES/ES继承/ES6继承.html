@@ -8,33 +8,56 @@
 <body>
     <script>
 
-        class father {
+        class Father {
             constructor(name) {
-                this.name = name;
+                this.name = name || 'father';
             }
-            fatherFn() {
-                console.log(this.name);
+
+            // 实例方法
+            sleep = function () {
+                console.log(this.name + "正在睡觉");
+            }
+
+            // 静态方法
+            static staticFn = function (str) {
+                console.log("静态方法:" + str);
             }
         }
+        // 原型方法
+        Father.prototype.look = function (book) {
+            console.log(this.name + "正在看:" + book);
+        }
 
-        class son extends father {
-            constructor(name, age) {
+
+        // 1.ES5先创建子类，在实例化父类并添加到子类的原型中
+        // 2.ES6先创建父类，在实例化子集中通过调用super方法访问父级后，在通过修改this实现继承
+
+       // es6中 
+       // 1 子类实例.__proto__ = new father
+       // 2 子类实例.__proto__.constructor = class son
+       // 3 子类实例.__proto__.constructor.prototype = Father
+       // 4 子类实例.__proto__.constructor.__proto__= class Father // ES5 与 ES6 不同点 ， 保证了 ES6 父类的静态方法也可以继承
+        class Son extends Father {
+            constructor(name, nickName) {
                 super(name);
-                // super代表父类的构造函数，相当于父类.prototype.constructor.call(this)  
-                // 所以必须先调用父类的super()方法，才可使用this关键字，否则报错。），
-                this.age = age;
+                name = name;
+                nickName = nickName;
             }
-            sonFn() {
-                console.log(this.age);
+
+            see = (channel) => {
+                console.log(this.name + "正在看:" + channel);
             }
         }
 
-        let fatherObj = new son("1", 38)
-        console.log(fatherObj)
-
-        let sonObj = new son("2", 18)
-        console.log(sonObj)
-        
+        var sonInstance = new Son('son name', 'son nick name')
+        Father.staticFn('Father');
+        Son.staticFn('Son');// 不丢失 ！
+        console.log('class Father',Father)
+        console.log('class Son',Son)
+        console.log('Son.staticFn',Son.staticFn)
+        console.log(sonInstance)
+        sonInstance.sleep() // father正在睡觉
+        sonInstance.look('TV')
 
     </script>
 </body>
