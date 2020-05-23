@@ -1,0 +1,21 @@
+function _getNewSqlParamEntity(sql, params, callback) {
+    if (callback) {
+        return callback(null, {
+            sql: sql,
+            params: params
+        });
+    }
+    return {
+        sql: sql,
+        params: params
+    };
+}
+
+var sqlParamsEntity = [];
+var sql1 = "insert table set a=?, b=? where 1=1";
+var param1 = {a:1, b:2};
+sqlParamsEntity.push(_getNewSqlParamEntity(sql1, param1));
+var sql2 = "update ...";
+sqlParamsEntity.push(_getNewSqlParamEntity(sql1, []));
+
+ 
