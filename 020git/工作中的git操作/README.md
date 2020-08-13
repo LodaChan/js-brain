@@ -45,3 +45,6 @@
 + 2 通过 `git reflog` 找到 短 `commit id`
 + 3 git reset `commit-id` --mixed 
 + 4 解决冲突后 常规操作 add commit push
+
+
+git stash uncheck , 需要切换到log 切换到hash再stash
