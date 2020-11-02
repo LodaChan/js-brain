@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: #000;
+            margin: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 6 不能设置背景色 */
+        h1 {
+            font-family: Helvetica;
+            margin: 0;
+            padding: 0;
+
+            letter-spacing: -0.3px;
+
+            /* 5 字体裁剪后的渐变背景 */
+            background-image: linear-gradient(75deg,
+                    rgba(255, 255, 255, 1) 0%,
+                    rgba(255, 255, 255, 1) 33.33%,
+                    rgba(255, 255, 255, 0) 66.67%,
+                    rgba(255, 255, 255, 0) 100%);
+
+
+            background-size: 300% 100%;
+            background-position-x: 100%;
+
+
+            background-clip: text;
+            /* 4 字体透明才能生效 */
+            color: transparent;
+            /* 1 根据文字裁剪背景色 */
+            -webkit-background-clip: text;
+            /* 3 设置动画 */
+            transition: 2s background-position-x ease-in-out;
+
+        }
+
+        h1:hover {
+            /* 2 */
+            background-position-x: 0%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>iPhone 12 pro , 自我飞跃 。</h1>
+    <script>
+
+    </script>
+</body>
+
+</html>

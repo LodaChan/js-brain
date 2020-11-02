@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+    <style>
+        body {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 1000px;
+        }
+
+        #box {
+            height: 500px;
+            width: 100%;
+            background: #CDCDCD;
+        }
+
+        #small-box {
+            height: 500px;
+            width: 500px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #FF66CC;
+            cursor: move;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="small-box"></div>
+    </div>
+    <script>
+        var box = $("#small-box");
+        var body = $('body');
+        var index = 0;
+        var x1;
+
+        box.mousedown(function () {
+            index = 1;              //鼠标按下才能触发onmousemove方法
+            var x = event.clientX;     //鼠标点击的坐标值，x
+            var left = this.style.left;
+            left = left.substr(0, left.length - 2);   //去掉px
+            x1 = parseInt(x - left);
+        });
+        box.mousemove(function () {
+            if (index === 1) {
+                this.style.left = event.clientX - x1 + 'px';
+                if (this.style.left.substr(0, this.style.left.length - 2) < 0) {
+                    this.style.left = 0;
+                };
+                if (this.style.left.substr(0, this.style.left.length - 2) > 500) {
+                    this.style.left = '500px';
+                };
+                //最大滑动距离
+            }
+        });
+
+        box.mouseup(function () {
+            index = 0;
+        });
+
+        body.mouseup(function () {
+            index = 0;
+        });
+
+    </script>
+</body>
+
+</html>

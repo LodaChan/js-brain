@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <style>
+        :root {
+            --customer-var: 0%;
+        }
+
+        body {
+            background-color: gray;
+            margin: 0;
+
+            height: 1000vh;
+        }
+
+        .sticky-layout {
+            background-color: #000;
+
+            /* 粘性布局，当top是0时，生效 
+            
+            1   父级元素不能有任何overflow:visible以外的overflow设置，
+                否则没有粘滞效果。
+                因为改变了滚动容器（即使没有出现滚动条）。
+                因此，如果你的position:sticky无效，看看是不是某一个祖先元素设置了overflow:hidden，移除之即可。
+
+            2 父级元素也不能设置固定的height高度值，否则也没有粘滞效果
+
+            3 同一个父容器中的sticky元素，如果定位值相等，则会重叠；如果属于不同父元素，则会鸠占鹊巢，挤开原来的元素，形成依次占位的效果
+            
+            4 sticky定位，不仅可以设置top，基于滚动容器上边缘定位；还可以设置bottom，也就是相对底部粘滞。如果是水平滚动，也可以设置left和right值
+
+            */
+            position: sticky;
+            top: 0;
+
+            height: 75vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            margin: 0 auto;
+
+        }
+
+        /* 6 不能设置背景色 */
+        h1 {
+            font-family: Helvetica;
+            margin: 0;
+            padding: 0;
+
+            letter-spacing: -0.3px;
+
+            /* 5 字体裁剪后的渐变背景 */
+            background-image: linear-gradient(75deg,
+                    rgba(255, 255, 255, 1) 0%,
+                    rgba(255, 255, 255, 1) 33.33%,
+                    rgba(255, 255, 255, 0) 66.67%,
+                    rgba(255, 255, 255, 0) 100%);
+
+
+            background-size: 300% 100%;
+            /* 实时计算 从样式变量中 获取的自定义值 */
+            background-position-x: calc(100% - var(--customer-var));
+
+
+            background-clip: text;
+            /* 4 字体透明才能生效 */
+            color: transparent;
+            /* 1 根据文字裁剪背景色 */
+            -webkit-background-clip: text;
+            /* 3 设置动画 */
+            transition: 2s background-position-x ease-in-out;
+
+        }
+
+        .fix-layout {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: red;
+            height: 100vh;
+            width: 25%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sticky-layout">
+        <h1>iPhone 12 pro , 自我飞跃 。</h1>
+    </div>
+    <div class="fix-layout">
+        <h2>iPhone 12 pro , 5G新时代 。</h2>
+    </div>
+    <script>
+
+        const h1 = document.querySelector('h1');
+
+        document.addEventListener('scroll', (e) => {
+
+            // distance / sticky layout height
+            // 100 -> 0 -> -100
+            let distance = document.documentElement.scrollTop / document.documentElement.clientHeight;
+            console.log("distance", distance)
+            console.log("document.documentElement.clientHeight", document.documentElement.clientHeight)
+
+            // 设置自定义样式变量的值
+            h1.style.setProperty('--customer-var', `${distance * 100}%`);
+
+        })
+    </script>
+</body>
+
+</html>
