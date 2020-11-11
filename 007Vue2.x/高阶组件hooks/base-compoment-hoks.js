@@ -1,4 +1,4 @@
-export default function myCompomentHoks (compoment) {
+export default function myCompomentHoks(compoment) {
     return {
         mounted() {
             console.log('I have already mounted')
@@ -18,7 +18,7 @@ export default function myCompomentHoks (compoment) {
                 props: this.$props, // 传递 props
                 attrs: this.$attrs, // 传递 data
                 scopedSlots: this.$scopedSlots,  // 传递 scoped , 透传 scopedSlots ， 解决 slot 与 具名 slot scoped 丢失问题
-              
+
             }, slots // 当作 option 参数 传入
             )
         }

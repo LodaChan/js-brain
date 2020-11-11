@@ -3,6 +3,13 @@
 
 [TS官方规范文档](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md "TS官方规范文档")
 
+
+
+type意为类型别名，
+相当于给一个类型起了一个别名，不会新建类型，是一种引用关系，
+使用的时候和接口差不多，但是有一些细微差别
+
+
 `相同点`
 
 + 描述一个对象或者函数
