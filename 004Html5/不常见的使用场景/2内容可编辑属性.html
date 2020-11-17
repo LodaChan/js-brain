@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <meta http-equiv=cache-control content=no-cache>
+    <title></title>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <div id=app>
+
+        <h2> Shoppping List(Content Editable) </h2>
+        <ul id="ulEditorContent" class="content-editable" contenteditable="true">
+            <li> 1. Milk </li>
+            <li> 2. Bread </li>
+            <li> 3. Honey </li>
+        </ul>
+        <button id="btnSubmit" onclick="submit()">submit</button>
+
+    </div>
+    <script type=text/javascript>
+        function submit() {
+            var ulEle = document.getElementById("ulEditorContent");
+            alert(ulEle.innerHTML);
+        }
+    </script>
+</body>
+
+</html>
