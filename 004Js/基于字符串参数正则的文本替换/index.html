@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <script>
+
+        let str = '<div data-node-id="1111">@1111</div><div data-node-id="2222">@2222</div><div data-node-id="3333">@3333</div>';
+        const regExpressionStr1 = '<div data-node-id=".+?">@.+?</div>';
+        const newStr = "被替换拉";
+        console.log(str.replace(new RegExp(regExpressionStr1, 'g'), newStr));
+
+    </script>
+
+</body>
+
+</html>
