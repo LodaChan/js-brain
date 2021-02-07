@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <meta http-equiv=cache-control content=no-cache>
+    <title></title>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <div id=app></div>
+    <script type="text/javascript">
+
+        class myClass {
+
+            // 静态方法
+            static staticFn(newColor) {
+                this.newColor = newColor
+                return this.newColor
+            }
+
+            newColor = "old color";
+
+            // 构造函数
+            constructor({ newColor = 'green' } = {}) {
+                this.newColor = newColor // 对应 new 出来对象的内部属性 instance.newColor
+            }
+
+            // 对象方法
+            objFn() {
+                console.log(this.newColor);
+            }
+
+        }
+
+        const instance1 = new myClass({ newColor: 'color1' })
+        console.log("instance1", instance1)
+        // instance1.staticFn('color1 new') // TypeError: instance1.staticFn is not a function
+
+        const instance2 = new myClass({ newColor: 'color2' })
+        console.log("instance2", instance2)
+        console.log("instance2.__proto__", instance2.__proto__)
+        console.log("instance2 instanceof myClass", instance2 instanceof myClass)
+        instance2.objFn()
+
+
+        const instance3 = new Object();
+        console.log("instance3.__proto__", instance3.__proto__)
+
+    </script>
+</body>
+
+</html>
