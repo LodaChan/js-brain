@@ -11,6 +11,7 @@
 + 3 Map 的键值对个数可以从 size 属性获取，而 Object 的键值对个数只能手动计算
 + 4 Object 都有自己的原型，原型链上的键名有可能和键名产生冲突
 + 5 支持for..of
++ 6 mapInstance.size 可以知道大小
 
 
 ## Set
