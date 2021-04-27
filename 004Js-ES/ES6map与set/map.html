@@ -32,6 +32,9 @@
         for (var [key, value] of hasMap) {
             console.log(key + " -> " + value);
         }
+        
+        // 或者
+        // for (let item of hasMap.entries())
 
         hasMap.forEach(function (value, key) {
             console.log(key + " -> " + value);
@@ -43,6 +46,7 @@
         var kvMap = new Map(kvArray);
         console.log('kvMap',kvMap)
         var kvArray2 = Array.from(kvMap);
+        //     var kvArray2 = Array.from(kvMap.values());// [god like]
         console.log("kvArray2",kvArray2)
 
 

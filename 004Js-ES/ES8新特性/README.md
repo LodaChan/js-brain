@@ -101,7 +101,7 @@ console.log(Object.getOwnPropertyDescriptors(obj))
 
 + 5 函数参数支持尾部逗号
 
-+ 6 修饰器Decorator
++ 6 修饰器/装饰器 Decorator
 
    + 函数修饰器
    + 类修饰器
