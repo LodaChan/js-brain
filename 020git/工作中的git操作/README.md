@@ -19,6 +19,10 @@
 | git stash list | 查看 stash 列表|
 | git stash pop | 将暂存区最近1个 stash 合并到当前分支 |
 | git stash clear | 清空暂存区的 stash |
+| clear | 快速清屏 |
+| ls | 列出文件列表信息 |
+
+
 
 #### 不常用 git 指令
 
