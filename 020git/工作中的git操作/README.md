@@ -37,6 +37,7 @@
 | git reflog| 查看全部的 commit 操作记录  (commit id 短的，显示前7位) |
 | git rebase `branch-name`| 变基，主要用在基于相同模板的但是更有不通的以最新的 master 分支的 commit 流为基准，不断merge 当前分支后的 commit |
 | git rebase --continue| 变基的冲突 add 进入暂存区后，继续后面的 rebase commit 操作|
+| git commit --amend| 修改最近的commit message , 修改vim后，按回车后，shift+:，再输出 wp 进行保存|
 
 
 
