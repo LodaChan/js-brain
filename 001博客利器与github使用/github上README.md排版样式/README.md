@@ -25,5 +25,5 @@ GitHub上README.md特殊排版样式
 #### 插入带文本颜色的文字
 
 ```
-<font color-red>红色的文本</font>
+<font color=red>红色的文本</font>
 ```
