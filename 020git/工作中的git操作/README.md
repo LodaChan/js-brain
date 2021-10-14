@@ -58,3 +58,7 @@
 
 
 git stash uncheck , 需要切换到log 切换到hash再stash
+
+#### 记一次本地 ssh 转回 http
+
+https://www.cnblogs.com/ykCoder/p/12254914.html
