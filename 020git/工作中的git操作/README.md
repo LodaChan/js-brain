@@ -18,9 +18,8 @@
 | git branch -d `branch-name` | 删除本地的分支 |
 | git push origin --delete `branch-name` | 删除远程的分支 |
 | git branch -u origin/`branch-name` | 本地分支 与 远程分支构建出关联 |
-
 | git merge `branch-name`|  将某个分支的 code change 合并到当前分支 |
-| git stash save `"your stash's message"`|暂时存储 本地分支 code change 进暂存区|
+| git stash save `"your message"`|暂时存储 本地分支 code change 进暂存区|
 | git stash list | 查看 stash 列表|
 | git stash pop | 将暂存区最近1个 stash 合并到当前分支 |
 | git stash clear | 清空暂存区的 stash |
