@@ -46,7 +46,7 @@
 | 指令| 说明|
 | :------ | :-------------------------------- |
 | git commit --amend| 修改最近一条的commit message , 修改vim后，按回车后，shift+:，再输出 wp 进行保存，然后提交到远程分支|
-| git rebase -i 想移除的commit的前1个commit的id| 撤销本地 commit 操作，然后输入i,进入编辑/插入模式，修改pick或者drop，按esc退出编辑模式，shift+: 按q进行保存，最后强行push到远程分支 --force 解决|
+| `git rebase -i 想移除commit list的前1个commit的id`| 撤销本地 commit 操作，然后输入i,进入编辑/插入模式，修改pick或者drop，按esc退出编辑模式，shift+: 按q进行保存，最后强行push到远程分支 --force 解决|
 | git rebase --abort| 撤销本地 rebase 的操作|
 
 
