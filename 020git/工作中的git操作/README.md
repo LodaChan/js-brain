@@ -1,6 +1,9 @@
 
 # 工作中的git操作
- 
+
+git reset `最后想保留的commitid` --hard
+
+`回滚代码常用`
 
 #### 常用 git 指令
 
