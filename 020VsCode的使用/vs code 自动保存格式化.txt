@@ -1,6 +1,6 @@
 VS code 文件->首选项-文本编辑-配置json
 
-
+vetur
 {
     "workbench.colorTheme": "Visual Studio Light",
     "files.associations": {
@@ -31,4 +31,51 @@ VS code 文件->首选项-文本编辑-配置json
     "diffEditor.ignoreTrimWhitespace": false,
     "files.autoSave": "off",
     "workbench.startupEditor": "newUntitledFile"
+}
+
+prettier 
+新建 .vscode 文件夹 ， 新建 settings.json 文件 使得 vs code 编码习惯跟随项目走
+{
+    "scm.showActionButton": false, // 屏蔽 code change 提交按钮
+    "editor.formatOnSave": true, // 保存时自动格式化
+    // # https://prettier.io/docs/en/options
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "MikeBovenlander.formate"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "MikeBovenlander.formate"
+    },
+    "[less]": {
+        "editor.defaultFormatter": "MikeBovenlander.formate"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[markdown]": {
+        // "editor.defaultFormatter": "MikeBovenlander.formate"
+    },
+    // IDE相关
+    "prettier.printWidth": 180, // 行宽
+    "prettier.tabWidth": 4, // indent采用4个空格
+    // tsX语法相关
+    "prettier.useTabs": false, // 占位禁用tab
+    "prettier.arrowParens": "always", // 箭头函数参数强加括号
+    "prettier.semi": true, // 句尾强加分号
+    "prettier.singleQuote": false, // 禁用单引号1
+    "prettier.jsxSingleQuote": false, // 禁用单引号2
+    "prettier.trailingComma": "all", // 数组最后一项强加逗号
+    "prettier.experimentalTernaries": false, // 保留默认的三目运算符习惯
+    "prettier.ifElseReformat": false, // 保留ifElse习惯
+    // vue模板相关
+    "prettier.singleAttributePerLine": true, // 模板属性单独一行
+    "prettier.bracketSameLine": true, // 标签结尾>不单独一行
+    "prettier.bracketSpacing": false, // 变量内无空格
+    "prettier.vueIndentScriptAndStyle": false // script与style 标签不缩进
 }
