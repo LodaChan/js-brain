@@ -20,7 +20,7 @@ import {test, is} from "./libs/unit-test";
 let merge: (nums1: number[], m: number, nums2: number[], n: number) => number[];
 
 /**
- * 临时存储空间 + 双指针
+ * 临时存储空间 + 正向双指针
  * @description
  * 时间复杂度 O(m + n)
  * 空间复杂度 O(2)

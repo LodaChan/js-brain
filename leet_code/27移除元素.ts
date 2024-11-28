@@ -10,7 +10,7 @@ import {test, is} from "./libs/unit-test";
 let removeElement: (nums: number[], val: number) => number;
 
 /**
- * 快慢双指针
+ * 正向双指针
  */
 removeElement = (nums: number[], val: number): number => {
     console.log(nums);
@@ -35,7 +35,7 @@ removeElement = (nums: number[], val: number): number => {
 };
 
 /**
- * 补一 + 双向指针
+ * 补一 + 双向双指针
  */
 removeElement = (nums: number[], val: number): number => {
     console.log([...nums], val);
