@@ -5,6 +5,9 @@ import {test, is} from "./libs/unit-test";
  * https://leetcode.cn/problems/merge-sorted-array/description/
  *
  * @description
+ * 输入 [1, 2, 3, 0, 0, 0], 3, [4, 5, 6], 3
+ * 输出 [1, 2, 3, 4, 5, 6]
+ *
  * [].slice(start,end)
  * 不会改变原数组
  * 用途1:返回取值[start,index)
@@ -20,7 +23,8 @@ import {test, is} from "./libs/unit-test";
 let merge: (nums1: number[], m: number, nums2: number[], n: number) => number[];
 
 /**
- * 正向双指针 + 临时存储空间
+ * 正向双指针 + 临时存储空间重新赋值
+ *
  * @description
  * 时间复杂度 O(m + n)
  * 空间复杂度 O(2)
@@ -62,6 +66,7 @@ merge = (nums1: number[], m: number, nums2: number[], n: number): number[] => {
 
 /**
  * 逆向双指针
+ *
  * @description
  * 时间复杂度 O(m + n)
  * 空间复杂度 O(1)

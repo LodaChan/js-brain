@@ -4,13 +4,14 @@ import {test, is} from "./libs/unit-test";
  * 27. 移除元素
  * https://leetcode.cn/problems/remove-element/description
  *
- * 更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums 的其余元素和 nums 的大小并不重要
- * 返回 k
+ * @description
+ * 输入 [3, 2, 3, 2, 3], 3
+ * 输出 [2, 2, undefined, undefined, undefined]
  */
 let removeElement: (nums: number[], val: number) => number;
 
 /**
- * 正向双指针
+ * 正向双指针 + 数据抹除
  */
 removeElement = (nums: number[], val: number): number => {
     console.log(nums);
