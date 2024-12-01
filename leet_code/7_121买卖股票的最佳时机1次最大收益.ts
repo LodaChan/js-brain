@@ -11,7 +11,7 @@ import {test, is} from "./libs/unit-test";
 let maxProfit: (prices: number[]) => number;
 
 /**
- * 动态规划 + 双阈值
+ * 动态规划 + 贪心
  *
  * @description
  * 时间复杂度 O(n)

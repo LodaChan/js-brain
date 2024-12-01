@@ -36,7 +36,7 @@ removeElement = (nums: number[], val: number): number => {
 };
 
 /**
- * 双向双指针
+ * 双向双指针 + 数据抹除
  */
 removeElement = (nums: number[], val: number): number => {
     console.log([...nums], val);

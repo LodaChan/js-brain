@@ -11,7 +11,7 @@ import {test, is} from "./libs/unit-test";
 let canJump: (nums: number[]) => boolean;
 
 /**
- * 贪心
+ * 动态规划 + 贪心
  *
  * @description
  * 时间复杂度 O(n)

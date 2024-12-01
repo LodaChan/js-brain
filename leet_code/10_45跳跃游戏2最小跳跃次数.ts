@@ -11,7 +11,7 @@ import {test, is} from "./libs/unit-test";
 let minJumpCount: (nums: number[]) => number;
 
 /**
- * 贪心+反向递推最小index值匹配
+ * 动态规划 + 贪心 + 反向递推最小index值匹配
  *
  * @description
  * 时间复杂度 (n^2)
@@ -36,7 +36,7 @@ minJumpCount = (nums: number[]): number => {
 };
 
 /**
- * 贪心+正向递推区域最大index
+ * 动态规划 + 贪心 + 正向递推区域最大index
  *
  * @description
  * 时间复杂度 O(n)

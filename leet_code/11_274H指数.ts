@@ -13,27 +13,90 @@ import {test, is} from "./libs/unit-test";
 let hIndex: (citations: number[]) => number;
 
 /**
- * 动态规划 + 排序后递推
+ * 分治 + 排序
+ *
+ * @description
+ * 时间复杂度 O(nlogn)
+ * 空间复杂度 O(nlogn)
+ */
+hIndex = (citations: number[]): number => {
+    citations.sort((a, b) => a - b);
+
+    let output = 0,
+        index = citations.length - 1;
+
+    while (index >= 0 && citations[index] > output) {
+        output++;
+        index--;
+    }
+
+    return output;
+};
+
+/**
+ * 二分搜素
  *
  * @description
  * 时间复杂度 O(nlogn)
  * 空间复杂度 O(1)
  */
 hIndex = (citations: number[]): number => {
-    citations.sort((a, b) => b - a);
-    console.log(citations);
+    let left = 0,
+        right = citations.length;
 
-    let maxHIndex = 0;
-
-    for (let index = 0; index < citations.length; index++) {
-        if (citations[index] >= index + 1) {
-            maxHIndex++;
+    while (left < right) {
+        // +1 防止死循环
+        let mid = Math.floor((left + right + 1) / 2);
+        let cnt = 0;
+        for (let citation of citations) {
+            if (citation >= mid) {
+                cnt++;
+            }
+        }
+        if (cnt >= mid) {
+            // 要找的答案在 [mid,right] 区间内
+            left = mid;
         } else {
-            break;
+            // 要找的答案在 [0,mid) 区间内
+            right = mid - 1;
         }
     }
 
-    return maxHIndex;
+    return left;
+};
+
+/**
+ * 计数排序
+ *
+ * @description
+ * 时间复杂度 O(n)
+ * 空间复杂度 O(n)
+ */
+hIndex = (citations: number[]): number => {
+    let output = 0;
+
+    let n = citations.length,
+        total = 0;
+    const counter = new Array(n + 1).fill(0);
+
+    for (let index = 0; index < n; index++) {
+        if (citations[index] >= n) {
+            counter[n]++;
+        } else {
+            counter[citations[index]]++;
+        }
+    }
+
+    // 有大于等于index篇论文时
+    for (let index = n; index >= 0; index--) {
+        total += counter[index];
+
+        if (total >= index) {
+            return (output = index);
+        }
+    }
+
+    return output;
 };
 
 test(`官方例子`, () => {

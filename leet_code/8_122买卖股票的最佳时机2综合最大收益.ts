@@ -5,8 +5,8 @@ import {test, is} from "./libs/unit-test";
  * https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description
  *
  * @description
- * 输入 [7,1,5,3,6,4]
- * 输出 5-1 + 6-3 = 7
+ * 输入 [7, 6, 4, 3, 1]
+ * 输出 0
  */
 let maxProfit: (prices: number[]) => number;
 
@@ -33,7 +33,7 @@ maxProfit = (prices: number[]): number => {
 };
 
 /**
- * 贪心
+ * 动态规划 + 贪心 + 相邻求最大值 + 亏损看作0收益
  *
  * @description
  * 时间复杂度 O(n)

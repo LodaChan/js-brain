@@ -11,7 +11,7 @@ import {test, is} from "./libs/unit-test";
 let rotate: (nums: number[], k: number) => number[];
 
 /**
- * 索引补K后基于nums.length求余 + 临时存储空间
+ * 索引补K后基于nums.length求余 + 临时存储空间 + 重新赋值
  *
  * @description
  * 时间复杂度 O(n)
@@ -36,47 +36,10 @@ rotate = (nums: number[], k: number): number[] => {
 };
 
 /**
- * 环形替换
+ * 分治 + 数组1次翻转再2次分段翻转
  *
  * @description
  * 时间复杂度 O(n)
- * 空间复杂度 O(1)
- */
-rotate = (nums: number[], k: number): number[] => {
-    console.log(nums);
-    console.log(k);
-
-    const n = nums.length;
-
-    /**
-     * 求最大公约数
-     */
-    const _GCDFunc = (x: number, y: number) => (y ? _GCDFunc(y, x % y) : x);
-
-    k = k % n;
-
-    let count = _GCDFunc(k, n);
-    for (let start = 0; start < count; ++start) {
-        let current = start;
-        let prev = nums[start];
-        do {
-            const next = (current + k) % n;
-            const temp = nums[next];
-            nums[next] = prev;
-            prev = temp;
-            current = next;
-        } while (start !== current);
-    }
-
-    console.log(nums);
-    return nums;
-};
-
-/**
- * 动态规划 + 数组1次翻转再2次分段翻转
- *
- * @description
- * 时间复杂度 O(2n)
  * 空间复杂度 O(1)
  */
 rotate = (nums: number[], k: number): number[] => {
