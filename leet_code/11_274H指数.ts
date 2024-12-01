@@ -13,7 +13,7 @@ import {test, is} from "./libs/unit-test";
 let hIndex: (citations: number[]) => number;
 
 /**
- * 分治 + 排序
+ * 排序
  *
  * @description
  * 时间复杂度 O(nlogn)

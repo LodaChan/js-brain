@@ -17,19 +17,19 @@ let majorityElement: (nums: number[]) => number;
 majorityElement = (nums: number[]): number => {
     console.log(nums);
 
-    let candidate: number;
+    let mostNum: number;
     let count = 0;
 
     for (let index = 0; index < nums.length; index++) {
         if (count === 0) {
-            candidate = nums[index];
+            mostNum = nums[index];
         }
 
-        count += nums[index] === candidate ? 1 : -1;
+        count += nums[index] === mostNum ? 1 : -1;
     }
     console.log(count);
 
-    return candidate;
+    return mostNum;
 };
 
 test(`官方例子`, () => {
