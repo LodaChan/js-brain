@@ -9,7 +9,7 @@ import {test, is} from "./libs/unit-test";
 let candy: (ratings: number[]) => number;
 
 /**
- * 两次遍历 + 临时存储空间
+ * 动态规划 + 1次正向遍历 + 1次反向遍历 + 临时存储空间
  * 时间复杂度 O(n)
  * 空间复杂度 O(n)
  */
@@ -71,20 +71,24 @@ candy = (ratings: number[]): number => {
         // 递增序列
         if (ratings[i - 1] <= ratings[i]) {
             dec = 0;
+
             if (ratings[i] === ratings[i - 1]) {
                 pre = 1;
             } else {
                 pre++;
             }
+
             output += pre;
             inc = pre;
         }
         // 递减序列
         else {
             dec++;
+
             if (dec === inc) {
                 dec++;
             }
+
             output += dec;
             pre = 1;
         }

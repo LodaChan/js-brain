@@ -27,22 +27,26 @@ canCompleteCircuit = (gas: number[], cost: number[]): number => {
     while (startIndex < n) {
         let sumOfGas = 0,
             sumOfCost = 0;
-        let cnt = 0;
 
-        while (cnt < n) {
-            const j = (startIndex + cnt) % n;
-            sumOfGas += gas[j];
-            sumOfCost += cost[j];
+        /**
+         * 能通过的站
+         */
+        let cross = 0;
+
+        while (cross < n) {
+            const index = (startIndex + cross) % n;
+            sumOfGas += gas[index];
+            sumOfCost += cost[index];
             if (sumOfCost > sumOfGas) {
                 break;
             }
-            cnt++;
+            cross++;
         }
 
-        if (cnt === n) {
+        if (cross === n) {
             return (output = startIndex);
         } else {
-            startIndex = startIndex + cnt + 1;
+            startIndex = startIndex + cross + 1;
         }
     }
 

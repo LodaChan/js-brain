@@ -22,8 +22,8 @@ let hIndex: (citations: number[]) => number;
 hIndex = (citations: number[]): number => {
     citations.sort((a, b) => a - b);
 
-    let output = 0,
-        index = citations.length - 1;
+    let output = 0;
+    let index = citations.length - 1;
 
     while (index >= 0 && citations[index] > output) {
         output++;
