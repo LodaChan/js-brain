@@ -36,6 +36,50 @@ rotate = (nums: number[], k: number): number[] => {
 };
 
 /**
+ * 环状替换
+ *
+ * @description
+ * 时间复杂度 O(n)
+ * 空间复杂度 O(1)
+ */
+rotate = (nums: number[], k: number): number[] => {
+    console.log(nums);
+    console.log(k);
+
+    /**
+     * 通过求最大公约数得到环形替换的范围
+     * @param x
+     * @param y
+     * @returns
+     */
+    const getGCDFunc = (x: number, y: number): number => (y ? getGCDFunc(y, x % y) : x);
+
+    const n = nums.length;
+    k = k % n;
+    let gcdCount = getGCDFunc(k, n);
+
+    for (let index = 0; index < gcdCount; index++) {
+        let curIndex = index;
+        let curValue = nums[index];
+
+        do {
+            const switchIndex = (curIndex + k) % n;
+            const switchValue = nums[switchIndex];
+
+            nums[switchIndex] = curValue;
+            curValue = switchValue;
+
+            curIndex = switchIndex;
+        } while (
+            // 环形替换的终极点
+            index !== curIndex
+        );
+    }
+
+    return nums;
+};
+
+/**
  * 分治 + 数组1次翻转再2次分段翻转
  *
  * @description
