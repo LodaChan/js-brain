@@ -17,14 +17,14 @@ let trap: (height: number[]) => number;
  * 时间复杂度 O(n)
  * 空间复杂度 O(n)
  */
-trap = (height: number[]): number => {
+trap = (heightList: number[]): number => {
     let output = 0;
 
     const indexStack: number[] = [];
 
-    for (let index = 0; index < height.length; index++) {
-        // 当右边出现比栈顶大的数时，开始计算储水量
-        while (indexStack.length > 0 && height[index] > height[indexStack[indexStack.length - 1]]) {
+    for (let index = 0; index < heightList.length; index++) {
+        // 当右边出现比栈顶大的height时,开始计算储水量
+        while (indexStack.length > 0 && heightList[index] > heightList[indexStack[indexStack.length - 1]]) {
             const topStackIndex = indexStack.pop();
 
             // topStackIndex左边没柱子了不构成抽象容器
@@ -36,7 +36,7 @@ trap = (height: number[]): number => {
             const preIndexOfTopStackIndex = indexStack[indexStack.length - 1];
 
             const dw = index - preIndexOfTopStackIndex - 1;
-            const dt = Math.min(height[preIndexOfTopStackIndex], height[index]) - height[topStackIndex];
+            const dt = Math.min(heightList[preIndexOfTopStackIndex], heightList[index]) - heightList[topStackIndex];
             output += dw * dt;
         }
 

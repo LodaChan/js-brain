@@ -77,8 +77,8 @@ merge = (nums1: number[], m: number, nums2: number[], n: number): number[] => {
  * num1中有 m-(index1+1) 个元素放到已用空间
  * num2中有 n-(index2+1) 个元素放到已用空间
  * num1中已用空间是 m+n-(index1+1)
- * 构建不等式 m+n-index1-1 = m-index1-1 + n-index2-1
- * 简化后 index2 = -1
+ * 构建不等式 m+n-index1-1 >= m-index1-1 + n-index2-1
+ * 简化后 index2 >= -1
  * 因为 index2 >= 0 , 所以
  * index1(含)右侧的已用空间足够容纳index1已插入的元素与index2已插入的元素
  * 不会产生index1未插入的元素被index2已插入的元素覆盖的问题

@@ -47,7 +47,7 @@ rotate = (nums: number[], k: number): number[] => {
     console.log(k);
 
     /**
-     * 通过求最大公约数得到环形替换的范围
+     * 通过求最大公约数得到环形替换的次数
      * @param x
      * @param y
      * @returns
@@ -71,7 +71,7 @@ rotate = (nums: number[], k: number): number[] => {
 
             curIndex = switchIndex;
         } while (
-            // 环形替换的终极点
+            // 轮转结束
             index !== curIndex
         );
     }

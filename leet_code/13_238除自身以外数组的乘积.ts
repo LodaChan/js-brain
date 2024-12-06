@@ -23,19 +23,19 @@ productExceptSelf = (nums: number[]): number[] => {
     const answer = new Array<number>(length);
 
     // answer[i] 表示索引 i 左侧所有元素的乘积
-    // 因为索引为 '0' 的元素左侧没有元素， 所以 answer[0] = 1
+    // 因为索引为 '0' 的元素左侧没有元素, 所以 answer[0] = 1
     answer[0] = 1;
     for (let index = 1; index < length; index++) {
         answer[index] = nums[index - 1] * answer[index - 1];
     }
 
     // R 为右侧所有元素的乘积
-    // 刚开始右边没有元素，所以 R = 1
+    // 刚开始右边没有元素,所以 R = 1
     let R = 1;
     for (let index = length - 1; index >= 0; index--) {
-        // 对于索引 i，左边的乘积为 answer[i]，右边的乘积为 R
+        // 对于索引 i,左边的乘积为 answer[i],右边的乘积为 R
         answer[index] = answer[index] * R;
-        // R 需要包含右边所有的乘积，所以计算下一个结果时需要将当前值乘到 R 上
+        // R 需要包含右边所有的乘积,所以计算下一个结果时需要将当前值乘到 R 上
         R *= nums[index];
     }
 

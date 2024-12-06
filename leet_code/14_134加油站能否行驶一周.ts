@@ -29,24 +29,25 @@ canCompleteCircuit = (gas: number[], cost: number[]): number => {
             sumOfCost = 0;
 
         /**
-         * 能通过的站
+         * 满足总消耗小于等于总油量条件所能能通过的站数
          */
-        let cross = 0;
+        let crossCount = 0;
 
-        while (cross < n) {
-            const index = (startIndex + cross) % n;
+        while (crossCount < n) {
+            const index = (startIndex + crossCount) % n;
             sumOfGas += gas[index];
             sumOfCost += cost[index];
+
             if (sumOfCost > sumOfGas) {
                 break;
             }
-            cross++;
+            crossCount++;
         }
 
-        if (cross === n) {
+        if (crossCount === n) {
             return (output = startIndex);
         } else {
-            startIndex = startIndex + cross + 1;
+            startIndex = startIndex + crossCount + 1;
         }
     }
 

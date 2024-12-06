@@ -4,7 +4,9 @@ import {test, is} from "./libs/unit-test";
  * 135. 分发糖果
  * https://leetcode.cn/problems/candy/description
  *
- *
+ * @description
+ * 输入 [1, 2, 2]
+ * 输出 4
  */
 let candy: (ratings: number[]) => number;
 
@@ -72,7 +74,8 @@ candy = (ratings: number[]): number => {
         if (ratings[i - 1] <= ratings[i]) {
             dec = 0;
 
-            if (ratings[i] === ratings[i - 1]) {
+            // 相同时变回1
+            if (ratings[i - 1] === ratings[i]) {
                 pre = 1;
             } else {
                 pre++;
@@ -110,6 +113,6 @@ test(`官方例子`, () => {
         //
         candy([1, 2, 2]),
         //
-        4,
+        4, // 1 + 2 + 1
     );
 });

@@ -11,7 +11,7 @@ import {test, is} from "./libs/unit-test";
 let lengthOfLastWord: (inputStr: string) => number;
 
 /**
- *
+ * 反向遍历
  *
  * @description
  * 时间复杂度 O(n)
