@@ -63,10 +63,10 @@ convert = (str: string, numRows: number): string => {
             output.push(str[charIndex + rowIndex]);
 
             // 因为Z型排列,所以不是首行和不是最后一行的同一行,补全还有1个字符需要补全到右侧
-            // 反推 anotherCharIndexOfSameRow = (charIndex + dt) - rowIndex 得到
-            if (0 < rowIndex && rowIndex < numRows - 1 && charIndex + dt - rowIndex < str.length) {
-                let anotherCharIndexOfSameRow = charIndex + dt - rowIndex;
-                output.push(str[anotherCharIndexOfSameRow]);
+            // 反推 anotherCharIndexOfRow = (charIndex + dt) - rowIndex 得到
+            const anotherCharIndexOfRow = charIndex + dt - rowIndex;
+            if (0 < rowIndex && rowIndex < numRows - 1 && anotherCharIndexOfRow < str.length) {
+                output.push(str[anotherCharIndexOfRow]);
             }
         }
 

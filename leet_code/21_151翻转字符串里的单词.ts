@@ -20,12 +20,12 @@ let reverseWords: (str: string) => string;
 reverseWords = (str: string): string => {
     let output: string[] = [];
 
-    let Index = 0;
+    let index = 0;
     let endIndex = str.length - 1;
 
     // [mk] 1 移除空格
-    while (str[Index] === " ") {
-        Index++;
+    while (str[index] === " ") {
+        index++;
     }
     while (str[endIndex] === " ") {
         endIndex--;
@@ -33,18 +33,18 @@ reverseWords = (str: string): string => {
 
     // [mk] 2
     let wordItem = "";
-    while (Index <= endIndex) {
+    while (index <= endIndex) {
         // 空格,头插,重置
-        if (str[Index] === " " && wordItem.length > 0) {
+        if (str[index] === " " && wordItem.length > 0) {
             output.splice(0, 0, wordItem);
             wordItem = "";
         }
         // 字符
-        else if (str[Index] !== " ") {
-            wordItem += str[Index];
+        else if (str[index] !== " ") {
+            wordItem += str[index];
         }
 
-        Index++;
+        index++;
     }
     output.splice(0, 0, wordItem);
 
