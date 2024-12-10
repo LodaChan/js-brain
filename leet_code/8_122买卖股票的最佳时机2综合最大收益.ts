@@ -23,12 +23,14 @@ maxProfit = (prices: number[]): number => {
     const n = prices.length;
     let dp0 = 0,
         dp1 = -prices[0];
+
     for (let index = 1; index < n; index++) {
         let newDp0 = Math.max(dp0, dp1 + prices[index]);
         let newDp1 = Math.max(dp1, dp0 - prices[index]);
         dp0 = newDp0;
         dp1 = newDp1;
     }
+
     return dp0;
 };
 

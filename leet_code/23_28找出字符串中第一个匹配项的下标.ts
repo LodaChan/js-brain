@@ -15,7 +15,7 @@ let strStr: (mainStr: string, subStr: string) => number;
  *
  * 暴力匹配不具备上次匹配的能力
  * @description
- * 时间复杂度 O(n×m)
+ * 时间复杂度 O(n * m)
  * 空间复杂度 O(1)
  */
 strStr = (mainStr: string, subStr: string): number => {
@@ -38,7 +38,7 @@ strStr = (mainStr: string, subStr: string): number => {
  * KMP Knuth-Morris-Pratt 算法 解决子串匹配时的回退
  *
  * @description
- * 时间复杂度 O(n+m)
+ * 时间复杂度 O(n + m)
  * 空间复杂度 O(m)
  */
 strStr = (mainStr: string, subStr: string): number => {
@@ -57,8 +57,8 @@ strStr = (mainStr: string, subStr: string): number => {
 
     for (let slowCharIndex = 0, fastCharIndex = 1; fastCharIndex < subStr.length; fastCharIndex++) {
         while (slowCharIndex > 0 && subStr[fastCharIndex] !== subStr[slowCharIndex]) {
-            // 1 先定位到子串2的首字符index的前一位,即子串1的最后1位
-            // 2 然后再递推找到剩余匹配子串的charIndex
+            // 先定位到子串2的首字符index的前一位,即子串1的最后1位
+            // 然后再递推找到剩余匹配子串的charIndex
             slowCharIndex = PMT[slowCharIndex - 1];
         }
 
@@ -69,7 +69,7 @@ strStr = (mainStr: string, subStr: string): number => {
         PMT[fastCharIndex] = slowCharIndex;
     }
 
-    // [mk] 2 继续复用前缀函数
+    // [mk] 2 继续复用前缀函数的概念
     for (let mainStrCharIndex = 0, subStrCharIndex = 0; mainStrCharIndex < mainStr.length; mainStrCharIndex++) {
         while (subStrCharIndex > 0 && mainStr[mainStrCharIndex] != subStr[subStrCharIndex]) {
             subStrCharIndex = PMT[subStrCharIndex - 1];

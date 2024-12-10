@@ -16,8 +16,8 @@ let hIndex: (citations: number[]) => number;
  * 排序
  *
  * @description
- * 时间复杂度 O(nlogn)
- * 空间复杂度 O(nlogn)
+ * 时间复杂度 O(n * logn)
+ * 空间复杂度 O(n * logn)
  */
 hIndex = (citations: number[]): number => {
     citations.sort((a, b) => a - b);
@@ -37,7 +37,7 @@ hIndex = (citations: number[]): number => {
  * 二分搜素
  *
  * @description
- * 时间复杂度 O(nlogn)
+ * 时间复杂度 O(n * logn)
  * 空间复杂度 O(1)
  */
 hIndex = (citations: number[]): number => {
@@ -77,19 +77,20 @@ hIndex = (citations: number[]): number => {
 
     let n = citations.length,
         total = 0;
-    const counter = new Array(n + 1).fill(0);
+
+    const countingTable = new Array(n + 1).fill(0);
 
     for (let index = 0; index < n; index++) {
         if (citations[index] >= n) {
-            counter[n]++;
+            countingTable[n]++;
         } else {
-            counter[citations[index]]++;
+            countingTable[citations[index]]++;
         }
     }
 
     // 有大于等于index篇论文时
     for (let index = n; index >= 0; index--) {
-        total += counter[index];
+        total += countingTable[index];
 
         if (total >= index) {
             return (output = index);

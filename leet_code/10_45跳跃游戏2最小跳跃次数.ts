@@ -20,12 +20,12 @@ let minJumpCount: (nums: number[]) => number;
 minJumpCount = (nums: number[]): number => {
     let steps = 0;
 
-    let position = nums.length - 1;
+    let finalJumpIndex = nums.length - 1;
 
-    while (position > 0) {
-        for (let index = 0; index < position; index++) {
-            if (index + nums[index] >= position) {
-                position = index;
+    while (finalJumpIndex > 0) {
+        for (let index = 0; index < finalJumpIndex; index++) {
+            if (index + nums[index] >= finalJumpIndex) {
+                finalJumpIndex = index;
                 steps++;
                 break;
             }
@@ -46,12 +46,12 @@ minJumpCount = (nums: number[]): number => {
     let steps = 0;
 
     let maxIndex = 0;
-    let endIndex = 0;
+    let preStepMaxIndex = 0;
 
     for (let index = 0; index < nums.length - 1; index++) {
         maxIndex = Math.max(index + nums[index], maxIndex);
-        if (index === endIndex) {
-            endIndex = maxIndex;
+        if (index === preStepMaxIndex) {
+            preStepMaxIndex = maxIndex;
             steps++;
         }
     }

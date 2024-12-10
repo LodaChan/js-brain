@@ -22,7 +22,7 @@ let longestCommonPrefix: (inputWordList: string[]) => string;
  * 纵向查找
  *
  * @description
- * 时间复杂度 O(mn)
+ * 时间复杂度 O(m * n)
  * 空间复杂度 O(1)
  */
 longestCommonPrefix = (inputWordList: string[]): string => {
@@ -51,7 +51,7 @@ longestCommonPrefix = (inputWordList: string[]): string => {
  * 横向查找
  * LCP(S1...S4) = LCP(LCP(LCP(S1,S2),S3),S4)
  * @description
- * 时间复杂度 O(mn)
+ * 时间复杂度 O(m * n)
  * 空间复杂度 O(1)
  */
 longestCommonPrefix = (inputWordList: string[]): string => {
@@ -92,8 +92,8 @@ longestCommonPrefix = (inputWordList: string[]): string => {
  * 分治
  * LCP(S1...S4) = LCP(LCP(S1,S2),LCP(S3,S4))
  * @description
- * 时间复杂度 O(mn)
- * 空间复杂度 O(mlogn)
+ * 时间复杂度 O(m * n)
+ * 空间复杂度 O(m * logn)
  */
 longestCommonPrefix = (inputWordList: string[]): string => {
     return "";
@@ -103,7 +103,7 @@ longestCommonPrefix = (inputWordList: string[]): string => {
  * 二分查找 + 最短word长度 + mid逐步逼近 + 纵向查找
  *
  * @description
- * 时间复杂度 O(mnlogm)
+ * 时间复杂度 O(m * n * logm)
  * 空间复杂度 O(1)
  */
 longestCommonPrefix = (inputWordList: string[]): string => {

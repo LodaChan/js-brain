@@ -11,7 +11,7 @@ import {test, is} from "./libs/unit-test";
 let removeElement: (nums: number[], val: number) => number;
 
 /**
- * 正向双指针 + 数据抹除
+ * 正向(同起点快慢)双指针 + 数据抹除
  */
 removeElement = (nums: number[], val: number): number => {
     console.log(nums);

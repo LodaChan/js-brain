@@ -57,11 +57,10 @@ fullJustify = (words: string[], maxWidth: number): string[] => {
             output.push(words[leftWordItemIndex] + getBlankStrFunc(totalEmptySpaceCount));
             continue;
         }
-
         // 多个单词
         const avgEmptySpaceCount = Math.floor(totalEmptySpaceCount / (lineWordsCount - 1));
         const extraEmptySpaceCount = totalEmptySpaceCount % (lineWordsCount - 1);
-        // 需要在单词1与单词2之间额外补1个空格
+        // 如果 extraEmptySpaceCount > 0 , 需要在单词1与单词2之间额外补1个空格
         const str1 = words.slice(leftWordItemIndex, leftWordItemIndex + extraEmptySpaceCount + 1).join(getBlankStrFunc(avgEmptySpaceCount + 1));
         const str2 = words.slice(leftWordItemIndex + extraEmptySpaceCount + 1, rightWordItemIndex).join(getBlankStrFunc(avgEmptySpaceCount));
         output.push(str1 + getBlankStrFunc(avgEmptySpaceCount) + str2);

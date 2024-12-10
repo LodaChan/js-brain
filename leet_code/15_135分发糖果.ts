@@ -36,6 +36,7 @@ candy = (ratings: number[]): number => {
         } else {
             right = 1;
         }
+
         output += Math.max(left[index], right);
     }
 

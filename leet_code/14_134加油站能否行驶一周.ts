@@ -20,11 +20,9 @@ let canCompleteCircuit: (gas: number[], cost: number[]) => number;
 canCompleteCircuit = (gas: number[], cost: number[]): number => {
     let output = -1;
 
-    const n = gas.length;
-
     let startIndex = 0;
 
-    while (startIndex < n) {
+    while (startIndex < gas.length) {
         let sumOfGas = 0,
             sumOfCost = 0;
 
@@ -33,18 +31,19 @@ canCompleteCircuit = (gas: number[], cost: number[]): number => {
          */
         let crossCount = 0;
 
-        while (crossCount < n) {
-            const index = (startIndex + crossCount) % n;
+        while (crossCount < gas.length) {
+            const index = (startIndex + crossCount) % gas.length;
             sumOfGas += gas[index];
             sumOfCost += cost[index];
 
             if (sumOfCost > sumOfGas) {
                 break;
             }
+
             crossCount++;
         }
 
-        if (crossCount === n) {
+        if (crossCount === gas.length) {
             return (output = startIndex);
         } else {
             startIndex = startIndex + crossCount + 1;
