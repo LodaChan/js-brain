@@ -10,6 +10,7 @@ import {test, is} from "./libs/unit-test";
  * z   十进制是 122
  * String.fromCharCode(97) 得到a
  * "a".charCodeAt(0) 得到97
+ *
  * @description
  * 输入 "A man, a plan, a canal: Panama"
  * 输出 true
@@ -32,7 +33,6 @@ isPalindrome = (str: string): boolean => {
     str = str.toLowerCase();
 
     const charHashMap: Map<string, number> = new Map();
-
     // 0-9
     for (let numValue = 0; numValue <= 9; numValue++) {
         charHashMap.set(`${numValue}`, `${numValue}`.charCodeAt(0));

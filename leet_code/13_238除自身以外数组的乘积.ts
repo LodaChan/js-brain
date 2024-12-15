@@ -23,7 +23,7 @@ productExceptSelf = (nums: number[]): number[] => {
     const output = new Array<number>(length);
 
     // answer[i] 表示索引 i 左侧所有元素的乘积
-    // 因为索引为 '0' 的元素左侧没有元素, 所以 answer[0] = 1
+    // 因为索引为 0 的元素左侧没有元素, 所以 answer[0] = 1
     output[0] = 1;
     for (let index = 1; index < length; index++) {
         output[index] = nums[index - 1] * output[index - 1];

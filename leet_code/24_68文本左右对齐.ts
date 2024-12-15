@@ -42,7 +42,7 @@ fullJustify = (words: string[], maxWidth: number): string[] => {
             rightWordItemIndex++;
         }
 
-        // 最后一行：单词左对齐，且单词之间应只有一个空格，在行末填充剩余空格
+        // 最后一行：单词左对齐 , 且单词之间应只有一个空格 , 在行末填充剩余空格
         if (rightWordItemIndex === words.length) {
             const s = words.slice(leftWordItemIndex).join(" ");
             output.push(s + getBlankStrFunc(maxWidth - s.length));
@@ -52,7 +52,7 @@ fullJustify = (words: string[], maxWidth: number): string[] => {
         const lineWordsCount = rightWordItemIndex - leftWordItemIndex;
         const totalEmptySpaceCount = maxWidth - lineCharCount;
 
-        // 只有一个单词：该单词左对齐，在行末填充空格
+        // 只有一个单词：该单词左对齐 , 在行末填充空格
         if (lineWordsCount === 1) {
             output.push(words[leftWordItemIndex] + getBlankStrFunc(totalEmptySpaceCount));
             continue;

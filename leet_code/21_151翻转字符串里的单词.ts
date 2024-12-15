@@ -34,7 +34,7 @@ reverseWords = (str: string): string => {
     // [mk] 2
     let wordItem = "";
     while (index <= endIndex) {
-        // 空格,头插,重置
+        // 空格 , 头插
         if (str[index] === " " && wordItem.length > 0) {
             output.splice(0, 0, wordItem);
             wordItem = "";

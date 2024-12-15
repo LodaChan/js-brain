@@ -71,7 +71,7 @@ strStr = (mainStr: string, subStr: string): number => {
 
     // [mk] 2 继续复用前缀函数的概念
     for (let mainStrCharIndex = 0, subStrCharIndex = 0; mainStrCharIndex < mainStr.length; mainStrCharIndex++) {
-        while (subStrCharIndex > 0 && mainStr[mainStrCharIndex] != subStr[subStrCharIndex]) {
+        while (subStrCharIndex > 0 && mainStr[mainStrCharIndex] !== subStr[subStrCharIndex]) {
             subStrCharIndex = PMT[subStrCharIndex - 1];
         }
 

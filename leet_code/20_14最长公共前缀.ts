@@ -28,7 +28,7 @@ let longestCommonPrefix: (inputWordList: string[]) => string;
 longestCommonPrefix = (inputWordList: string[]): string => {
     let output = "";
 
-    if (inputWordList == null || inputWordList.length == 0) {
+    if (inputWordList === null || inputWordList.length === 0) {
         return (output = "");
     }
 
@@ -57,7 +57,7 @@ longestCommonPrefix = (inputWordList: string[]): string => {
 longestCommonPrefix = (inputWordList: string[]): string => {
     let prefix = "";
 
-    if (inputWordList == null || inputWordList.length == 0) {
+    if (inputWordList === null || inputWordList.length === 0) {
         return (prefix = "");
     }
 

@@ -18,6 +18,7 @@ let threeSum: (nums: number[]) => [number, number, number][];
  * 空间复杂度 O(N) N 是数组 nums 的长度
  */
 threeSum = (nums: number[]): [number, number, number][] => {
+    // [mk] 1 先排序保证线性递推
     nums.sort((a, b) => a - b);
 
     let output: [number, number, number][] = [];
@@ -31,7 +32,7 @@ threeSum = (nums: number[]): [number, number, number][] => {
         let target = -nums[first];
 
         for (let second = first + 1; second < nums.length; second++) {
-            if (second > first + 1 && nums[second] == nums[second - 1]) {
+            if (second > first + 1 && nums[second] === nums[second - 1]) {
                 continue;
             }
 
@@ -40,11 +41,11 @@ threeSum = (nums: number[]): [number, number, number][] => {
                 third--;
             }
 
-            if (second == third) {
+            if (second === third) {
                 break;
             }
 
-            if (nums[second] + nums[third] == target) {
+            if (nums[second] + nums[third] === target) {
                 output.push([nums[first], nums[second], nums[third]]);
             }
         }

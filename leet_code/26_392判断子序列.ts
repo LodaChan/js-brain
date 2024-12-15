@@ -44,28 +44,30 @@ isSubsequence = (subStr: string, mainStr: string): boolean => {
 isSubsequence = (subStr: string, mainStr: string): boolean => {
     let output = false;
 
-    const mat = new Array(mainStr.length + 1).fill(0).map(() => new Array(26).fill(0));
+    const matrix = new Array(mainStr.length + 1).fill(0).map(() => new Array(26).fill(0));
     for (let xIndex = 0; xIndex < 26; xIndex++) {
-        mat[mainStr.length][xIndex] = mainStr.length;
+        matrix[mainStr.length][xIndex] = mainStr.length;
     }
-    // [mk] 1 倒过来遍历
-    for (let yIndex = mainStr.length - 1; yIndex >= 0; yIndex--) {
-        for (let keyIndex = 0; keyIndex < 26; keyIndex++) {
-            if (mainStr.charCodeAt(yIndex) === keyIndex + 97) {
-                mat[yIndex][keyIndex] = yIndex;
+    // [mk] 倒过来遍历
+    for (let rowIndex = mainStr.length - 1; rowIndex >= 0; rowIndex--) {
+        for (let charCodeIndex = 0; charCodeIndex < 26; charCodeIndex++) {
+            if (mainStr.charCodeAt(rowIndex) === charCodeIndex + 97) {
+                matrix[rowIndex][charCodeIndex] = rowIndex;
             } else {
-                mat[yIndex][keyIndex] = mat[yIndex + 1][keyIndex];
+                matrix[rowIndex][charCodeIndex] = matrix[rowIndex + 1][charCodeIndex];
             }
         }
     }
 
-    let nextSubStrChatIndex = 0;
+    let rowIndex = 0;
     for (let subStrCharIndex = 0; subStrCharIndex < subStr.length; subStrCharIndex++) {
-        if (mat[nextSubStrChatIndex][subStr.charCodeAt(subStrCharIndex) - 97] === mainStr.length) {
+        const charCodeIndex = subStr.charCodeAt(subStrCharIndex) - 97;
+
+        if (matrix[rowIndex][charCodeIndex] === mainStr.length) {
             return (output = false);
         }
 
-        nextSubStrChatIndex = mat[nextSubStrChatIndex][subStr.charCodeAt(subStrCharIndex) - 97] + 1;
+        rowIndex = matrix[rowIndex][charCodeIndex] + 1;
     }
 
     return (output = true);
