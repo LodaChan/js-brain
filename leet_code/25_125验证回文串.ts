@@ -32,14 +32,14 @@ isPalindrome = (str: string): boolean => {
 
     str = str.toLowerCase();
 
-    const charHashMap: Map<string, number> = new Map();
+    const charHashMap: Set<string> = new Set();
     // 0-9
     for (let numValue = 0; numValue <= 9; numValue++) {
-        charHashMap.set(`${numValue}`, `${numValue}`.charCodeAt(0));
+        charHashMap.add(`${numValue}`);
     }
     // a-z
     for (let charCode = 97; charCode <= 122; charCode++) {
-        charHashMap.set(String.fromCharCode(charCode), charCode);
+        charHashMap.add(String.fromCharCode(charCode));
     }
 
     let leftIndex = 0;

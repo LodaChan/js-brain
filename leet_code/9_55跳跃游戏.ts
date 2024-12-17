@@ -28,6 +28,7 @@ canJump = (nums: number[]): boolean => {
     for (let index = 0; index < n; index++) {
         if (index <= maxJumpIndex) {
             maxJumpIndex = Math.max(maxJumpIndex, index + nums[index]);
+
             if (maxJumpIndex >= n - 1) {
                 return (output = true);
             }

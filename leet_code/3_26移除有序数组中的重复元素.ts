@@ -30,6 +30,7 @@ removeDuplicates = (nums: number[]): number => {
             nums[slow] = nums[fast];
             slow++;
         }
+
         fast++;
     }
 

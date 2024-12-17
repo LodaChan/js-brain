@@ -25,6 +25,7 @@ twoSum = (numbers: number[], target: number): number[] => {
 
     while (lowIndex < highIndex) {
         let sum = numbers[lowIndex] + numbers[highIndex];
+
         if (sum === target) {
             return (output = [lowIndex + 1, highIndex + 1]);
         } else if (sum < target) {

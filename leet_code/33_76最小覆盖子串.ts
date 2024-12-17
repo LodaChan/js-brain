@@ -11,7 +11,7 @@ import {test, is} from "./libs/unit-test";
 let minWindow: (mainStr: string, subStr: string) => string;
 
 /**
- * 滑动窗口
+ * 滑动窗口 + 双哈希表 + 贪心
  *
  * @description
  * 时间复杂度 O(∣Σ∣*∣mainStr∣+∣subStr∣) ,∣Σ∣是指 mainStr 与 subStr 的公共字符集
@@ -47,6 +47,7 @@ minWindow = (mainStr: string, subStr: string): string => {
 
         // 符合条件后 , 右移左边界 , 然后再右移右边界
         while (need.size === validCount) {
+            // 最小判定
             if (rightIndex - leftIndex < minLen) {
                 startIndex = leftIndex;
                 minLen = rightIndex - leftIndex;

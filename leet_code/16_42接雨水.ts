@@ -20,27 +20,27 @@ let trap: (height: number[]) => number;
 trap = (heightList: number[]): number => {
     let output = 0;
 
-    const indexStack: number[] = [];
+    const monotonicStackOfIndex: number[] = [];
 
     for (let index = 0; index < heightList.length; index++) {
         // 当右边出现比栈顶大的height时,开始计算储水量
-        while (indexStack.length > 0 && heightList[index] > heightList[indexStack[indexStack.length - 1]]) {
-            const topStackIndex = indexStack.pop();
+        while (monotonicStackOfIndex.length > 0 && heightList[index] > heightList[monotonicStackOfIndex[monotonicStackOfIndex.length - 1]]) {
+            const topStackIndex = monotonicStackOfIndex.pop();
 
             // topStackIndex左边没柱子了不构成抽象容器
-            if (indexStack.length === 0) {
+            if (monotonicStackOfIndex.length === 0) {
                 break;
             }
 
             // topStackIndex左边的柱子
-            const preIndexOfTopStackIndex = indexStack[indexStack.length - 1];
+            const preIndexOfTopStackIndex = monotonicStackOfIndex[monotonicStackOfIndex.length - 1];
 
             const dw = index - preIndexOfTopStackIndex - 1;
             const dt = Math.min(heightList[preIndexOfTopStackIndex], heightList[index]) - heightList[topStackIndex];
             output += dw * dt;
         }
 
-        indexStack.push(index);
+        monotonicStackOfIndex.push(index);
     }
 
     return output;
