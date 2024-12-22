@@ -53,15 +53,15 @@ minWindow = (mainStr: string, subStr: string): string => {
                 minLen = rightIndex - leftIndex;
             }
 
-            const firstCharOfMainStr = mainStr[leftIndex];
+            const leftCharOfMainStr = mainStr[leftIndex];
             leftIndex++;
 
-            if (window.has(firstCharOfMainStr) === true) {
-                if (window.get(firstCharOfMainStr) === need.get(firstCharOfMainStr)) {
+            if (window.has(leftCharOfMainStr) === true) {
+                if (window.get(leftCharOfMainStr) === need.get(leftCharOfMainStr)) {
                     validCount--;
                 }
 
-                window.set(firstCharOfMainStr, window.get(firstCharOfMainStr) - 1);
+                window.set(leftCharOfMainStr, window.get(leftCharOfMainStr) - 1);
             }
         }
     }

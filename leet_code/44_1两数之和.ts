@@ -6,7 +6,7 @@ import {test, is} from "./libs/unit-test";
  *
  * @description
  * 输入 nums = [2,7,11,15], target = 9
- * 输出 9
+ * 输出 [0, 1]
  */
 let twoSum: (nums: number[], target: number) => number[];
 
@@ -32,6 +32,7 @@ twoSum = (nums: number[], target: number): number[] => {
 
         indexHashMap[num] = index;
     }
+
     return output;
 };
 

@@ -69,7 +69,7 @@ strStr = (mainStr: string, subStr: string): number => {
         PMT[fastCharIndex] = slowCharIndex;
     }
 
-    // [mk] 2 继续复用前缀函数的概念
+    // [mk] 2 继续复用前缀函数
     for (let mainStrCharIndex = 0, subStrCharIndex = 0; mainStrCharIndex < mainStr.length; mainStrCharIndex++) {
         while (subStrCharIndex > 0 && mainStr[mainStrCharIndex] !== subStr[subStrCharIndex]) {
             subStrCharIndex = PMT[subStrCharIndex - 1];

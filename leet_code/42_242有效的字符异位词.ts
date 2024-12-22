@@ -13,7 +13,7 @@ import {test, is} from "./libs/unit-test";
 let isAnagram: (str1: string, str2: string) => boolean;
 
 /**
- *
+ * 哈希表 + 计数
  *
  * @description
  * 时间复杂度 O(n)

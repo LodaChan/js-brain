@@ -13,7 +13,7 @@ import {test, is} from "./libs/unit-test";
 let isHappy: (num: number) => boolean;
 
 /**
- * 哈希表 + 循环检测
+ * 哈希表 + 环检测
  *
  * @description
  * 时间复杂度 O(logn)
