@@ -12,6 +12,9 @@ let removeElement: (nums: number[], val: number) => number;
 
 /**
  * 正向(同起点快慢)双指针 + 数据抹除
+ *
+ * 时间复杂度 O(n)
+ * 空间复杂度 O(1)
  */
 removeElement = (nums: number[], val: number): number => {
     console.log(nums);
@@ -37,11 +40,16 @@ removeElement = (nums: number[], val: number): number => {
 
 /**
  * 双向双指针 + 数据抹除
+ *
+ * 时间复杂度 O(n)
+ * 空间复杂度 O(1)
  */
 removeElement = (nums: number[], val: number): number => {
     console.log([...nums], val);
 
     let left = 0;
+    // 不是常规的 nums.length-1
+    // 左指针 left 和右指针 right 重合的时候 , 左右指针必定遍历完数组中所有的元素
     let right = nums.length;
 
     while (left < right) {

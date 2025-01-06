@@ -43,8 +43,8 @@ groupAnagrams = (strs: string[]): string[][] => {
  * 计数 + 新标识符
  *
  * @description
- * 时间复杂度 O(n * ( k +∣Σ∣)) , k 是 strs 中的字符串的的最大长度，Σ 是字符集
- * 空间复杂度 O(n * ( k +∣Σ∣)) , k 是 strs 中的字符串的的最大长度，Σ 是字符集
+ * 时间复杂度 O(n * ( k +∣Σ∣)) , k 是 strs 中的字符串的的最大长度 Σ 是字符集
+ * 空间复杂度 O(n * ( k +∣Σ∣)) , k 是 strs 中的字符串的的最大长度 Σ 是字符集
  */
 groupAnagrams = (strs: string[]): string[][] => {
     let output = [];

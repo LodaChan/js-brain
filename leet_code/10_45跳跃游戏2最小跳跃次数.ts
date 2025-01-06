@@ -26,7 +26,9 @@ minJumpCount = (nums: number[]): number => {
         for (let index = 0; index < finalJumpIndex; index++) {
             if (index + nums[index] >= finalJumpIndex) {
                 finalJumpIndex = index;
+
                 steps++;
+
                 break;
             }
         }

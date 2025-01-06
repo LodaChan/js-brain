@@ -6,23 +6,23 @@
 /**
  * 递推 + 递归 + 回溯
  */
-const getCombinations1 = (arr: number[], m: number): number[][] => {
-    let output = [];
+const getCombinations1 = (nums: number[], m: number): number[][] => {
+    let output: number[][] = [];
 
-    const _recursiveFunc = (startIndex: number, currentCombination: number[]) => {
-        if (currentCombination.length === m) {
-            output.push([...currentCombination]);
+    const _recursiveFunc = (startIndex: number, refCombination: number[]) => {
+        if (refCombination.length === m) {
+            output.push([...refCombination]);
 
             return;
         }
 
-        for (let index = startIndex; index < arr.length; index++) {
-            currentCombination.push(arr[index]);
+        for (let index = startIndex; index < nums.length; index++) {
+            refCombination.push(nums[index]);
 
-            _recursiveFunc(index + 1, currentCombination);
+            _recursiveFunc(index + 1, refCombination);
 
             // 回溯 , 对 currentCombination 加入的数据 arr[index] 进行删除回退 , 不影响 index+1 的下次循环
-            currentCombination.pop();
+            refCombination.pop();
         }
     };
 
@@ -34,7 +34,7 @@ const getCombinations1 = (arr: number[], m: number): number[][] => {
 /**
  *  递推 + 递归
  */
-const getCombinations2 = (arr: number[], m: number): number[][] => {
+const getCombinations2 = (nums: number[], m: number): number[][] => {
     const _getSubsetsFunc = (arr: number[], index: number): number[][] => {
         if (index === arr.length) {
             return [[]];
@@ -52,50 +52,50 @@ const getCombinations2 = (arr: number[], m: number): number[][] => {
         return output;
     };
 
-    const allSubsets = _getSubsetsFunc(arr, 0);
+    const allSubsets = _getSubsetsFunc(nums, 0);
     return allSubsets.filter((subset) => subset.length === m);
 };
 
 /**
  * 模拟 + 位运算
  */
-const getCombinations3 = (arr: number[], m: number): number[][] => {
+const getCombinations3 = (nums: number[], m: number): number[][] => {
     const output = [];
 
     /**
      * 包含个元素的集合 , 其所有可能的组合情况数量 2^n
      */
-    const maxCombinationCount = Math.pow(2, arr.length);
+    const maxCombinationCount = Math.pow(2, nums.length);
 
     for (let combinationIndex = 0; combinationIndex < maxCombinationCount; combinationIndex++) {
-        const currentCombination = [];
-        let currentCombinationCounter = 0;
+        const chunkCombination = [];
+        let chunkCombinationCounter = 0;
 
-        for (let index = 0; index < arr.length; index++) {
+        for (let index = 0; index < nums.length; index++) {
             // 判断第 index 个元素是否在 combinationIndex 的组合中
             if ((combinationIndex & (1 << index)) !== 0) {
-                currentCombination.push(arr[index]);
-                currentCombinationCounter++;
+                chunkCombination.push(nums[index]);
+                chunkCombinationCounter++;
             }
         }
 
-        if (currentCombinationCounter === m) {
-            output.push(currentCombination);
+        if (chunkCombinationCounter === m) {
+            output.push(chunkCombination);
         }
     }
 
     return output;
 };
 
-const inputArr = [0, 1, 2, 3];
+const testArr = [0, 1, 2, 3];
 
-const combinations1 = getCombinations1(inputArr, 3);
+const combinations1 = getCombinations1(testArr, 3);
 console.log(combinations1);
 
-const combinations2 = getCombinations2(inputArr, 3);
+const combinations2 = getCombinations2(testArr, 3);
 console.log(combinations2);
 
-const combinations3 = getCombinations3(inputArr, 3);
+const combinations3 = getCombinations3(testArr, 3);
 console.log(combinations3);
 // [
 //     [0, 1, 2],

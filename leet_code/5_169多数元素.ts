@@ -11,8 +11,7 @@ import {test, is} from "./libs/unit-test";
 let majorityElement: (nums: number[]) => number;
 
 /**
- * 分治
- * Boyer-Moore 摩尔投票算法
+ * 分治(Boyer-Moore 摩尔投票算法)
  */
 majorityElement = (nums: number[]): number => {
     console.log(nums);

@@ -12,6 +12,7 @@ const getPermutation1 = (arr: number[]): number[][] => {
     const _recursiveFunc = (leftIndex: number, rightIndex: number) => {
         if (leftIndex === rightIndex) {
             output.push([...arr]);
+
             return;
         }
         for (let index = leftIndex; index < rightIndex; index++) {
@@ -30,9 +31,9 @@ const getPermutation1 = (arr: number[]): number[][] => {
     return output;
 };
 
-const inputArr = [0, 1, 2];
+const testArr = [0, 1, 2];
 
-const permutation1 = getPermutation1(inputArr);
+const permutation1 = getPermutation1(testArr);
 console.log(permutation1);
 
 // [

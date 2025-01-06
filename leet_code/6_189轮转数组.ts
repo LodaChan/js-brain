@@ -11,7 +11,7 @@ import {test, is} from "./libs/unit-test";
 let rotate: (nums: number[], k: number) => number[];
 
 /**
- * 索引补K后基于nums.length求余 + 临时存储空间 + 重新赋值
+ * 索引补K后基于nums.length求余 + 额外存储空间 + 重新赋值
  *
  * @description
  * 时间复杂度 O(n)
@@ -97,10 +97,12 @@ rotate = (nums: number[], k: number): number[] => {
             const temp = nums[startIndex];
             nums[startIndex] = nums[endIndex];
             nums[endIndex] = temp;
+
             startIndex++;
             endIndex--;
         }
     };
+
     _reverseFunc(nums, 0, nums.length - 1);
     _reverseFunc(nums, 0, k - 1);
     _reverseFunc(nums, k, nums.length - 1);

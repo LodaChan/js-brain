@@ -4,7 +4,7 @@ import {test, is} from "./libs/unit-test";
  * 73. 矩阵置零
  * https://leetcode.cn/problems/set-matrix-zeroes/description
  *
- * 如果一个元素为 0 ，则将其所在行和列的所有元素都设为 0
+ * 如果一个元素为 0 则将其所在行和列的所有元素都设为 0
  * @description
  * 输入 matrix = [[1,1,1],[1,0,1],[1,1,1]]
  * 输出 [[1,0,1],[0,0,0],[1,0,1]]

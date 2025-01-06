@@ -39,7 +39,7 @@ insert = (intervals: number[][], newInterval: number[]): number[][] => {
         else if (interval[1] < L) {
             cloneIntervals.push(interval);
         }
-        // newInterval 与 interval 有交集，计算并集
+        // newInterval 与 interval 有交集 计算并集
         else {
             L = Math.min(L, interval[0]);
             R = Math.max(R, interval[1]);

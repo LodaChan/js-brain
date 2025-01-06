@@ -12,6 +12,9 @@ let removeDuplicates: (nums: number[]) => number;
 
 /**
  * 正向双指针 + 距离为2快指针与慢指针递推
+ *
+ * 时间复杂度 O(n)
+ * 空间复杂度 O(1)
  */
 removeDuplicates = (nums: number[]): number => {
     console.log(nums);
@@ -28,6 +31,7 @@ removeDuplicates = (nums: number[]): number => {
             nums[slow] = nums[fast];
             slow++;
         }
+
         fast++;
     }
 

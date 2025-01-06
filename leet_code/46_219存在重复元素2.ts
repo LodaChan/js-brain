@@ -4,7 +4,8 @@ import {test, is} from "./libs/unit-test";
  * 219. 存在重复元素 II
  * https://leetcode.cn/problems/contains-duplicate-ii/description
  *
- * 是否存在两个 不同的索引 i 和 j ，满足 nums[i] === nums[j] 且 abs(i - j) <= k
+ * 是否存在两个 不同的索引 i 和 j
+ * 满足 nums[i] === nums[j] 且 abs(i - j) <= k
  *
  * @description
  * 输入 nums = [1,2,3,1], k = 3

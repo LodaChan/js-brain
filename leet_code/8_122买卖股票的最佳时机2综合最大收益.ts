@@ -27,6 +27,7 @@ maxProfit = (prices: number[]): number => {
     for (let index = 1; index < n; index++) {
         let newDp0 = Math.max(dp0, dp1 + prices[index]);
         let newDp1 = Math.max(dp1, dp0 - prices[index]);
+
         dp0 = newDp0;
         dp1 = newDp1;
     }
@@ -45,9 +46,8 @@ maxProfit = (prices: number[]): number => {
     console.log(prices);
 
     let totalProfit = 0;
-    let n = prices.length;
 
-    for (let index = 1; index < n; index++) {
+    for (let index = 1; index < prices.length; index++) {
         totalProfit += Math.max(0, prices[index] - prices[index - 1]);
     }
 
