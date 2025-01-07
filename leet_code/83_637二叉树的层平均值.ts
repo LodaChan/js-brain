@@ -23,7 +23,7 @@ class TreeNode {
 let averageOfLevels: (root: TreeNode | null) => number[];
 
 /**
- * 深度优先搜索(递归)
+ * 深度优先
  *
  * @description
  * 时间复杂度 O(n)
@@ -63,7 +63,7 @@ averageOfLevels = (root: TreeNode | null): number[] => {
 };
 
 /**
- * 广度优先搜索(队列)
+ * 广度优先
  *
  * @description
  * 时间复杂度 O(n)
@@ -71,19 +71,20 @@ averageOfLevels = (root: TreeNode | null): number[] => {
  */
 averageOfLevels = (root: TreeNode | null): number[] => {
     const output = [];
+
     const queue: TreeNode[] = [];
     if (root) {
         queue.push(root);
     }
 
     while (queue.length > 0) {
-        let curDepthSum = 0;
-        let curDepthValueCount = queue.length;
+        let levelSum = 0;
+        let levelSize = queue.length;
 
-        for (let index = 0; index < curDepthValueCount; index++) {
+        for (let index = 0; index < levelSize; index++) {
             let curNode = queue.shift()!;
 
-            curDepthSum += curNode.val;
+            levelSum += curNode.val;
 
             let leftNode = curNode.left,
                 rightNode = curNode.right;
@@ -96,7 +97,7 @@ averageOfLevels = (root: TreeNode | null): number[] => {
             }
         }
 
-        output.push(curDepthSum / curDepthValueCount);
+        output.push(levelSum / levelSize);
     }
 
     return output;

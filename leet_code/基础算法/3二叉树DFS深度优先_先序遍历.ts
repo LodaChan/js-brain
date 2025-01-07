@@ -1,7 +1,6 @@
 /**
- * 左子树 -> 根节点 -> 右子树
+ * 根节点 -> 左子树 -> 右子树
  */
-
 class TreeNode {
     val: number;
     left: TreeNode | null;
@@ -15,30 +14,30 @@ class TreeNode {
 }
 
 /**
- * 递归
+ * 深度优先(递归)
  */
-function inorderTraversalRecursive(root: TreeNode | null): number[] {
+function preorderTraversalRecursive(root: TreeNode | null): number[] {
     const output: number[] = [];
 
-    const _inorderFunc = (curNode: TreeNode | null) => {
+    const _preorderFunc = (curNode: TreeNode | null) => {
         if (curNode) {
-            _inorderFunc(curNode.left);
-
             output.push(curNode.val);
 
-            _inorderFunc(curNode.right);
+            _preorderFunc(curNode.left);
+
+            _preorderFunc(curNode.right);
         }
     };
 
-    _inorderFunc(root);
+    _preorderFunc(root);
 
     return output;
 }
 
 /**
- * 非递归
+ * 深度优先(非递归)(栈)
  */
-function inorderTraversalNonRecursive(root: TreeNode | null): number[] {
+function preorderTraversalNonRecursive(root: TreeNode | null): number[] {
     let output: number[] = [];
     let stack: TreeNode[] = [];
 
@@ -46,14 +45,14 @@ function inorderTraversalNonRecursive(root: TreeNode | null): number[] {
 
     while (curNode !== null || stack.length > 0) {
         while (curNode !== null) {
+            output.push(curNode.val);
+
             stack.push(curNode);
 
             curNode = curNode.left;
         }
 
         curNode = stack.pop()!;
-
-        output.push(curNode.val);
 
         curNode = curNode.right;
     }

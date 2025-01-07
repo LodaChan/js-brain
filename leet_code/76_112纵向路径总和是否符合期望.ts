@@ -1,7 +1,7 @@
 import {test, is} from "./libs/unit-test";
 
 /**
- * 112. 纵向路径总和
+ * 112. 纵向路径总和是否符合期望
  * https://leetcode.cn/problems/path-sum/description
  *
  * 最后1个节点left与right都是null
@@ -25,7 +25,7 @@ class TreeNode {
 let hasPathSum: (root: TreeNode | null, targetSum: number) => boolean;
 
 /**
- * 深度优先搜索(递归)
+ * 深度优先
  *
  * @description
  * 时间复杂度 O(n)
@@ -37,14 +37,14 @@ hasPathSum = (root: TreeNode | null, targetSum: number): boolean => {
     }
 
     if (root.left === null && root.right === null) {
-        return targetSum == root.val;
+        return targetSum === root.val;
     }
 
     return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
 };
 
 /**
- * 广度优先搜索(队列)
+ * 广度优先
  *
  * @description
  * 时间复杂度 O(n)
@@ -57,32 +57,29 @@ hasPathSum = (root: TreeNode | null, targetSum: number): boolean => {
         return (output = false);
     }
 
-    let queNode: TreeNode[] = [];
-    let queVal: number[] = [];
-
-    queNode.push(root);
-    queVal.push(root.val);
+    let queNode: TreeNode[] = [root];
+    let queVal: number[] = [root.val];
 
     while (queNode.length > 0) {
-        let cur = queNode.shift()!;
-        let temp = queVal.shift()!;
+        let curNode = queNode.shift()!;
+        let curNodeVal = queVal.shift()!;
 
-        if (cur.left === null && cur.right === null) {
-            if (temp === targetSum) {
+        if (curNode.left === null && curNode.right === null) {
+            if (curNodeVal === targetSum) {
                 return (output = true);
             }
 
             continue;
         }
 
-        if (cur.left !== null) {
-            queNode.push(cur.left);
-            queVal.push(cur.left.val + temp);
+        if (curNode.left !== null) {
+            queNode.push(curNode.left);
+            queVal.push(curNode.left.val + curNodeVal);
         }
 
-        if (cur.right !== null) {
-            queNode.push(cur.right);
-            queVal.push(cur.right.val + temp);
+        if (curNode.right !== null) {
+            queNode.push(curNode.right);
+            queVal.push(curNode.right.val + curNodeVal);
         }
     }
 

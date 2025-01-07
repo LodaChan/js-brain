@@ -32,25 +32,24 @@ let flatten: (root: TreeNode | null) => void;
  * 空间复杂度 O(1)
  */
 flatten = (root: TreeNode | null) => {
-    let cur = root;
+    let curNode = root;
 
-    while (cur !== null) {
+    while (curNode !== null) {
         // 如果有左子树
-        if (cur.left !== null) {
-            const next = cur.left;
+        if (curNode.left !== null) {
+            const nextNode = curNode.left;
 
-            let finalRightNodeOfCurNodeLeftSubTree = next;
-            while (finalRightNodeOfCurNodeLeftSubTree.right !== null) {
-                finalRightNodeOfCurNodeLeftSubTree = finalRightNodeOfCurNodeLeftSubTree.right;
+            let finalNode = nextNode;
+            while (finalNode.right !== null) {
+                finalNode = finalNode.right;
             }
             // 将左子树的最底右节点与当前的右节点连接
-            finalRightNodeOfCurNodeLeftSubTree.right = cur.right;
+            finalNode.right = curNode.right;
 
-            cur.left = null;
-            cur.right = next;
+            curNode.left = null;
+            curNode.right = nextNode;
         }
 
-        // 基于右子树不断递推
-        cur = cur.right;
+        curNode = curNode.right;
     }
 };

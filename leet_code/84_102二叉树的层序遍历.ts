@@ -23,7 +23,7 @@ class TreeNode {
 let levelOrder: (root: TreeNode | null) => number[][];
 
 /**
- * 广度优先搜索(队列)
+ * 广度优先
  *
  * @description
  * 时间复杂度 O(n)
@@ -40,11 +40,11 @@ levelOrder = (root: TreeNode | null): number[][] => {
     queue.push(root);
 
     while (queue.length > 0) {
-        const curLevelSize = queue.length;
+        const levelSize = queue.length;
 
         output.push([]);
 
-        for (let index = 1; index <= curLevelSize; ++index) {
+        for (let index = 1; index <= levelSize; ++index) {
             const curNode = queue.shift();
 
             output[output.length - 1].push(curNode.val);

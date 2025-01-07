@@ -33,7 +33,7 @@ class TreeNode {
 let kthSmallest: (root: TreeNode | null, k: number) => number;
 
 /**
- * 中序遍历 + 二叉搜索树特点
+ * 深度优先(中序) + 二叉搜索树特点
  *
  * @description
  * 时间复杂度 O(H+k)
@@ -45,13 +45,13 @@ kthSmallest = (root: TreeNode | null, k: number): number => {
     let curNode = root;
 
     while (curNode !== null || stack.length > 0) {
-        // 根据二叉搜索树找到最左(小)节点
-        while (curNode !== null) {
+        while (curNode) {
             stack.push(curNode);
             curNode = curNode.left;
         }
 
         curNode = stack.pop();
+
         k--;
 
         if (k === 0) {
@@ -74,7 +74,7 @@ kthSmallest = (root: TreeNode | null, k: number): number => {
 kthSmallest = (root: TreeNode | null, k: number): number => {};
 
 /**
- * 平衡二叉搜索树
+ * 转换并维护平衡二叉搜索树
  *
  * @description
  * 时间复杂度 O(N)

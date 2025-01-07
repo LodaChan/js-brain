@@ -23,7 +23,7 @@ class TreeNode {
 let zigzagLevelOrder: (root: TreeNode | null) => number[][];
 
 /**
- * 广度优先搜素(队列) + 双端队列
+ * 广度优先 + 双端队列
  *
  * @description
  * 时间复杂度 O(n)
@@ -41,7 +41,7 @@ zigzagLevelOrder = (root: TreeNode | null): number[][] => {
     let isOrderLeftFlag = true;
 
     while (queue.length > 0) {
-        let curLevelList = [];
+        let levelValues = [];
 
         const curLevelSize = queue.length;
 
@@ -49,11 +49,11 @@ zigzagLevelOrder = (root: TreeNode | null): number[][] => {
             const curNode = queue.shift();
 
             if (isOrderLeftFlag === true) {
-                curLevelList.push(curNode.val);
+                levelValues.push(curNode.val);
             }
             //
             else {
-                curLevelList.unshift(curNode.val);
+                levelValues.unshift(curNode.val);
             }
 
             if (curNode.left) {
@@ -64,7 +64,7 @@ zigzagLevelOrder = (root: TreeNode | null): number[][] => {
             }
         }
 
-        output.push(curLevelList);
+        output.push(levelValues);
 
         // 如果从左至右 每次将被遍历到的元素插入至双端队列的末尾
         // 如果从右至左 每次将被遍历到的元素插入至双端队列的头部

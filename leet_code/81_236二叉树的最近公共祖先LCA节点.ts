@@ -25,7 +25,7 @@ class TreeNode {
 let lowestCommonAncestor: (root: TreeNode | null, p: TreeNode | null, q: TreeNode | null) => TreeNode | null;
 
 /**
- * 深度优先搜索(递归)
+ * 深度优先
  *
  * @description
  * 时间复杂度 O(n)

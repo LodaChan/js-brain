@@ -39,23 +39,23 @@ let isValidBST: (root: TreeNode | null) => boolean;
  * 空间复杂度 O(H)
  */
 isValidBST = (root: TreeNode | null): boolean => {
-    const _helperFunc = (node: TreeNode | null, lower: number, upper: number) => {
-        if (node === null) {
+    const _helperFunc = (curNode: TreeNode | null, lower: number, upper: number) => {
+        if (curNode === null) {
             return true;
         }
 
-        if (node.val <= lower || node.val >= upper) {
+        if (curNode.val <= lower || curNode.val >= upper) {
             return false;
         }
 
-        return _helperFunc(node.left, lower, node.val) && _helperFunc(node.right, node.val, upper);
+        return _helperFunc(curNode.left, lower, curNode.val) && _helperFunc(curNode.right, curNode.val, upper);
     };
 
     return _helperFunc(root, -Infinity, Infinity);
 };
 
 /**
- * 中序遍历
+ * 深度优先(中序)
  *
  * @description
  * 时间复杂度 O(H+k)
@@ -65,7 +65,7 @@ isValidBST = (root: TreeNode | null): boolean => {
     let output = false;
 
     let stack = [];
-    let inorder = -Infinity;
+    let inorderVal = -Infinity;
 
     let curNode = root;
 
@@ -77,11 +77,11 @@ isValidBST = (root: TreeNode | null): boolean => {
 
         curNode = stack.pop();
 
-        if (curNode.val <= inorder) {
+        if (curNode.val <= inorderVal) {
             return (output = false);
         }
 
-        inorder = curNode.val;
+        inorderVal = curNode.val;
         curNode = curNode.right;
     }
 

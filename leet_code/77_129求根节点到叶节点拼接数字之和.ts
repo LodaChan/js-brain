@@ -33,7 +33,7 @@ class TreeNode {
 let sumNumbers: (root: TreeNode | null) => number;
 
 /**
- * 深度优先搜索(递归)
+ * 深度优先
  *
  * @description
  * 时间复杂度 O(n)
@@ -59,7 +59,7 @@ sumNumbers = (root: TreeNode | null): number => {
     return _DFSFunc(root, 0);
 };
 /**
- * 广度优先搜索(队列)
+ * 广度优先
  *
  * @description
  * 时间复杂度 O(n)

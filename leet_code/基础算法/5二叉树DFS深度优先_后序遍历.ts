@@ -14,7 +14,7 @@ class TreeNode {
 }
 
 /**
- * 递归
+ * 深度优先(递归)
  */
 function postorderTraversalRecursive(root: TreeNode | null): number[] {
     const output: number[] = [];
@@ -35,7 +35,7 @@ function postorderTraversalRecursive(root: TreeNode | null): number[] {
 }
 
 /**
- * 非递归
+ * 深度优先(非递归)(栈)
  */
 function postorderTraversalNonRecursive(root: TreeNode | null): number[] {
     let output: number[] = [];

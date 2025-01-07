@@ -24,7 +24,7 @@ class TreeNode {
 let invertTree: (root: TreeNode | null) => TreeNode | null;
 
 /**
- * 递归(深度优先搜索)
+ * 深度优先
  *
  * @description
  * 时间复杂度 O(n)

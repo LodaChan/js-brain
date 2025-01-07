@@ -24,7 +24,7 @@ class TreeNode {
 let isSameTree: (root1: TreeNode | null, root2: TreeNode | null) => boolean;
 
 /**
- * 递归(深度优先搜索)
+ * 深度优先
  *
  * @description
  * 时间复杂度 O(min(n,m))
@@ -49,7 +49,7 @@ isSameTree = (root1: TreeNode | null, root2: TreeNode | null): boolean => {
 };
 
 /**
- * 队列(广度优先搜索)
+ * 广度优先
  *
  * @description
  * 时间复杂度 O(min(n,m))

@@ -10,13 +10,13 @@ import {test, is} from "./libs/unit-test";
  * 输出 [1,#,2,3,#,4,5,7,#]
  */
 
-class _Node {
+class TreeNode {
     val: number;
-    left: _Node | null;
-    right: _Node | null;
-    next: _Node | null;
+    left: TreeNode | null;
+    right: TreeNode | null;
+    next: TreeNode | null;
 
-    constructor(val?: number, left?: _Node, right?: _Node, next?: _Node) {
+    constructor(val?: number, left?: TreeNode, right?: TreeNode, next?: TreeNode) {
         this.val = val === undefined ? 0 : val;
         this.left = left === undefined ? null : left;
         this.right = right === undefined ? null : right;
@@ -24,16 +24,16 @@ class _Node {
     }
 }
 
-let connect: (root: _Node | null) => _Node | null;
+let connect: (root: TreeNode | null) => TreeNode | null;
 
 /**
- * 层次遍历
+ * 广度优先
  *
  * @description
  * 时间复杂度 O(n)
  * 空间复杂度 O(n)
  */
-connect = (root: _Node | null): _Node | null => {
+connect = (root: TreeNode | null): TreeNode | null => {
     if (root === null) {
         return null;
     }
@@ -41,21 +41,25 @@ connect = (root: _Node | null): _Node | null => {
     const queue = [root];
 
     while (queue.length > 0) {
-        const n = queue.length;
+        const levelSize = queue.length;
 
-        let last = null;
-        for (let index = 1; index <= n; index++) {
-            let f = queue.shift();
-            if (f.left !== null) {
+        let lastNode = null;
+
+        for (let index = 1; index <= levelSize; index++) {
+            let f = queue.shift()!;
+
+            if (f.left) {
                 queue.push(f.left);
             }
-            if (f.right !== null) {
+            if (f.right) {
                 queue.push(f.right);
             }
+
             if (index !== 1) {
-                last.next = f;
+                lastNode.next = f;
             }
-            last = f;
+
+            lastNode = f;
         }
     }
 
@@ -84,19 +88,25 @@ connect = (root: _Node | null): _Node | null => {
 //     if (root === null) {
 //         return null;
 //     }
-//     let start = root;
-//     while (start != null) {
+
+//     let startNode = root;
+
+//     while (startNode != null) {
 //         last = null;
 //         nextStart = null;
-//         for (let p = start; p !== null; p = p.next) {
+
+//         for (let p = startNode; p !== null; p = p.next) {
 //             if (p.left !== null) {
 //                 handle(p.left);
 //             }
+
 //             if (p.right !== null) {
 //                 handle(p.right);
 //             }
 //         }
-//         start = nextStart;
+
+//         startNode = nextStart;
 //     }
+
 //     return root;
 // };

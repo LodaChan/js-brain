@@ -23,7 +23,7 @@ class TreeNode {
 let rightSideView: (root: TreeNode | null) => number[];
 
 /**
- * 深度优先搜索 + 双存储栈 + 哈希表
+ * 深度优先 + 双栈 + 哈希表
  *
  * @description
  * 时间复杂度 O(n)
@@ -34,7 +34,8 @@ rightSideView = (root: TreeNode | null): number[] => {
 
     const stack: TreeNode[] = [];
     const depthStack: number[] = [];
-    let maxDepth: number = -1;
+
+    let depthCount: number = -1;
 
     if (root) {
         stack.push(root);
@@ -43,32 +44,32 @@ rightSideView = (root: TreeNode | null): number[] => {
 
     while (stack.length > 0) {
         const curNode = stack.pop();
-        const curDepth = depthStack.pop()!;
+        const curDepthIndex = depthStack.pop()!;
 
         if (curNode) {
-            maxDepth = Math.max(maxDepth, curDepth);
+            depthCount = Math.max(depthCount, curDepthIndex);
 
-            if (depthRightValueHashMap.has(curDepth) === false) {
-                depthRightValueHashMap.set(curDepth, curNode.val);
+            if (depthRightValueHashMap.has(curDepthIndex) === false) {
+                depthRightValueHashMap.set(curDepthIndex, curNode.val);
             }
 
             stack.push(curNode.left);
             stack.push(curNode.right);
 
-            depthStack.push(curDepth + 1);
-            depthStack.push(curDepth + 1);
+            depthStack.push(curDepthIndex + 1);
+            depthStack.push(curDepthIndex + 1);
         }
     }
 
     const output = [];
-    for (let depth = 0; depth <= maxDepth; depth++) {
+    for (let depth = 0; depth <= depthCount; depth++) {
         output.push(depthRightValueHashMap.get(depth));
     }
     return output;
 };
 
 /**
- * 广度优先搜索 + 双存储队列 + 哈希表
+ * 广度优先  + 双队列 + 哈希表
  *
  * @description
  * 时间复杂度 O(n)

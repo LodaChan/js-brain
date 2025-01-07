@@ -67,11 +67,11 @@ isSymmetric = (root: TreeNode | null): boolean => {
             p = queue.shift()!;
             q = queue.shift()!;
 
-            if (!p && !q) {
+            if (p === null && q === null) {
                 continue;
             }
 
-            if (!p || !q || p.val !== q.val) {
+            if (p === null || q === null || p.val !== q.val) {
                 return false;
             }
 

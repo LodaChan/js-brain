@@ -45,23 +45,23 @@ buildTree = (preorder: number[], inorder: number[]): TreeNode | null => {
         }
 
         // 前序遍历确定root
-        let preorder_root = preorder_left;
+        let preorder_root_index = preorder_left;
         // 中序遍历确定root
-        let inorder_root = indexHashMap[preorder[preorder_root]];
+        let inorder_root_index = indexHashMap[preorder[preorder_root_index]];
 
         // 先把根节点建立出来
-        let root = new TreeNode(preorder[preorder_root]);
+        let root = new TreeNode(preorder[preorder_root_index]);
 
         // 得到左子树中的节点数目
-        let size_left_subtree = inorder_root - inorder_left;
+        let size_left_subtree = inorder_root_index - inorder_left;
 
         // 递归地构造左子树并连接到根节点
         // 先序遍历中「从 左边界+1 开始的 size_left_subtree」个元素就对应了中序遍历中「从 左边界 开始到 根节点定位-1」的元素
-        root.left = _buildTreeFunc(preorder, inorder, preorder_left + 1, preorder_left + size_left_subtree, inorder_left, inorder_root - 1);
+        root.left = _buildTreeFunc(preorder, inorder, preorder_left + 1, preorder_left + size_left_subtree, inorder_left, inorder_root_index - 1);
 
         // 递归地构造右子树并连接到根节点
         // 先序遍历中「从 左边界+1+左子树节点数目 开始到 右边界」的元素就对应了中序遍历中「从 根节点定位+1 到 右边界」的元素
-        root.right = _buildTreeFunc(preorder, inorder, preorder_left + size_left_subtree + 1, preorder_right, inorder_root + 1, inorder_right);
+        root.right = _buildTreeFunc(preorder, inorder, preorder_left + size_left_subtree + 1, preorder_right, inorder_root_index + 1, inorder_right);
 
         return root;
     };
@@ -91,23 +91,23 @@ buildTree = (preorder: number[], inorder: number[]): TreeNode | null => {
     for (let index = 1; index < preorder.length; index++) {
         let preorderVal = preorder[index];
 
-        let node = stack[stack.length - 1];
+        let curNode = stack[stack.length - 1];
 
         // 左
-        if (node.val !== inorder[inorderIndex]) {
-            node.left = new TreeNode(preorderVal);
-            stack.push(node.left);
+        if (curNode.val !== inorder[inorderIndex]) {
+            curNode.left = new TreeNode(preorderVal);
+            stack.push(curNode.left);
         }
         // 右
         else {
             while (stack.length > 0 && stack[stack.length - 1].val === inorder[inorderIndex]) {
-                node = stack.pop()!;
+                curNode = stack.pop()!;
                 inorderIndex++;
             }
 
-            node.right = new TreeNode(preorderVal);
+            curNode.right = new TreeNode(preorderVal);
 
-            stack.push(node.right);
+            stack.push(curNode.right);
         }
     }
 

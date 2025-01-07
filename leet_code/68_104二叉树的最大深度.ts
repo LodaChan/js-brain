@@ -24,7 +24,7 @@ class TreeNode {
 let maxDepth: (root: TreeNode | null) => number;
 
 /**
- * 递归(深度优先搜索)
+ * 深度优先
  *
  * @description
  * 时间复杂度 O(n)
@@ -44,7 +44,7 @@ maxDepth = (root: TreeNode | null): number => {
 };
 
 /**
- * 队列(广度优先搜索)
+ * 广度优先
  *
  * @description
  * 时间复杂度 O(n)
@@ -55,30 +55,29 @@ maxDepth = (root: TreeNode | null): number => {
         return 0;
     }
 
-    const queue = [];
-    queue.push(root);
+    const queue: TreeNode[] = [root];
 
-    let output = 0;
+    let depth = 0;
 
     while (queue.length > 0) {
-        let size = queue.length;
+        let levelSize = queue.length;
 
-        while (size > 0) {
+        while (levelSize > 0) {
             const curNode = queue.shift()!;
 
-            if (curNode.left !== null) {
+            if (curNode.left) {
                 queue.push(curNode.left);
             }
 
-            if (curNode.right !== null) {
+            if (curNode.right) {
                 queue.push(curNode.right);
             }
 
-            size--;
+            levelSize--;
         }
 
-        output++;
+        depth++;
     }
 
-    return output;
+    return depth;
 };

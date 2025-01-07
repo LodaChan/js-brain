@@ -25,17 +25,17 @@ class TreeNode {
 let buildTree: (inorder: number[], postorder: number[]) => TreeNode | null;
 
 /**
- * 递归
+ * 递归 + 先序哈希表
  *
  * @description
  * 时间复杂度 O(n)
  * 空间复杂度 O(n)
  */
 buildTree = (inorder: number[], postorder: number[]): TreeNode | null => {
-    const indexHashMap = new Map();
+    const indexHashMapOfInorder = new Map();
 
-    inorder.forEach((val, idx) => {
-        indexHashMap.set(val, idx);
+    inorder.forEach((val, index) => {
+        indexHashMapOfInorder.set(val, index);
     });
 
     let postIndex = postorder.length - 1;
@@ -49,7 +49,7 @@ buildTree = (inorder: number[], postorder: number[]): TreeNode | null => {
         const rootVal = postorder[postIndex];
         const rootNode = new TreeNode(rootVal);
 
-        const rootIndex = indexHashMap.get(rootVal);
+        const rootIndex = indexHashMapOfInorder.get(rootVal);
 
         postIndex--;
 

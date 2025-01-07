@@ -26,7 +26,7 @@ class TreeNode {
 let getMinimumDifference: (root: TreeNode | null) => number;
 
 /**
- * 深度优先遍历(递归) + 中序
+ * 深度优先(递归) + 中序
  *
  * @description
  * 时间复杂度 O(n)
@@ -36,23 +36,23 @@ getMinimumDifference = (root: TreeNode | null): number => {
     let output = Number.MAX_SAFE_INTEGER,
         preVal = -1;
 
-    const _DFSFunc = (node: TreeNode | null) => {
-        if (node === null) {
+    const _DFSFunc = (curNode: TreeNode | null) => {
+        if (curNode === null) {
             return;
         }
 
-        _DFSFunc(node.left);
+        _DFSFunc(curNode.left);
 
         if (preVal === -1) {
-            preVal = node.val;
+            preVal = curNode.val;
         }
         //
         else {
-            output = Math.min(output, node.val - preVal);
-            preVal = node.val;
+            output = Math.min(output, curNode.val - preVal);
+            preVal = curNode.val;
         }
 
-        _DFSFunc(node.right);
+        _DFSFunc(curNode.right);
     };
 
     _DFSFunc(root);

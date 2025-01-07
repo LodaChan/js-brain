@@ -28,7 +28,7 @@ class TreeNode {
 let maxPathSum: (root: TreeNode | null) => number;
 
 /**
- * 深度优先搜索(递归)
+ * 深度优先
  *
  * @description
  * 时间复杂度 O(n)
